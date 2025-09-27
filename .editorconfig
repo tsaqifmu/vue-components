@@ -1,0 +1,128 @@
+# EditorConfig is awesome: https://EditorConfig.org
+
+# Top-most EditorConfig file
+root = true
+
+# All files
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# JavaScript, TypeScript, Vue files
+[*.{js,jsx,mjs,cjs,ts,tsx,mts,cts,vue}]
+indent_style = space
+indent_size = 2
+max_line_length = 100
+
+# JSON files
+[*.json]
+indent_style = space
+indent_size = 2
+
+# CSS, SCSS, SASS, Less, Stylus
+[*.{css,scss,sass,less,styl,pcss}]
+indent_style = space
+indent_size = 2
+
+# HTML files
+[*.html]
+indent_style = space
+indent_size = 2
+
+# XML files
+[*.{xml,svg}]
+indent_style = space
+indent_size = 2
+
+# YAML files
+[*.{yml,yaml}]
+indent_style = space
+indent_size = 2
+
+# TOML files
+[*.toml]
+indent_style = space
+indent_size = 2
+
+# Markdown files
+[*.md]
+trim_trailing_whitespace = false
+max_line_length = off
+
+# Package manager files
+[{package.json,package-lock.json,pnpm-lock.yaml,yarn.lock}]
+indent_style = space
+indent_size = 2
+
+# Config files
+[*.{config,conf}.{js,ts,mjs,cjs}]
+indent_style = space
+indent_size = 2
+
+# Vite config
+[vite.config.{js,ts}]
+indent_style = space
+indent_size = 2
+
+# ESLint config
+[{.eslintrc,.eslintrc.{js,ts,json,yml,yaml}}]
+indent_style = space
+indent_size = 2
+
+# Prettier config
+[{.prettierrc,.prettierrc.{js,ts,json,yml,yaml}}]
+indent_style = space
+indent_size = 2
+
+# TypeScript config
+[tsconfig*.json]
+indent_style = space
+indent_size = 2
+
+# Vitest config
+[vitest.config.{js,ts}]
+indent_style = space
+indent_size = 2
+
+# Docker files
+[{Dockerfile,Dockerfile.*}]
+indent_style = space
+indent_size = 2
+
+# Shell scripts
+[*.{sh,bash,zsh}]
+indent_style = space
+indent_size = 2
+end_of_line = lf
+
+# Batch files (Windows)
+[*.{bat,cmd}]
+end_of_line = crlf
+
+# Git files
+[{.gitignore,.gitattributes,.gitkeep}]
+indent_style = space
+indent_size = 2
+
+# GitHub workflows
+[.github/workflows/*.{yml,yaml}]
+indent_style = space
+indent_size = 2
+
+# Environment files
+[{.env,.env.*}]
+indent_style = space
+indent_size = 2
+
+# License files
+[{LICENSE,LICENSE.*,LICENCE,LICENCE.*}]
+indent_style = space
+indent_size = 2
+insert_final_newline = false
+
+# README files
+[{README,README.*}]
+trim_trailing_whitespace = false
+max_line_length = off
