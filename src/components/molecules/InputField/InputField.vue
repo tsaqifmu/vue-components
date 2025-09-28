@@ -9,7 +9,7 @@ const wrapperVariants = cva(
   [
     'relative rounded-lg shadow-small bg-surface-primary-white',
     'ring-1 ring-inset ring-gray-300',
-    'transition-all duration-200',
+    'transition-all duration-300',
   ],
   {
     variants: {

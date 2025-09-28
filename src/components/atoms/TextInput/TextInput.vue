@@ -8,7 +8,7 @@ const inputVariants = cva(
     'block w-full border-0 bg-transparent',
     'text-text-title placeholder:text-text-placeholder',
     'sm:text-sm sm:leading-6 outline-none rounded-lg',
-    'transition-all duration-200',
+    'transition-all duration-300 overflow-hidden',
   ],
   {
     variants: {
@@ -19,8 +19,9 @@ const inputVariants = cva(
         focus: '',
       },
       spacing: {
-        default: 'py-3  px-4',
+        default: 'py-3 px-4',
         withCounter: 'pt-3 pb-8 px-4',
+        withIcons: 'py-3 pl-4 pr-13',
       },
     },
     defaultVariants: {
@@ -38,7 +39,7 @@ export interface TextInputProps
   id?: string
   disabled?: boolean
   class?: string
-  spacing?: 'default' | 'withCounter'
+  spacing?: 'default' | 'withCounter' | 'withIcons'
   state?: 'default' | 'disabled' | 'error' | 'focus'
 }
 
@@ -46,25 +47,11 @@ const props = defineProps<TextInputProps>()
 
 const model = defineModel<string | number>({ default: '' })
 
-const handleInput = (event: Event) => {
-  const target = event.target as HTMLInputElement
-  model.value = target.value
-}
-
 const inputClasses = computed(() =>
   cn(inputVariants({ state: props.state, spacing: props.spacing }), props.class),
 )
-
-console.log('ini data space', props.spacing)
 </script>
 
 <template>
-  <input
-    v-bind="$attrs"
-    :id="id"
-    :value="model"
-    :disabled="disabled"
-    :class="inputClasses"
-    @input="handleInput"
-  />
+  <input v-bind="$attrs" :id="id" v-model="model" :disabled="disabled" :class="inputClasses" />
 </template>

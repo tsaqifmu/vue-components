@@ -8,6 +8,6 @@ const data = ref('')
 <template>
   <div>
     <p>About Page</p>
-    <Input v-model="data" :maxlength="50" error error-message="Nganu ini gesi" />
+    <Input v-model="data" error error-message="Nganu ini gesi" />
   </div>
 </template>

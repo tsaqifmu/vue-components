@@ -8,7 +8,7 @@ const inputVariants = cva(
     'block w-full border-0 bg-transparent',
     'text-text-title placeholder:text-text-placeholder',
     'sm:text-sm sm:leading-6 outline-none rounded-lg',
-    'transition-all duration-200',
+    'transition-all duration-300',
   ],
   {
     variants: {
@@ -33,7 +33,7 @@ const wrapperVariants = cva(
   [
     'relative rounded-lg shadow-small bg-surface-primary-white',
     'ring-1 ring-inset ring-gray-300',
-    'transition-all duration-200',
+    'transition-all duration-300',
   ],
   {
     variants: {

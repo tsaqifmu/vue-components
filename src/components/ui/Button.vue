@@ -8,7 +8,7 @@ const buttonVariants = cva(
     'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[16rem] font-semibold',
 
     // Transition styles
-    'transition-all',
+    'transition-all duration-300',
 
     // Focus styles
     'focus-visible:ring-primary',
@@ -22,7 +22,6 @@ const buttonVariants = cva(
 
     // SVG styles
     '[&_svg]:pointer-events-none',
-    '[&_svg]:size-4',
   ],
   {
     variants: {
@@ -34,6 +33,7 @@ const buttonVariants = cva(
         destructive:
           'border border-notification-error text-notification-error  hover:bg-surface-primary-white hover:shadow-button',
         ghost: 'text-primary hover:text-button-hover-primary',
+        custom: 'text-primary hover:text-button-hover-primary',
         secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
         link: 'text-primary underline-offset-4 hover:underline',
       },
@@ -41,6 +41,7 @@ const buttonVariants = cva(
         default: 'px-6 py-2 text-sm',
         sm: 'px-3 py-1 text-xs',
         icon: 'h-10 w-10',
+        custom: 'p-0',
       },
     },
     compoundVariants: [
