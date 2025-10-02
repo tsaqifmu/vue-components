@@ -10,6 +10,9 @@ import { RouterLink } from 'vue-router'
         <div class="space-x-4">
           <RouterLink to="/" class="transition-colors hover:text-blue-200">Home</RouterLink>
           <RouterLink to="/about" class="transition-colors hover:text-blue-200">About</RouterLink>
+          <RouterLink to="/demo-input" class="transition-colors hover:text-blue-200"
+            >Demo Input</RouterLink
+          >
         </div>
       </div>
     </nav>

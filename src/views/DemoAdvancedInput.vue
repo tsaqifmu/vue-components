@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import ErrorMessage from '@/components/atoms/ErrorMessage/ErrorMessage.vue'
-import AdvancedFormField from '@/components/molecules/AdvancedFormField/AdvancedFormField.vue'
-import AdvancedInputField from '@/components/molecules/AdvancedInputField/AdvancedInputField.vue'
+import FormInput from '@/components/form-input'
 import { ref } from 'vue'
 
 // Form data
@@ -42,140 +40,175 @@ const isDisabled = ref(false)
       <!-- Basic Text Input with Clear -->
       <div class="space-y-4 rounded-lg bg-white p-6 shadow-sm">
         <h2 class="text-xl font-semibold text-gray-800">Basic Text Input with Clear</h2>
-        <AdvancedFormField
-          v-model="username"
-          label="Username"
-          placeholder="Enter your username"
-          :clearable="true"
-          :disabled="isDisabled"
-          :error="showError"
-          errorMessage="Username is required"
-        />
+        <div class="space-y-2">
+          <FormInput.Label html-for="username">Username</FormInput.Label>
+          <FormInput
+            v-model="username"
+            id="username"
+            placeholder="Enter your username"
+            :clearable="true"
+            :disabled="isDisabled"
+            :error="showError"
+          />
+          <FormInput.ErrorMessage
+            v-if="showError"
+            id="username-error"
+            message="Username is required"
+          />
+        </div>
       </div>
 
       <!-- Password Input -->
       <div class="space-y-4 rounded-lg bg-white p-6 shadow-sm">
         <h2 class="text-xl font-semibold text-gray-800">Password Input</h2>
-        <AdvancedFormField
-          v-model="password"
-          type="password"
-          label="Password"
-          placeholder="Enter your password"
-          :clearable="true"
-          :required="true"
-          :disabled="isDisabled"
-          :error="showError"
-          errorMessage="Password must be at least 8 characters"
-        />
+        <div class="space-y-2">
+          <FormInput.Label html-for="password" :required="true">Password</FormInput.Label>
+          <FormInput
+            v-model="password"
+            id="password"
+            type="password"
+            placeholder="Enter your password"
+            :clearable="true"
+            :disabled="isDisabled"
+            :error="showError"
+          />
+          <FormInput.ErrorMessage
+            v-if="showError"
+            id="password-error"
+            message="Password must be at least 8 characters"
+          />
+        </div>
       </div>
 
       <!-- Number Input -->
       <div class="space-y-4 rounded-lg bg-white p-6 shadow-sm">
         <h2 class="text-xl font-semibold text-gray-800">Number Input</h2>
-        <AdvancedFormField
-          v-model="phone"
-          type="number"
-          label="Phone Number"
-          placeholder="Enter phone number (numbers only)"
-          :clearable="false"
-          :disabled="isDisabled"
-        />
+        <div class="space-y-2">
+          <FormInput.Label html-for="phone">Phone Number</FormInput.Label>
+          <FormInput
+            v-model="phone"
+            id="phone"
+            type="number"
+            placeholder="Enter phone number (numbers only)"
+            :clearable="false"
+            :disabled="isDisabled"
+          />
+        </div>
       </div>
 
       <!-- Input with Character Counter -->
       <div class="space-y-4 rounded-lg bg-white p-6 shadow-sm">
         <h2 class="text-xl font-semibold text-gray-800">Input with Character Counter</h2>
-        <AdvancedFormField
-          v-model="description"
-          label="Description"
-          placeholder="Enter a description"
-          :maxlength="100"
-          :clearable="true"
-          :disabled="isDisabled"
-          :error="showError"
-          errorMessage="Description is too long"
-        />
+        <div class="space-y-2">
+          <FormInput.Label html-for="description">Description</FormInput.Label>
+          <FormInput
+            v-model="description"
+            id="description"
+            placeholder="Enter a description"
+            maxlength="100"
+            :clearable="true"
+            :disabled="isDisabled"
+            :error="showError"
+          />
+          <FormInput.ErrorMessage
+            v-if="showError"
+            id="description-error"
+            message="Description is too long"
+          />
+        </div>
       </div>
 
       <!-- Input with Suffix Icon -->
       <div class="space-y-4 rounded-lg bg-white p-6 shadow-sm">
         <h2 class="text-xl font-semibold text-gray-800">Input with Suffix Icon</h2>
-        <AdvancedFormField
-          v-model="email"
-          type="email"
-          label="Email Address"
-          placeholder="Enter your email"
-          :clearable="true"
-          :disabled="isDisabled"
-        >
-          <template #suffix-icon>
-            <svg
-              class="h-5 w-5 text-gray-400"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-              />
-            </svg>
-          </template>
-        </AdvancedFormField>
+        <div class="space-y-2">
+          <FormInput.Label html-for="email">Email Address</FormInput.Label>
+          <FormInput
+            v-model="email"
+            id="email"
+            type="email"
+            placeholder="Enter your email"
+            :clearable="true"
+            :disabled="isDisabled"
+          >
+            <template #suffix-icon>
+              <svg
+                class="h-5 w-5 text-gray-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                />
+              </svg>
+            </template>
+          </FormInput>
+        </div>
       </div>
 
       <!-- Input with Append Button -->
       <div class="space-y-4 rounded-lg bg-white p-6 shadow-sm">
         <h2 class="text-xl font-semibold text-gray-800">Input with Append Button</h2>
-        <AdvancedFormField
-          v-model="search"
-          label="Search"
-          placeholder="Enter search term"
-          :disabled="isDisabled"
-        >
-          <template #append-button>
-            <span>Search</span>
-          </template>
-        </AdvancedFormField>
+        <div class="space-y-2">
+          <FormInput.Label html-for="search">Search</FormInput.Label>
+          <FormInput
+            v-model="search"
+            id="search"
+            placeholder="Enter search term"
+            :disabled="isDisabled"
+          >
+            <template #append-button>
+              <span>Search</span>
+            </template>
+          </FormInput>
+        </div>
       </div>
 
       <!-- Input with Append Icon Button -->
       <div class="space-y-4 rounded-lg bg-white p-6 shadow-sm">
         <h2 class="text-xl font-semibold text-gray-800">Input with Append Icon Button</h2>
-        <AdvancedFormField
-          v-model="channelName"
-          label="Channel Name"
-          placeholder="Enter channel name"
-          :clearable="true"
-          :disabled="isDisabled"
-        >
-          <template #append-button-icon>
-            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M12 4v16m8-8H4"
-              />
-            </svg>
-          </template>
-        </AdvancedFormField>
+        <div class="space-y-2">
+          <FormInput.Label html-for="channelName">Channel Name</FormInput.Label>
+          <FormInput
+            v-model="channelName"
+            id="channelName"
+            placeholder="Enter channel name"
+            :clearable="true"
+            :disabled="isDisabled"
+          >
+            <template #append-button-icon>
+              <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 4v16m8-8H4"
+                />
+              </svg>
+            </template>
+          </FormInput>
+        </div>
       </div>
 
-      <!-- Standalone AdvancedInputField without Label -->
+      <!-- Standalone Input Field without Label -->
       <div class="space-y-4 rounded-lg bg-white p-6 shadow-sm">
         <h2 class="text-xl font-semibold text-gray-800">Standalone Input Field (without Label)</h2>
-        <AdvancedInputField
-          v-model="errorField"
-          placeholder="This is a standalone input field"
-          :clearable="true"
-          :error="showError"
-          :disabled="isDisabled"
-          :maxlength="50"
-        />
-        <ErrorMessage v-if="showError" message="This field has an error" />
+        <div class="space-y-2">
+          <FormInput
+            v-model="errorField"
+            id="errorField"
+            placeholder="This is a standalone input field"
+            :clearable="true"
+            :error="showError"
+            :disabled="isDisabled"
+            maxlength="50"
+          />
+          <FormInput.ErrorMessage v-if="showError" message="This field has an error" />
+        </div>
       </div>
 
       <!-- Current Values Display -->
