@@ -22,6 +22,21 @@ const isDisabled = ref(false)
     <div class="mx-auto max-w-4xl space-y-8">
       <h1 class="mb-8 text-3xl font-bold text-gray-900">Advanced Input Components Demo</h1>
 
+      <!-- Current Values Display -->
+      <div class="rounded-lg bg-white p-6 shadow-sm">
+        <h2 class="mb-4 text-xl font-semibold text-gray-800">Current Values</h2>
+        <div class="space-y-2 font-mono text-sm">
+          <div>Username: {{ username || '(empty)' }}</div>
+          <div>Password: {{ password ? '•'.repeat(password.length) : '(empty)' }}</div>
+          <div>Email: {{ email || '(empty)' }}</div>
+          <div>Phone: {{ phone || '(empty)' }}</div>
+          <div>Search: {{ search || '(empty)' }}</div>
+          <div>Description: {{ description || '(empty)' }} ({{ description.length }}/100)</div>
+          <div>Channel Name: {{ channelName || '(empty)' }}</div>
+          <div>Error Field: {{ errorField || '(empty)' }} ({{ errorField.length }}/50)</div>
+        </div>
+      </div>
+
       <!-- Controls -->
       <div class="space-y-4 rounded-lg bg-white p-6 shadow-sm">
         <h2 class="mb-4 text-xl font-semibold text-gray-800">Controls</h2>
@@ -208,21 +223,6 @@ const isDisabled = ref(false)
             maxlength="50"
           />
           <FormInput.ErrorMessage v-if="showError" message="This field has an error" />
-        </div>
-      </div>
-
-      <!-- Current Values Display -->
-      <div class="rounded-lg bg-white p-6 shadow-sm">
-        <h2 class="mb-4 text-xl font-semibold text-gray-800">Current Values</h2>
-        <div class="space-y-2 font-mono text-sm">
-          <div>Username: {{ username || '(empty)' }}</div>
-          <div>Password: {{ password ? '•'.repeat(password.length) : '(empty)' }}</div>
-          <div>Email: {{ email || '(empty)' }}</div>
-          <div>Phone: {{ phone || '(empty)' }}</div>
-          <div>Search: {{ search || '(empty)' }}</div>
-          <div>Description: {{ description || '(empty)' }} ({{ description.length }}/100)</div>
-          <div>Channel Name: {{ channelName || '(empty)' }}</div>
-          <div>Error Field: {{ errorField || '(empty)' }} ({{ errorField.length }}/50)</div>
         </div>
       </div>
     </div>
