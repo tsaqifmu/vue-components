@@ -1,33 +1,3 @@
-<template>
-  <button
-    type="button"
-    :class="triggerClasses"
-    :disabled="disabled ?? false"
-    :aria-expanded="select?.isOpen.value ?? false"
-    :aria-haspopup="listbox"
-    role="combobox"
-    @click="select?.toggle"
-  >
-    <span class="flex-1 truncate text-left">
-      <slot :value="select?.modelValue.value" :is-placeholder="!select?.modelValue.value">
-        {{ displayText }}
-      </slot>
-    </span>
-    <svg
-      :class="[
-        'ml-2 h-4 w-4 shrink-0 opacity-50 transition-transform duration-200',
-        select?.isOpen.value ? 'rotate-180' : 'rotate-0',
-      ]"
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-      aria-hidden="true"
-    >
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-    </svg>
-  </button>
-</template>
-
 <script setup lang="ts">
 import { cva } from 'class-variance-authority'
 import { computed, inject, type InjectionKey, type Ref } from 'vue'
@@ -61,11 +31,6 @@ interface Props {
   class?: string
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  size: 'default',
-  disabled: false,
-})
-
 interface SelectContext {
   id: string
   isOpen: Ref<boolean>
@@ -78,9 +43,16 @@ interface SelectContext {
   getDisplayText: () => string
 }
 
+// --- Props & Emits ---
+const props = withDefaults(defineProps<Props>(), {
+  size: 'default',
+  disabled: false,
+})
+
 const contextKey = inject<InjectionKey<SelectContext>>('select-context-key')
 const select = contextKey ? inject(contextKey) : null
 
+// --- State & Computed ----
 const displayText = computed(() => select?.getDisplayText() ?? '')
 
 const triggerClasses = computed(() =>
@@ -93,3 +65,33 @@ const triggerClasses = computed(() =>
   ),
 )
 </script>
+
+<template>
+  <button
+    type="button"
+    :class="triggerClasses"
+    :disabled="disabled ?? false"
+    :aria-expanded="select?.isOpen.value ?? false"
+    aria-haspopup="listbox"
+    role="combobox"
+    @click="select?.toggle"
+  >
+    <span class="flex-1 truncate text-left">
+      <slot :value="select?.modelValue.value" :is-placeholder="!select?.modelValue.value">
+        {{ displayText }}
+      </slot>
+    </span>
+    <svg
+      :class="[
+        'ml-2 h-4 w-4 shrink-0 opacity-50 transition-transform duration-200',
+        select?.isOpen.value ? 'rotate-180' : 'rotate-0',
+      ]"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+    </svg>
+  </button>
+</template>
