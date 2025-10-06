@@ -4,7 +4,19 @@ import { computed, inject, type InjectionKey, type Ref } from 'vue'
 import { cn } from '../../lib/utils'
 
 const selectTriggerVariants = cva(
-  'inline-flex w-full items-center justify-between rounded-md border px-3 py-2 text-sm transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-1 whitespace-nowrap shadow-sm',
+  // Base styles
+  [
+    'inline-flex w-full items-center justify-between rounded-md border px-3 py-2 whitespace-nowrap shadow-sm',
+    // Text styles
+    'text-sm',
+
+    // Transition styles
+    'transition-all duration-200 ease-in-out',
+
+    // Focus styles
+    'focus:outline-none focus:ring-2 focus:ring-offset-1',
+  ],
+
   {
     variants: {
       size: {
@@ -54,6 +66,7 @@ const select = contextKey ? inject(contextKey) : null
 
 // --- State & Computed ----
 const displayText = computed(() => select?.getDisplayText() ?? '')
+const isPlaceholder = computed(() => !select?.modelValue.value)
 
 const triggerClasses = computed(() =>
   cn(
@@ -76,8 +89,13 @@ const triggerClasses = computed(() =>
     role="combobox"
     @click="select?.toggle"
   >
-    <span class="flex-1 truncate text-left">
-      <slot :value="select?.modelValue.value" :is-placeholder="!select?.modelValue.value">
+    <span
+      :class="[
+        'flex-1 truncate text-left text-sm font-normal',
+        isPlaceholder && 'text-text-placeholder',
+      ]"
+    >
+      <slot :value="select?.modelValue.value" :is-placeholder="isPlaceholder">
         {{ displayText }}
       </slot>
     </span>

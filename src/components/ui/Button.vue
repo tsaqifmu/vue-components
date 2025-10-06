@@ -4,6 +4,7 @@ import { cva, type VariantProps } from 'class-variance-authority'
 import { type ButtonHTMLAttributes } from 'vue'
 
 const buttonVariants = cva(
+  // Base styles
   [
     'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[16rem] font-semibold',
 
