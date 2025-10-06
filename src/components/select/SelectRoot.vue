@@ -1,9 +1,3 @@
-<template>
-  <div ref="container" class="group relative inline-block" :data-state="isOpen ? 'open' : 'closed'">
-    <slot />
-  </div>
-</template>
-
 <script setup lang="ts">
 import { onMounted, onUnmounted, provide, ref, watch, type InjectionKey, type Ref } from 'vue'
 
@@ -129,3 +123,9 @@ provide(contextKey, {
 // Provide context key for child components
 provide('select-context-key', contextKey)
 </script>
+
+<template>
+  <div ref="container" class="group relative inline-block" :data-state="isOpen ? 'open' : 'closed'">
+    <slot />
+  </div>
+</template>

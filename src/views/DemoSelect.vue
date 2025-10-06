@@ -1,3 +1,32 @@
+<script setup lang="ts">
+import {
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectRoot,
+  SelectSeparator,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/select'
+import { ref } from 'vue'
+
+const selectedCountry = ref<string>()
+const selectedTimezone = ref<string>('asia/jakarta')
+const selectedPriority = ref<string>()
+const selectedStatus = ref<string>()
+const selectedNumber = ref<string>()
+const disabledValue = ref<string>()
+
+const size1 = ref<string>()
+const size2 = ref<string>()
+const size3 = ref<string>()
+
+const multi1 = ref<string>()
+const multi2 = ref<string>()
+const multi3 = ref<string>()
+</script>
+
 <template>
   <div class="bg-surface-secondary min-h-screen p-8">
     <div class="mx-auto max-w-4xl space-y-8">
@@ -241,32 +270,3 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-import {
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectRoot,
-  SelectSeparator,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/select'
-import { ref } from 'vue'
-
-const selectedCountry = ref<string>()
-const selectedTimezone = ref<string>('asia/jakarta')
-const selectedPriority = ref<string>()
-const selectedStatus = ref<string>()
-const selectedNumber = ref<string>()
-const disabledValue = ref<string>()
-
-const size1 = ref<string>()
-const size2 = ref<string>()
-const size3 = ref<string>()
-
-const multi1 = ref<string>()
-const multi2 = ref<string>()
-const multi3 = ref<string>()
-</script>
