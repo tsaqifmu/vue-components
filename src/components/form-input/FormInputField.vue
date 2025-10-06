@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { computed, ref, useAttrs, useSlots, watch, type InputHTMLAttributes } from 'vue'
 
-// CVA untuk wrapper
+// CVA for wrapper
 const wrapperVariants = cva(
   [
     'relative rounded-lg shadow-small bg-surface-primary-white',
@@ -28,7 +28,7 @@ const wrapperVariants = cva(
   },
 )
 
-// CVA untuk input
+// CVA for input
 const inputVariants = cva(
   [
     'block w-full border-0 bg-transparent',
@@ -48,6 +48,7 @@ const inputVariants = cva(
         default: 'py-3 px-4',
         withCounter: 'pt-3 pb-8 px-4',
         withIcons: 'py-3 pl-4 pr-13',
+        'withcounter&icons': 'pt-3 pb-8 pr-13 pl-4',
       },
     },
     defaultVariants: {
@@ -72,6 +73,7 @@ export interface AdvancedInputFieldProps
   type?: 'text' | 'password' | 'number' | 'email' | 'tel' | 'url' | 'search'
 }
 
+// --- Props & Emits ---
 const props = withDefaults(defineProps<AdvancedInputFieldProps>(), {
   type: 'text',
   clearable: false,
@@ -83,12 +85,14 @@ const emit = defineEmits<{
 
 const model = defineModel<string | number>({ default: '' })
 
+// --- Composables ---
 const attrs = useAttrs()
 const slots = useSlots()
+
+// --- Refs & Computed ---
 const isFocused = ref(false)
 const showPassword = ref(false)
 
-// Computed properties
 const state = computed(() => {
   if (props.disabled) return 'disabled'
   if (props.error) return 'error'
@@ -110,7 +114,9 @@ const hasIcons = computed(() => {
   return props.clearable || props.type === 'password'
 })
 
+// handle spacing for input
 const inputSpacing = computed(() => {
+  if (hasCounter.value && hasIcons.value) return 'withcounter&icons'
   if (hasCounter.value) return 'withCounter'
   if (hasIcons.value) return 'withIcons'
   return 'default'
@@ -131,6 +137,13 @@ const inputClasses = computed(() =>
   ),
 )
 
+// ARIA attributes
+const ariaAttributes = computed(() => ({
+  'aria-invalid': props.error || undefined,
+  'aria-describedby': props.error ? `${props.id}-error` : undefined,
+}))
+
+// --- Watchers ---
 // Watch for number type validation
 watch(
   model,
@@ -145,7 +158,7 @@ watch(
   { immediate: false },
 )
 
-// Methods
+// --- Methods ---
 const handleClear = () => {
   model.value = ''
   emit('clear')
@@ -172,12 +185,6 @@ const handleFocus = () => {
 const handleBlur = () => {
   isFocused.value = false
 }
-
-// ARIA attributes
-const ariaAttributes = computed(() => ({
-  'aria-invalid': props.error || undefined,
-  'aria-describedby': props.error ? `${props.id}-error` : undefined,
-}))
 </script>
 
 <template>
