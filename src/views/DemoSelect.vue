@@ -112,7 +112,7 @@ const multi3 = ref<string>()
           <div>
             <p class="mb-2 text-sm text-gray-600">Default</p>
             <SelectRoot v-model="size2">
-              <SelectTrigger size="default" class="w-[180px]">
+              <SelectTrigger class="w-[180px]">
                 <SelectValue placeholder="Default" />
               </SelectTrigger>
               <SelectContent>
@@ -125,7 +125,7 @@ const multi3 = ref<string>()
           <div>
             <p class="mb-2 text-sm text-gray-600">Large</p>
             <SelectRoot v-model="size3">
-              <SelectTrigger size="lg" class="w-[180px]">
+              <SelectTrigger class="w-[180px]">
                 <SelectValue placeholder="Large" />
               </SelectTrigger>
               <SelectContent>
