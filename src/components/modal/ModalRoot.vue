@@ -1,7 +1,3 @@
-<template>
-  <slot />
-</template>
-
 <script setup lang="ts">
 import { onUnmounted, provide, ref, watch, type InjectionKey, type Ref } from 'vue'
 import { lockBodyScroll, unlockBodyScroll } from '../../lib/scrollLock'
@@ -24,6 +20,7 @@ interface Props {
   open?: boolean
 }
 
+// --- Props & Emits ---
 const props = withDefaults(defineProps<Props>(), {
   open: false,
 })
@@ -33,9 +30,10 @@ const emit = defineEmits<{
   (e: 'close'): void
 }>()
 
-// State management with Vue native ref
+// --- State & Computed ----
 const isOpen = ref(props.open)
 
+// --- Watchers ---
 // Watch props.open for external changes
 watch(
   () => props.open,
@@ -72,7 +70,7 @@ watch(isOpen, (newVal) => {
   }
 })
 
-// Simple methods
+// --- Methods ---
 const openModal = () => {
   isOpen.value = true
 }
@@ -97,6 +95,7 @@ provide(contextKey, {
 // Also provide the context key for child components to use
 provide('modal-context-key', contextKey)
 
+// --- Lifecycle Hooks ---
 // Cleanup on unmount to prevent memory leaks
 onUnmounted(() => {
   if (cleanupTimeoutId) {
@@ -108,3 +107,7 @@ onUnmounted(() => {
   }
 })
 </script>
+
+<template>
+  <slot />
+</template>

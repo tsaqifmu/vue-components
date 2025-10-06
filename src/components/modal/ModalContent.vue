@@ -1,26 +1,3 @@
-<template>
-  <Teleport to="body">
-    <Transition
-      name="modal-content"
-      enter-active-class="modal-content-enter-active"
-      enter-from-class="modal-content-enter-from"
-      leave-active-class="modal-content-leave-active"
-      leave-to-class="modal-content-leave-to"
-    >
-      <div
-        v-if="isModalOpen"
-        :class="contentClasses"
-        role="dialog"
-        :aria-labelledby="modal?.id"
-        aria-modal="true"
-        @click.stop
-      >
-        <slot />
-      </div>
-    </Transition>
-  </Teleport>
-</template>
-
 <script setup lang="ts">
 import { cva } from 'class-variance-authority'
 import { computed, inject, onMounted, onUnmounted, type InjectionKey, type Ref } from 'vue'
@@ -49,11 +26,6 @@ interface Props {
   size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'full'
   class?: string
 }
-
-const props = withDefaults(defineProps<Props>(), {
-  size: 'md',
-})
-
 interface ModalContext {
   id: string
   isOpen: Ref<boolean>
@@ -61,6 +33,11 @@ interface ModalContext {
   close: () => void
   toggle: () => void
 }
+
+// --- Props & Emits ---
+const props = withDefaults(defineProps<Props>(), {
+  size: 'md',
+})
 
 const contextKey = inject<InjectionKey<ModalContext>>('modal-context-key')
 const modal = contextKey ? inject(contextKey) : null
@@ -76,13 +53,14 @@ const contentClasses = computed(() =>
   ),
 )
 
-// Handle escape key
+// --- Methods ---
 const handleEscapeKey = (event: KeyboardEvent) => {
   if (event.key === 'Escape' && isModalOpen.value) {
     modal?.close()
   }
 }
 
+// --- Lifecycle Hooks ----
 onMounted(() => {
   document.addEventListener('keydown', handleEscapeKey)
 })
@@ -91,6 +69,29 @@ onUnmounted(() => {
   document.removeEventListener('keydown', handleEscapeKey)
 })
 </script>
+
+<template>
+  <Teleport to="body">
+    <Transition
+      name="modal-content"
+      enter-active-class="modal-content-enter-active"
+      enter-from-class="modal-content-enter-from"
+      leave-active-class="modal-content-leave-active"
+      leave-to-class="modal-content-leave-to"
+    >
+      <div
+        v-if="isModalOpen"
+        :class="contentClasses"
+        role="dialog"
+        :aria-labelledby="modal?.id"
+        aria-modal="true"
+        @click.stop
+      >
+        <slot />
+      </div>
+    </Transition>
+  </Teleport>
+</template>
 
 <style scoped>
 /* Base transform for centering */
