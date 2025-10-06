@@ -42,6 +42,7 @@ import {
   type InjectionKey,
   type Ref,
 } from 'vue'
+import { lockBodyScroll, unlockBodyScroll } from '../../lib/scrollLock'
 import { cn } from '../../lib/utils'
 
 const dropdownMenuPanelVariants = cva(
@@ -149,25 +150,6 @@ const updatePosition = () => {
     left: `${left}px`,
     // Don't force width - let CSS classes handle it (w-48, etc)
   }
-}
-
-// Lock/unlock body scroll when dropdown menu opens/closes
-const lockBodyScroll = () => {
-  // Get the scrollbar width before hiding it
-  const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth
-
-  // Only lock if there's actually a scrollbar (i.e., content is scrollable)
-  if (scrollbarWidth > 0) {
-    // Add padding to compensate for scrollbar removal (prevents layout shift)
-    document.body.style.paddingRight = `${scrollbarWidth}px`
-  }
-
-  document.body.style.overflow = 'hidden'
-}
-
-const unlockBodyScroll = () => {
-  document.body.style.overflow = ''
-  document.body.style.paddingRight = ''
 }
 
 // Watch for dropdown menu open state changes

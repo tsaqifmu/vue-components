@@ -11,6 +11,7 @@ import {
   type InjectionKey,
   type Ref,
 } from 'vue'
+import { lockBodyScroll, unlockBodyScroll } from '../../lib/scrollLock'
 import { cn } from '../../lib/utils'
 
 const selectContentVariants = cva(
@@ -138,22 +139,6 @@ const updatePosition = () => {
     left: `${left}px`,
     minWidth: `${buttonRect.width}px`,
   }
-}
-
-// Lock/unlock body scroll
-const lockBodyScroll = () => {
-  const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth
-
-  if (scrollbarWidth > 0) {
-    document.body.style.paddingRight = `${scrollbarWidth}px`
-  }
-
-  document.body.style.overflow = 'hidden'
-}
-
-const unlockBodyScroll = () => {
-  document.body.style.overflow = ''
-  document.body.style.paddingRight = ''
 }
 
 // --- Watchers ---

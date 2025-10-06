@@ -4,6 +4,7 @@
 
 <script setup lang="ts">
 import { onUnmounted, provide, ref, watch, type InjectionKey, type Ref } from 'vue'
+import { lockBodyScroll, unlockBodyScroll } from '../../lib/scrollLock'
 
 // Generate unique context key for each ModalRoot instance
 let modalInstanceCounter = 0
@@ -43,14 +44,6 @@ watch(
   },
 )
 
-/**
- * Get scrollbar width for layout shift prevention
- * Industry standard approach: window.innerWidth - document.documentElement.clientWidth
- */
-const getScrollbarWidth = (): number => {
-  return window.innerWidth - document.documentElement.clientWidth
-}
-
 // Track cleanup timeout to prevent race conditions
 let cleanupTimeoutId: ReturnType<typeof setTimeout> | null = null
 
@@ -66,20 +59,12 @@ watch(isOpen, (newVal) => {
       cleanupTimeoutId = null
     }
 
-    const scrollbarWidth = getScrollbarWidth()
-
-    // Add padding compensation if there's actually a scrollbar
-    if (scrollbarWidth > 0) {
-      document.body.style.paddingRight = `${scrollbarWidth}px`
-    }
-
-    document.body.classList.add('overflow-hidden')
+    lockBodyScroll()
   } else {
-    // Wait for modal animation to finish (500ms) before restoring scrollbar
+    // Wait for modal animation to finish (500ms) before unlocking scroll
     // This prevents layout shift during modal fade-out animation
     cleanupTimeoutId = setTimeout(() => {
-      document.body.style.paddingRight = ''
-      document.body.classList.remove('overflow-hidden')
+      unlockBodyScroll()
       cleanupTimeoutId = null
     }, 500)
 
@@ -117,8 +102,9 @@ onUnmounted(() => {
   if (cleanupTimeoutId) {
     clearTimeout(cleanupTimeoutId)
   }
-  // Ensure body styles are cleaned up if component is unmounted while modal is open
-  document.body.style.paddingRight = ''
-  document.body.classList.remove('overflow-hidden')
+  // Ensure scroll is unlocked if component is unmounted while modal is open
+  if (isOpen.value) {
+    unlockBodyScroll()
+  }
 })
 </script>

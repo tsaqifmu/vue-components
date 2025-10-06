@@ -6,7 +6,7 @@ import { cn } from '../../lib/utils'
 const selectTriggerVariants = cva(
   // Base styles
   [
-    'inline-flex w-full px-4 py-3 items-center justify-between bg-surface-primary-white rounded-lg whitespace-nowrap shadow-small',
+    'inline-flex w-full px-4 py-3 items-center justify-between gap-x-2 bg-surface-primary-white rounded-lg whitespace-nowrap shadow-small',
     // Text styles
     'text-sm text-text-title font-medium',
 
