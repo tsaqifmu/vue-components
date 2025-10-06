@@ -54,7 +54,10 @@ const select = contextKey ? inject(contextKey) : null
 
 // --- State & Computed ----
 const displayText = computed(() => select?.getDisplayText() ?? '')
-const isPlaceholder = computed(() => !select?.modelValue.value)
+const isPlaceholder = computed(() => {
+  const value = select?.modelValue.value
+  return value === undefined || value === null || value === ''
+})
 
 const triggerClasses = computed(() =>
   cn(

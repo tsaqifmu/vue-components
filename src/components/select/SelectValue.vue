@@ -18,10 +18,14 @@ const select = contextKey ? inject(contextKey) : null
 
 // --- State & Computed ----
 const displayText = computed(() => select?.getDisplayText() ?? '')
+const isPlaceholder = computed(() => {
+  const value = select?.modelValue.value
+  return value === undefined || value === null || value === ''
+})
 </script>
 
 <template>
-  <slot :value="select?.modelValue.value" :is-placeholder="!select?.modelValue.value">
+  <slot :value="select?.modelValue.value" :is-placeholder="isPlaceholder">
     {{ displayText }}
   </slot>
 </template>

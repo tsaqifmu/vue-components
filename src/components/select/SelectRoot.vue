@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted, provide, ref, watch, type InjectionKey, type Ref } from 'vue'
+import { onMounted, onUnmounted, provide, ref, type InjectionKey, type Ref } from 'vue'
 
 // Generate unique context key for each SelectRoot instance
 let selectInstanceCounter = 0
@@ -21,34 +21,21 @@ interface SelectContext {
 
 // Props
 interface Props {
-  modelValue?: string | number
   placeholder?: string
 }
 
-// --- Props & Emits ---
+// --- Props & Model ---
 const props = withDefaults(defineProps<Props>(), {
   placeholder: 'Select an option...',
 })
 
-const emit = defineEmits<{
-  'update:modelValue': [value: string | number | undefined]
-}>()
+const model = defineModel<string | number | undefined>()
 
 // --- State & Computed ----
 // State management
 const isOpen = ref(false)
 const container = ref<HTMLElement>()
-const internalValue = ref<string | number | undefined>(props.modelValue)
 const itemLabels = ref<Map<string | number, string>>(new Map())
-
-// --- Watchers ---
-// Watch for external changes
-watch(
-  () => props.modelValue,
-  (newValue) => {
-    internalValue.value = newValue
-  },
-)
 
 // --- Methods ---
 const open = () => {
@@ -64,11 +51,10 @@ const toggle = () => {
 }
 
 const selectValue = (value: string | number, label?: string) => {
-  internalValue.value = value
+  model.value = value
   if (label) {
     itemLabels.value.set(value, label)
   }
-  emit('update:modelValue', value)
   close()
 }
 
@@ -77,8 +63,8 @@ const registerItem = (value: string | number, label: string) => {
 }
 
 const getDisplayText = () => {
-  if (internalValue.value !== undefined) {
-    return itemLabels.value.get(internalValue.value) ?? internalValue.value.toString()
+  if (model.value !== undefined && model.value !== null && model.value !== '') {
+    return itemLabels.value.get(model.value) ?? model.value.toString()
   }
   return props.placeholder
 }
@@ -114,7 +100,7 @@ onUnmounted(() => {
 provide(contextKey, {
   id: selectId,
   isOpen,
-  modelValue: internalValue,
+  modelValue: model,
   open,
   close,
   toggle,

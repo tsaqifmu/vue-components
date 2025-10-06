@@ -15,6 +15,16 @@ import {
   ModalRoot,
   ModalTitle,
 } from '@/components/modal'
+import {
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectRoot,
+  SelectSeparator,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/select'
 import { computed, ref } from 'vue'
 
 const isBasicOpen = ref(false)
@@ -31,6 +41,8 @@ const formData = ref({
   category: '',
   priority: '',
   country: '',
+  department: '',
+  timezone: '',
 })
 
 // Options for select menus
@@ -59,6 +71,38 @@ const countryOptions = [
   { value: 'kr', label: '🇰🇷 South Korea' },
   { value: 'au', label: '🇦🇺 Australia' },
 ]
+
+const departmentOptions = [
+  { value: 'engineering', label: 'Engineering' },
+  { value: 'design', label: 'Design' },
+  { value: 'marketing', label: 'Marketing' },
+  { value: 'sales', label: 'Sales' },
+  { value: 'support', label: 'Customer Support' },
+  { value: 'hr', label: 'Human Resources' },
+  { value: 'finance', label: 'Finance' },
+]
+
+const timezoneOptions = {
+  asia: [
+    { value: 'asia/jakarta', label: 'Jakarta (GMT+7)' },
+    { value: 'asia/singapore', label: 'Singapore (GMT+8)' },
+    { value: 'asia/tokyo', label: 'Tokyo (GMT+9)' },
+    { value: 'asia/hong_kong', label: 'Hong Kong (GMT+8)' },
+    { value: 'asia/seoul', label: 'Seoul (GMT+9)' },
+  ],
+  america: [
+    { value: 'america/new_york', label: 'New York (GMT-5)' },
+    { value: 'america/los_angeles', label: 'Los Angeles (GMT-8)' },
+    { value: 'america/chicago', label: 'Chicago (GMT-6)' },
+    { value: 'america/toronto', label: 'Toronto (GMT-5)' },
+  ],
+  europe: [
+    { value: 'europe/london', label: 'London (GMT+0)' },
+    { value: 'europe/paris', label: 'Paris (GMT+1)' },
+    { value: 'europe/berlin', label: 'Berlin (GMT+1)' },
+    { value: 'europe/amsterdam', label: 'Amsterdam (GMT+1)' },
+  ],
+}
 
 // Computed labels for selected values
 const categoryLabel = computed(() => {
@@ -117,6 +161,8 @@ const handleFormSubmit = () => {
     category: '',
     priority: '',
     country: '',
+    department: '',
+    timezone: '',
   }
 }
 </script>
@@ -491,12 +537,77 @@ const handleFormSubmit = () => {
                   />
                 </div>
 
+                <!-- Department Select using Select Component -->
+                <div>
+                  <label class="mb-1.5 block text-sm font-medium text-gray-700"> Department </label>
+                  <SelectRoot v-model="formData.department" placeholder="Select department">
+                    <SelectTrigger class="w-full">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem
+                        v-for="option in departmentOptions"
+                        :key="option.value"
+                        :value="option.value"
+                      >
+                        {{ option.label }}
+                      </SelectItem>
+                    </SelectContent>
+                  </SelectRoot>
+                </div>
+
+                <!-- Timezone Select using Select Component with Groups -->
+                <div>
+                  <label class="mb-1.5 block text-sm font-medium text-gray-700"> Timezone </label>
+                  <SelectRoot v-model="formData.timezone" placeholder="Select timezone">
+                    <SelectTrigger class="w-full">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent class="max-h-60">
+                      <SelectGroup>
+                        <SelectLabel>Asia</SelectLabel>
+                        <SelectItem
+                          v-for="option in timezoneOptions.asia"
+                          :key="option.value"
+                          :value="option.value"
+                        >
+                          {{ option.label }}
+                        </SelectItem>
+                      </SelectGroup>
+                      <SelectSeparator />
+                      <SelectGroup>
+                        <SelectLabel>America</SelectLabel>
+                        <SelectItem
+                          v-for="option in timezoneOptions.america"
+                          :key="option.value"
+                          :value="option.value"
+                        >
+                          {{ option.label }}
+                        </SelectItem>
+                      </SelectGroup>
+                      <SelectSeparator />
+                      <SelectGroup>
+                        <SelectLabel>Europe</SelectLabel>
+                        <SelectItem
+                          v-for="option in timezoneOptions.europe"
+                          :key="option.value"
+                          :value="option.value"
+                        >
+                          {{ option.label }}
+                        </SelectItem>
+                      </SelectGroup>
+                    </SelectContent>
+                  </SelectRoot>
+                </div>
+
                 <!-- Info Box -->
                 <div class="rounded-md bg-indigo-50 p-3">
                   <p class="text-xs text-indigo-800">
-                    <strong>💡 Tip:</strong> Using custom DropdownMenu components instead of native
-                    select for better styling and UX! DropdownMenu dropdowns work perfectly inside
-                    modals with proper z-index and teleport.
+                    <strong>💡 Tip:</strong> This form demonstrates both DropdownMenu (for
+                    Category/Priority/Country) and Select components (for Department/Timezone).
+                    Select components are specifically designed for form inputs with v-model support
+                    and visual indicators. Both work perfectly inside modals with proper z-index and
+                    teleport!
                   </p>
                 </div>
               </form>
