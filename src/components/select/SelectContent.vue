@@ -1,34 +1,3 @@
-<template>
-  <!-- Overlay -->
-  <Teleport to="body" :disabled="!teleport">
-    <Transition
-      name="select-overlay"
-      enter-active-class="select-overlay-enter-active"
-      enter-from-class="select-overlay-enter-from"
-      leave-active-class="select-overlay-leave-active"
-      leave-to-class="select-overlay-leave-to"
-    >
-      <div v-if="isSelectOpen" :class="overlayClasses" @click="select?.close()"></div>
-    </Transition>
-  </Teleport>
-
-  <!-- Select Content Panel -->
-  <Teleport to="body" :disabled="!teleport">
-    <div
-      v-if="isSelectOpen"
-      ref="panelRef"
-      :class="panelClasses"
-      :style="combinedStyle"
-      :data-state="isPositioned ? 'positioned' : 'calculating'"
-      role="listbox"
-      :aria-labelledby="select?.id"
-      @click.stop
-    >
-      <slot />
-    </div>
-  </Teleport>
-</template>
-
 <script setup lang="ts">
 import { cva } from 'class-variance-authority'
 import {
@@ -65,13 +34,6 @@ interface Props {
   teleport?: boolean
   align?: 'start' | 'center' | 'end'
 }
-
-const props = withDefaults(defineProps<Props>(), {
-  position: 'bottom',
-  teleport: true,
-  align: 'start',
-})
-
 interface SelectContext {
   id: string
   isOpen: Ref<boolean>
@@ -84,14 +46,21 @@ interface SelectContext {
   getDisplayText: () => string
 }
 
+const props = withDefaults(defineProps<Props>(), {
+  position: 'bottom',
+  teleport: true,
+  align: 'start',
+})
+
 const contextKey = inject<InjectionKey<SelectContext>>('select-context-key')
 const select = contextKey ? inject(contextKey) : null
 
-const isSelectOpen = computed(() => select?.isOpen.value ?? false)
-
+// --- State & Computed ----
 const panelRef = ref<HTMLElement>()
-const teleportStyle = ref<Record<string, string>>({})
 const isPositioned = ref(false)
+const teleportStyle = ref<Record<string, string>>({})
+
+const isSelectOpen = computed(() => select?.isOpen.value ?? false)
 
 const overlayClasses = computed(() => {
   return cn('fixed inset-0 z-[9998] w-screen bg-transparent')
@@ -111,6 +80,7 @@ const combinedStyle = computed(() => {
   return teleportStyle.value
 })
 
+// --- Methods ----
 // Calculate position when teleported
 const updatePosition = () => {
   if (!props.teleport || !isSelectOpen.value) return
@@ -181,6 +151,7 @@ const unlockBodyScroll = () => {
   document.body.style.paddingRight = ''
 }
 
+// --- Watchers ---
 // Watch for select open state changes
 watch(isSelectOpen, async (newVal) => {
   if (newVal) {
@@ -205,6 +176,7 @@ watch(isSelectOpen, async (newVal) => {
   }
 })
 
+// --- Lifecycle Hooks ----
 // Update position on resize
 onMounted(() => {
   if (props.teleport) {
@@ -221,6 +193,37 @@ onUnmounted(() => {
   }
 })
 </script>
+
+<template>
+  <!-- Overlay -->
+  <Teleport to="body" :disabled="!teleport">
+    <Transition
+      name="select-overlay"
+      enter-active-class="select-overlay-enter-active"
+      enter-from-class="select-overlay-enter-from"
+      leave-active-class="select-overlay-leave-active"
+      leave-to-class="select-overlay-leave-to"
+    >
+      <div v-if="isSelectOpen" :class="overlayClasses" @click="select?.close()"></div>
+    </Transition>
+  </Teleport>
+
+  <!-- Select Content Panel -->
+  <Teleport to="body" :disabled="!teleport">
+    <div
+      v-if="isSelectOpen"
+      ref="panelRef"
+      :class="panelClasses"
+      :style="combinedStyle"
+      :data-state="isPositioned ? 'positioned' : 'calculating'"
+      role="listbox"
+      :aria-labelledby="select?.id"
+      @click.stop
+    >
+      <slot />
+    </div>
+  </Teleport>
+</template>
 
 <style scoped>
 /* Overlay transitions */
