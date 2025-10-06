@@ -2,26 +2,26 @@
   <!-- Overlay -->
   <Teleport to="body" :disabled="!teleport">
     <Transition
-      name="menu-overlay"
-      enter-active-class="menu-overlay-enter-active"
-      enter-from-class="menu-overlay-enter-from"
-      leave-active-class="menu-overlay-leave-active"
-      leave-to-class="menu-overlay-leave-to"
+      name="dropdown-menu-overlay"
+      enter-active-class="dropdown-menu-overlay-enter-active"
+      enter-from-class="dropdown-menu-overlay-enter-from"
+      leave-active-class="dropdown-menu-overlay-leave-active"
+      leave-to-class="dropdown-menu-overlay-leave-to"
     >
-      <div v-if="isMenuOpen" :class="overlayClasses" @click="menu?.close()"></div>
+      <div v-if="isDropdownMenuOpen" :class="overlayClasses" @click="dropdownMenu?.close()"></div>
     </Transition>
   </Teleport>
 
-  <!-- Menu Panel -->
+  <!-- Dropdown Menu Panel -->
   <Teleport to="body" :disabled="!teleport">
     <div
-      v-if="isMenuOpen"
+      v-if="isDropdownMenuOpen"
       ref="panelRef"
       :class="panelClasses"
       :style="combinedStyle"
       :data-state="isPositioned ? 'positioned' : 'calculating'"
       role="menu"
-      :aria-labelledby="menu?.id"
+      :aria-labelledby="dropdownMenu?.id"
       @click.stop
     >
       <slot />
@@ -44,7 +44,7 @@ import {
 } from 'vue'
 import { cn } from '../../lib/utils'
 
-const menuPanelVariants = cva(
+const dropdownMenuPanelVariants = cva(
   'w-48 rounded-md bg-surface-primary-white shadow-card-float border border-gray-300 py-1',
   {
     variants: {
@@ -70,7 +70,7 @@ const props = withDefaults(defineProps<Props>(), {
   teleport: true,
 })
 
-interface MenuContext {
+interface DropdownMenuContext {
   id: string
   isOpen: Ref<boolean>
   open: () => void
@@ -78,10 +78,10 @@ interface MenuContext {
   toggle: () => void
 }
 
-const contextKey = inject<InjectionKey<MenuContext>>('menu-context-key')
-const menu = contextKey ? inject(contextKey) : null
+const contextKey = inject<InjectionKey<DropdownMenuContext>>('dropdown-menu-context-key')
+const dropdownMenu = contextKey ? inject(contextKey) : null
 
-const isMenuOpen = computed(() => menu?.isOpen.value ?? false)
+const isDropdownMenuOpen = computed(() => dropdownMenu?.isOpen.value ?? false)
 
 const panelRef = ref<HTMLElement>()
 const teleportStyle = ref<Record<string, string>>({})
@@ -92,7 +92,7 @@ const overlayClasses = computed(() => {
 })
 
 const panelClasses = computed(() => {
-  const baseClasses = menuPanelVariants({
+  const baseClasses = dropdownMenuPanelVariants({
     position: props.position as 'bottom' | 'top',
   })
 
@@ -109,11 +109,11 @@ const combinedStyle = computed(() => {
 
 // Calculate position when teleported
 const updatePosition = () => {
-  if (!props.teleport || !isMenuOpen.value) return
+  if (!props.teleport || !isDropdownMenuOpen.value) return
 
-  // Find the button element (parent of MenuPanel)
+  // Find the button element (parent of DropdownMenuPanel)
   const container = document.querySelector(
-    `[data-state="${menu?.isOpen.value ? 'open' : 'closed'}"]`,
+    `[data-state="${dropdownMenu?.isOpen.value ? 'open' : 'closed'}"]`,
   )
   if (!container) return
 
@@ -151,7 +151,7 @@ const updatePosition = () => {
   }
 }
 
-// Lock/unlock body scroll when menu opens/closes
+// Lock/unlock body scroll when dropdown menu opens/closes
 const lockBodyScroll = () => {
   // Get the scrollbar width before hiding it
   const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth
@@ -170,8 +170,8 @@ const unlockBodyScroll = () => {
   document.body.style.paddingRight = ''
 }
 
-// Watch for menu open state changes
-watch(isMenuOpen, async (newVal) => {
+// Watch for dropdown menu open state changes
+watch(isDropdownMenuOpen, async (newVal) => {
   if (newVal) {
     if (props.teleport) {
       // Reset positioned state when opening
@@ -212,7 +212,7 @@ onUnmounted(() => {
   if (props.teleport) {
     window.removeEventListener('resize', updatePosition)
     // Ensure scroll is unlocked on unmount
-    if (isMenuOpen.value) {
+    if (isDropdownMenuOpen.value) {
       unlockBodyScroll()
     }
   }
@@ -221,13 +221,13 @@ onUnmounted(() => {
 
 <style scoped>
 /* Overlay transitions */
-.menu-overlay-enter-active,
-.menu-overlay-leave-active {
+.dropdown-menu-overlay-enter-active,
+.dropdown-menu-overlay-leave-active {
   transition: opacity 0.2s ease;
 }
 
-.menu-overlay-enter-from,
-.menu-overlay-leave-to {
+.dropdown-menu-overlay-enter-from,
+.dropdown-menu-overlay-leave-to {
   opacity: 0;
 }
 

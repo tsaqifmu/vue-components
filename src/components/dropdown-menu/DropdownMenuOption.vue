@@ -9,7 +9,7 @@ import { cva } from 'class-variance-authority'
 import { computed, inject, type InjectionKey, type Ref } from 'vue'
 import { cn } from '../../lib/utils'
 
-const menuOptionVariants = cva(
+const dropdownMenuOptionVariants = cva(
   'w-full text-left px-4 py-2 text-sm transition-colors duration-150 ease-in-out focus:outline-none focus:bg-surface-secondary',
   {
     variants: {
@@ -40,7 +40,7 @@ const props = withDefaults(defineProps<Props>(), {
   destructive: false,
 })
 
-interface MenuContext {
+interface DropdownMenuContext {
   id: string
   isOpen: Ref<boolean>
   open: () => void
@@ -48,12 +48,12 @@ interface MenuContext {
   toggle: () => void
 }
 
-const contextKey = inject<InjectionKey<MenuContext>>('menu-context-key')
-const menu = contextKey ? inject(contextKey) : null
+const contextKey = inject<InjectionKey<DropdownMenuContext>>('dropdown-menu-context-key')
+const dropdownMenu = contextKey ? inject(contextKey) : null
 
 const optionClasses = computed(() =>
   cn(
-    menuOptionVariants({
+    dropdownMenuOptionVariants({
       destructive: props.destructive as boolean,
       disabled: props.disabled as boolean,
     }),
@@ -63,7 +63,7 @@ const optionClasses = computed(() =>
 
 const handleClick = () => {
   if (!props.disabled) {
-    menu?.close()
+    dropdownMenu?.close()
   }
 }
 </script>

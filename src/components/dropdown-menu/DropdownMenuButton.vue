@@ -3,16 +3,16 @@
     type="button"
     :class="buttonClasses"
     :disabled="disabled ?? false"
-    :aria-expanded="menu?.isOpen.value ?? false"
+    :aria-expanded="dropdownMenu?.isOpen.value ?? false"
     :aria-haspopup="true"
-    @click="menu?.toggle"
+    @click="dropdownMenu?.toggle"
   >
-    <slot :is-open="menu?.isOpen.value">
+    <slot :is-open="dropdownMenu?.isOpen.value">
       <span>{{ props.label }}</span>
       <svg
         :class="[
           'ml-2 h-4 w-4 transition-transform duration-200',
-          menu?.isOpen.value ? 'rotate-180' : 'rotate-0',
+          dropdownMenu?.isOpen.value ? 'rotate-180' : 'rotate-0',
         ]"
         fill="none"
         stroke="currentColor"
@@ -30,7 +30,7 @@ import { cva } from 'class-variance-authority'
 import { computed, inject, type InjectionKey, type Ref } from 'vue'
 import { cn } from '../../lib/utils'
 
-const menuButtonVariants = cva(
+const dropdownMenuButtonVariants = cva(
   'peer inline-flex items-center justify-center px-4 py-2 rounded-md font-medium transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-1',
   {
     variants: {
@@ -67,7 +67,7 @@ const props = withDefaults(defineProps<Props>(), {
   disabled: false,
 })
 
-interface MenuContext {
+interface DropdownMenuContext {
   id: string
   isOpen: Ref<boolean>
   open: () => void
@@ -75,12 +75,12 @@ interface MenuContext {
   toggle: () => void
 }
 
-const contextKey = inject<InjectionKey<MenuContext>>('menu-context-key')
-const menu = contextKey ? inject(contextKey) : null
+const contextKey = inject<InjectionKey<DropdownMenuContext>>('dropdown-menu-context-key')
+const dropdownMenu = contextKey ? inject(contextKey) : null
 
 const buttonClasses = computed(() =>
   cn(
-    menuButtonVariants({
+    dropdownMenuButtonVariants({
       variant: props.variant as 'primary' | 'secondary' | 'ghost',
       disabled: props.disabled,
     }),

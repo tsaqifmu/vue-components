@@ -1,5 +1,10 @@
 <script setup lang="ts">
-import { MenuButton, MenuOption, MenuPanel, MenuRoot as MenuRootComp } from '@/components/menu'
+import {
+  DropdownMenuButton,
+  DropdownMenuOption,
+  DropdownMenuPanel,
+  DropdownMenuRoot,
+} from '@/components/dropdown-menu'
 import {
   ModalBody,
   ModalClose,
@@ -397,25 +402,25 @@ const handleFormSubmit = () => {
                   />
                 </div>
 
-                <!-- Category Select using Menu Component -->
+                <!-- Category Select using DropdownMenu Component -->
                 <div>
                   <label class="mb-1.5 block text-sm font-medium text-gray-700"> Category </label>
-                  <MenuRootComp>
-                    <MenuButton
+                  <DropdownMenuRoot>
+                    <DropdownMenuButton
                       :label="categoryLabel"
                       variant="secondary"
                       class="w-full justify-between !bg-white !text-gray-700 hover:!bg-gray-50"
                     />
-                    <MenuPanel teleport>
-                      <MenuOption
+                    <DropdownMenuPanel teleport>
+                      <DropdownMenuOption
                         v-for="option in categoryOptions"
                         :key="option.value"
                         @click="formData.category = option.value"
                       >
                         {{ option.label }}
-                      </MenuOption>
-                    </MenuPanel>
-                  </MenuRootComp>
+                      </DropdownMenuOption>
+                    </DropdownMenuPanel>
+                  </DropdownMenuRoot>
                   <!-- Hidden input for form validation -->
                   <input
                     type="hidden"
@@ -426,27 +431,27 @@ const handleFormSubmit = () => {
                   />
                 </div>
 
-                <!-- Priority Select using Menu Component -->
+                <!-- Priority Select using DropdownMenu Component -->
                 <div>
                   <label class="mb-1.5 block text-sm font-medium text-gray-700">
                     Priority Level
                   </label>
-                  <MenuRootComp>
-                    <MenuButton
+                  <DropdownMenuRoot>
+                    <DropdownMenuButton
                       :label="priorityLabel"
                       variant="secondary"
                       class="w-full justify-between !bg-white !text-gray-700 hover:!bg-gray-50"
                     />
-                    <MenuPanel teleport>
-                      <MenuOption
+                    <DropdownMenuPanel teleport>
+                      <DropdownMenuOption
                         v-for="option in priorityOptions"
                         :key="option.value"
                         @click="formData.priority = option.value"
                       >
                         {{ option.label }}
-                      </MenuOption>
-                    </MenuPanel>
-                  </MenuRootComp>
+                      </DropdownMenuOption>
+                    </DropdownMenuPanel>
+                  </DropdownMenuRoot>
                   <!-- Hidden input for form validation -->
                   <input
                     type="hidden"
@@ -457,25 +462,25 @@ const handleFormSubmit = () => {
                   />
                 </div>
 
-                <!-- Country Select using Menu Component -->
+                <!-- Country Select using DropdownMenu Component -->
                 <div>
                   <label class="mb-1.5 block text-sm font-medium text-gray-700"> Country </label>
-                  <MenuRootComp>
-                    <MenuButton
+                  <DropdownMenuRoot>
+                    <DropdownMenuButton
                       :label="countryLabel"
                       variant="secondary"
                       class="w-full justify-between !bg-white !text-gray-700 hover:!bg-gray-50"
                     />
-                    <MenuPanel teleport class="max-h-60 overflow-y-auto">
-                      <MenuOption
+                    <DropdownMenuPanel teleport class="max-h-60 overflow-y-auto">
+                      <DropdownMenuOption
                         v-for="option in countryOptions"
                         :key="option.value"
                         @click="formData.country = option.value"
                       >
                         {{ option.label }}
-                      </MenuOption>
-                    </MenuPanel>
-                  </MenuRootComp>
+                      </DropdownMenuOption>
+                    </DropdownMenuPanel>
+                  </DropdownMenuRoot>
                   <!-- Hidden input for form validation -->
                   <input
                     type="hidden"
@@ -489,9 +494,9 @@ const handleFormSubmit = () => {
                 <!-- Info Box -->
                 <div class="rounded-md bg-indigo-50 p-3">
                   <p class="text-xs text-indigo-800">
-                    <strong>💡 Tip:</strong> Using custom Menu components instead of native select
-                    for better styling and UX! Menu dropdowns work perfectly inside modals with
-                    proper z-index.
+                    <strong>💡 Tip:</strong> Using custom DropdownMenu components instead of native
+                    select for better styling and UX! DropdownMenu dropdowns work perfectly inside
+                    modals with proper z-index and teleport.
                   </p>
                 </div>
               </form>

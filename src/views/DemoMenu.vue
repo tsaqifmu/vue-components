@@ -1,111 +1,111 @@
 <template>
   <div class="bg-surface-secondary min-h-screen p-8">
     <div class="mx-auto max-w-4xl space-y-8">
-      <h1 class="text-text-title text-3xl font-bold">Menu Component Demo</h1>
+      <h1 class="text-text-title text-3xl font-bold">DropdownMenu Component Demo</h1>
 
-      <!-- Basic Menu -->
+      <!-- Basic DropdownMenu -->
       <div class="space-y-4">
-        <h2 class="text-text-title text-xl font-semibold">Basic Menu</h2>
-        <MenuRoot>
-          <MenuButton label="Actions" variant="primary" />
-          <MenuPanel>
-            <MenuOption>Edit</MenuOption>
-            <MenuOption>Duplicate</MenuOption>
-            <MenuOption>Archive</MenuOption>
-            <MenuDivider />
-            <MenuOption destructive>Delete</MenuOption>
-          </MenuPanel>
-        </MenuRoot>
+        <h2 class="text-text-title text-xl font-semibold">Basic DropdownMenu</h2>
+        <DropdownMenuRoot>
+          <DropdownMenuButton label="Actions" variant="primary" />
+          <DropdownMenuPanel>
+            <DropdownMenuOption>Edit</DropdownMenuOption>
+            <DropdownMenuOption>Duplicate</DropdownMenuOption>
+            <DropdownMenuOption>Archive</DropdownMenuOption>
+            <DropdownMenuDivider />
+            <DropdownMenuOption destructive>Delete</DropdownMenuOption>
+          </DropdownMenuPanel>
+        </DropdownMenuRoot>
       </div>
 
-      <!-- Menu with Headers -->
+      <!-- DropdownMenu with Headers -->
       <div class="space-y-4">
-        <h2 class="text-text-title text-xl font-semibold">Menu with Headers</h2>
-        <MenuRoot>
-          <MenuButton label="User Menu" variant="secondary" />
-          <MenuPanel>
-            <MenuHeader>Account</MenuHeader>
-            <MenuOption>Profile</MenuOption>
-            <MenuOption>Settings</MenuOption>
-            <MenuOption>Billing</MenuOption>
-            <MenuDivider />
-            <MenuHeader>Actions</MenuHeader>
-            <MenuOption>Sign Out</MenuOption>
-          </MenuPanel>
-        </MenuRoot>
+        <h2 class="text-text-title text-xl font-semibold">DropdownMenu with Headers</h2>
+        <DropdownMenuRoot>
+          <DropdownMenuButton label="User Menu" variant="secondary" />
+          <DropdownMenuPanel>
+            <DropdownMenuHeader>Account</DropdownMenuHeader>
+            <DropdownMenuOption>Profile</DropdownMenuOption>
+            <DropdownMenuOption>Settings</DropdownMenuOption>
+            <DropdownMenuOption>Billing</DropdownMenuOption>
+            <DropdownMenuDivider />
+            <DropdownMenuHeader>Actions</DropdownMenuHeader>
+            <DropdownMenuOption>Sign Out</DropdownMenuOption>
+          </DropdownMenuPanel>
+        </DropdownMenuRoot>
       </div>
 
       <!-- Ghost Variant -->
       <div class="space-y-4">
         <h2 class="text-text-title text-xl font-semibold">Ghost Variant</h2>
-        <MenuRoot>
-          <MenuButton label="Options" variant="ghost" />
-          <MenuPanel>
-            <MenuOption>View Details</MenuOption>
-            <MenuOption>Share</MenuOption>
-            <MenuOption>Download</MenuOption>
-          </MenuPanel>
-        </MenuRoot>
+        <DropdownMenuRoot>
+          <DropdownMenuButton label="Options" variant="ghost" />
+          <DropdownMenuPanel>
+            <DropdownMenuOption>View Details</DropdownMenuOption>
+            <DropdownMenuOption>Share</DropdownMenuOption>
+            <DropdownMenuOption>Download</DropdownMenuOption>
+          </DropdownMenuPanel>
+        </DropdownMenuRoot>
       </div>
 
-      <!-- Menu with Disabled Options -->
+      <!-- DropdownMenu with Disabled Options -->
       <div class="space-y-4">
         <h2 class="text-text-title text-xl font-semibold">With Disabled Options</h2>
-        <MenuRoot>
-          <MenuButton label="More" variant="primary" />
-          <MenuPanel>
-            <MenuOption>Available Option</MenuOption>
-            <MenuOption disabled>Disabled Option</MenuOption>
-            <MenuOption>Another Available</MenuOption>
-          </MenuPanel>
-        </MenuRoot>
+        <DropdownMenuRoot>
+          <DropdownMenuButton label="More" variant="primary" />
+          <DropdownMenuPanel>
+            <DropdownMenuOption>Available Option</DropdownMenuOption>
+            <DropdownMenuOption disabled>Disabled Option</DropdownMenuOption>
+            <DropdownMenuOption>Another Available</DropdownMenuOption>
+          </DropdownMenuPanel>
+        </DropdownMenuRoot>
       </div>
 
       <!-- Top Position -->
       <div class="space-y-4">
-        <h2 class="text-text-title text-xl font-semibold">Top Position Menu</h2>
-        <MenuRoot>
-          <MenuButton label="Open Up" variant="secondary" />
-          <MenuPanel position="top">
-            <MenuOption>Option 1</MenuOption>
-            <MenuOption>Option 2</MenuOption>
-            <MenuOption>Option 3</MenuOption>
-            <MenuOption>Option 3</MenuOption>
-            <MenuOption>Option 3</MenuOption>
-            <MenuOption>Option 3</MenuOption>
-          </MenuPanel>
-        </MenuRoot>
+        <h2 class="text-text-title text-xl font-semibold">Top Position DropdownMenu</h2>
+        <DropdownMenuRoot>
+          <DropdownMenuButton label="Open Up" variant="secondary" />
+          <DropdownMenuPanel position="top">
+            <DropdownMenuOption>Option 1</DropdownMenuOption>
+            <DropdownMenuOption>Option 2</DropdownMenuOption>
+            <DropdownMenuOption>Option 3</DropdownMenuOption>
+            <DropdownMenuOption>Option 4</DropdownMenuOption>
+            <DropdownMenuOption>Option 5</DropdownMenuOption>
+            <DropdownMenuOption>Option 6</DropdownMenuOption>
+          </DropdownMenuPanel>
+        </DropdownMenuRoot>
       </div>
 
-      <!-- Multiple Menus Test -->
+      <!-- Multiple DropdownMenus Test -->
       <div class="space-y-4">
         <h2 class="text-text-title text-xl font-semibold">
-          Multiple Menus (Context Isolation Test)
+          Multiple DropdownMenus (Context Isolation Test)
         </h2>
         <div class="flex gap-4">
-          <MenuRoot>
-            <MenuButton label="Menu 1" variant="primary" />
-            <MenuPanel>
-              <MenuOption>Menu 1 - Option A</MenuOption>
-              <MenuOption>Menu 1 - Option B</MenuOption>
-            </MenuPanel>
-          </MenuRoot>
+          <DropdownMenuRoot>
+            <DropdownMenuButton label="Menu 1" variant="primary" />
+            <DropdownMenuPanel>
+              <DropdownMenuOption>Menu 1 - Option A</DropdownMenuOption>
+              <DropdownMenuOption>Menu 1 - Option B</DropdownMenuOption>
+            </DropdownMenuPanel>
+          </DropdownMenuRoot>
 
-          <MenuRoot>
-            <MenuButton label="Menu 2" variant="secondary" />
-            <MenuPanel>
-              <MenuOption>Menu 2 - Option A</MenuOption>
-              <MenuOption>Menu 2 - Option B</MenuOption>
-            </MenuPanel>
-          </MenuRoot>
+          <DropdownMenuRoot>
+            <DropdownMenuButton label="Menu 2" variant="secondary" />
+            <DropdownMenuPanel>
+              <DropdownMenuOption>Menu 2 - Option A</DropdownMenuOption>
+              <DropdownMenuOption>Menu 2 - Option B</DropdownMenuOption>
+            </DropdownMenuPanel>
+          </DropdownMenuRoot>
 
-          <MenuRoot>
-            <MenuButton label="Menu 3" variant="ghost" />
-            <MenuPanel>
-              <MenuOption>Menu 3 - Option A</MenuOption>
-              <MenuOption>Menu 3 - Option B</MenuOption>
-            </MenuPanel>
-          </MenuRoot>
+          <DropdownMenuRoot>
+            <DropdownMenuButton label="Menu 3" variant="ghost" />
+            <DropdownMenuPanel>
+              <DropdownMenuOption>Menu 3 - Option A</DropdownMenuOption>
+              <DropdownMenuOption>Menu 3 - Option B</DropdownMenuOption>
+            </DropdownMenuPanel>
+          </DropdownMenuRoot>
         </div>
       </div>
     </div>
@@ -114,11 +114,11 @@
 
 <script setup lang="ts">
 import {
-  MenuButton,
-  MenuDivider,
-  MenuHeader,
-  MenuOption,
-  MenuPanel,
-  MenuRoot,
-} from '@/components/menu'
+  DropdownMenuButton,
+  DropdownMenuDivider,
+  DropdownMenuHeader,
+  DropdownMenuOption,
+  DropdownMenuPanel,
+  DropdownMenuRoot,
+} from '@/components/dropdown-menu'
 </script>

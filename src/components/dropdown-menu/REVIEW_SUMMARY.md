@@ -1,14 +1,33 @@
-# Menu Components - Review Summary
+# DropdownMenu Components - Review Summary
 
 ## ✅ Status: SIAP DIGUNAKAN DI PROYEK
 
-Semua mismatch telah diperbaiki dan komponen menu sekarang 100% kompatibel dengan proyek ini.
+Semua mismatch telah diperbaiki dan komponen dropdown menu sekarang 100% kompatibel dengan proyek ini.
 
 ---
 
 ## 📋 Perubahan yang Telah Dilakukan
 
-### 1. ✅ Theme Variables Matching
+### 1. ✅ Renamed from "Menu" to "DropdownMenu"
+
+Mengikuti naming convention dari **shadcn/ui**, **Radix UI**, dan **Nuxt UI** untuk action menus:
+
+| Sebelum       | Sesudah               |
+| ------------- | --------------------- |
+| `MenuRoot`    | `DropdownMenuRoot`    |
+| `MenuButton`  | `DropdownMenuButton`  |
+| `MenuPanel`   | `DropdownMenuPanel`   |
+| `MenuOption`  | `DropdownMenuOption`  |
+| `MenuDivider` | `DropdownMenuDivider` |
+| `MenuHeader`  | `DropdownMenuHeader`  |
+
+**Alasan:**
+
+- Menghindari konflik dengan komponen Select di masa depan
+- DropdownMenu = Actions (Edit, Delete, etc.)
+- Select = Form inputs (Country, Status, etc.)
+
+### 2. ✅ Theme Variables Matching
 
 Semua theme variables telah disesuaikan dengan `src/style.css`:
 
@@ -25,18 +44,18 @@ Semua theme variables telah disesuaikan dengan `src/style.css`:
 | `shadow-theme-card-float`      | `shadow-card-float`          |
 | `hover:bg-theme-primary-hover` | `hover:bg-primary-hover`     |
 
-### 2. ✅ Dependencies
+### 3. ✅ Dependencies
 
 - **Sebelum**: Menggunakan `@vueuse/core` (onClickOutside, onKeyStroke, useToggle)
 - **Sesudah**: 100% Vue native API (onMounted, onUnmounted, addEventListener)
 - **Benefit**: Tidak perlu install dependency tambahan
 
-### 3. ✅ Import Paths
+### 4. ✅ Import Paths
 
-- **README.md**: Diupdate dari `@omnichannel/ui-kit` → `@/components/menu`
+- **README.md**: Diupdate dari `@/components/menu` → `@/components/dropdown-menu`
 - **Internal imports**: Menggunakan relative path `../../lib/utils` ✓
 
-### 4. ✅ Code Style
+### 5. ✅ Code Style
 
 - **Semicolons**: Dihapus semua (sesuai prettier config proyek)
 - **Import ordering**: Diurutkan alfabetis
@@ -46,7 +65,7 @@ Semua theme variables telah disesuaikan dengan `src/style.css`:
 
 ## 🎯 Komponen yang Tersedia
 
-### MenuRoot.vue
+### DropdownMenuRoot.vue
 
 - ✅ State management dengan Vue `ref()`
 - ✅ Context isolation dengan unique Symbol key
@@ -54,7 +73,7 @@ Semua theme variables telah disesuaikan dengan `src/style.css`:
 - ✅ Escape key handler (native keyboard event)
 - ✅ Proper cleanup dengan onUnmounted
 
-### MenuButton.vue
+### DropdownMenuButton.vue
 
 - ✅ 3 variants: primary, secondary, ghost
 - ✅ Disabled state support
@@ -62,53 +81,35 @@ Semua theme variables telah disesuaikan dengan `src/style.css`:
 - ✅ Icon rotation animation
 - ✅ Slot support untuk custom content
 
-### MenuPanel.vue
+### DropdownMenuPanel.vue
 
 - ✅ Position variants: top, bottom
 - ✅ Smooth CSS transitions (scale + opacity)
-- ✅ Z-index 50 untuk proper layering
+- ✅ Teleport mode with body scroll lock
+- ✅ Smart positioning (auto-adjust if would go offscreen)
+- ✅ Z-index 9999 untuk proper layering
 - ✅ ARIA role="menu"
 - ✅ Click.stop untuk prevent close saat klik panel
 
-### MenuOption.vue
+### DropdownMenuOption.vue
 
 - ✅ Normal dan destructive variants
 - ✅ Disabled state
-- ✅ Auto-close menu on click
+- ✅ Auto-close dropdown menu on click
 - ✅ ARIA role="menuitem"
 - ✅ Hover states
 
-### MenuHeader.vue
+### DropdownMenuHeader.vue
 
 - ✅ Section header styling
 - ✅ Uppercase + tracking
 - ✅ Subtitle color
 
-### MenuDivider.vue
+### DropdownMenuDivider.vue
 
 - ✅ Visual separator
 - ✅ ARIA role="separator"
 - ✅ 1px height dengan proper margin
-
----
-
-## 🧪 Demo & Testing
-
-File demo telah dibuat: `src/views/DemoMenu.vue`
-
-**Cara test:**
-
-1. Jalankan dev server: `pnpm dev`
-2. Akses: `http://localhost:5173/demo-menu`
-
-**Test cases yang tersedia:**
-
-- ✅ Basic menu (primary variant)
-- ✅ Menu with headers dan dividers
-- ✅ Ghost variant
-- ✅ Disabled options
-- ✅ Top position menu
-- ✅ Multiple menus (context isolation test)
 
 ---
 
@@ -118,26 +119,26 @@ File demo telah dibuat: `src/views/DemoMenu.vue`
 
 ```typescript
 import {
-  MenuRoot,
-  MenuButton,
-  MenuPanel,
-  MenuOption,
-  MenuDivider,
-  MenuHeader,
-} from '@/components/menu'
+  DropdownMenuRoot,
+  DropdownMenuButton,
+  DropdownMenuPanel,
+  DropdownMenuOption,
+  DropdownMenuDivider,
+  DropdownMenuHeader,
+} from '@/components/dropdown-menu'
 ```
 
 ### Basic Usage
 
 ```vue
 <template>
-  <MenuRoot>
-    <MenuButton label="Actions" variant="primary" />
-    <MenuPanel>
-      <MenuOption>Edit</MenuOption>
-      <MenuOption>Delete</MenuOption>
-    </MenuPanel>
-  </MenuRoot>
+  <DropdownMenuRoot>
+    <DropdownMenuButton label="Actions" variant="primary" />
+    <DropdownMenuPanel>
+      <DropdownMenuOption>Edit</DropdownMenuOption>
+      <DropdownMenuOption>Delete</DropdownMenuOption>
+    </DropdownMenuPanel>
+  </DropdownMenuRoot>
 </template>
 ```
 
@@ -145,17 +146,17 @@ import {
 
 ```vue
 <template>
-  <MenuRoot>
-    <MenuButton label="User Menu" variant="secondary" />
-    <MenuPanel position="top">
-      <MenuHeader>Account</MenuHeader>
-      <MenuOption>Profile</MenuOption>
-      <MenuOption>Settings</MenuOption>
-      <MenuDivider />
-      <MenuHeader>Actions</MenuHeader>
-      <MenuOption destructive>Sign Out</MenuOption>
-    </MenuPanel>
-  </MenuRoot>
+  <DropdownMenuRoot>
+    <DropdownMenuButton label="User Menu" variant="secondary" />
+    <DropdownMenuPanel position="top">
+      <DropdownMenuHeader>Account</DropdownMenuHeader>
+      <DropdownMenuOption>Profile</DropdownMenuOption>
+      <DropdownMenuOption>Settings</DropdownMenuOption>
+      <DropdownMenuDivider />
+      <DropdownMenuHeader>Actions</DropdownMenuHeader>
+      <DropdownMenuOption destructive>Sign Out</DropdownMenuOption>
+    </DropdownMenuPanel>
+  </DropdownMenuRoot>
 </template>
 ```
 
@@ -163,6 +164,7 @@ import {
 
 ## ✅ Checklist Kompatibilitas
 
+- ✅ **Naming Convention**: Mengikuti shadcn/ui dan Radix UI
 - ✅ **Theme Variables**: Semua class Tailwind match dengan `style.css`
 - ✅ **Dependencies**: Tidak ada external dependencies
 - ✅ **Import Paths**: Semua path correct (`@/` dan relative)
@@ -179,10 +181,12 @@ import {
 ## 🚀 Features
 
 - ✅ **Compound Component Pattern**: Flexible composition
-- ✅ **Context Isolation**: Multiple menus pada halaman yang sama
+- ✅ **Context Isolation**: Multiple dropdown menus pada halaman yang sama
 - ✅ **Vue Native API**: Zero external dependencies
 - ✅ **Class Variance Authority**: Type-safe variants
 - ✅ **Smooth Transitions**: Scale + opacity animations
+- ✅ **Teleport by Default**: Prevents overflow issues in modals/containers
+- ✅ **Body Scroll Lock**: Better UX when dropdown is open
 - ✅ **Full TypeScript**: Complete type definitions
 - ✅ **ARIA/WAI-ARIA**: Accessible untuk screen readers
 - ✅ **Custom Theme**: Terintegrasi dengan theme proyek
@@ -191,17 +195,39 @@ import {
 
 ## 📝 Notes
 
-1. **MenuRoot** menggunakan counter untuk generate unique ID, sehingga aman untuk multiple instances
+1. **DropdownMenuRoot** menggunakan counter untuk generate unique ID, sehingga aman untuk multiple instances
 2. Event listeners (click outside & escape) di-cleanup otomatis saat component unmount
 3. Semua variants menggunakan CVA untuk type safety
-4. `peer` class di MenuButton memungkinkan styling berdasarkan button state (future enhancement)
+4. Teleport mode enabled by default untuk mencegah clipping issues
+
+---
+
+## 🎯 DropdownMenu vs Select
+
+**DropdownMenu** digunakan untuk **actions** (bukan form inputs):
+
+✅ **Gunakan DropdownMenu untuk:**
+
+- User actions menu (Profile, Settings, Logout)
+- Table row actions (Edit, Duplicate, Delete)
+- Navigation menus
+- Context menus
+
+❌ **Jangan gunakan DropdownMenu untuk:**
+
+- Form selects (country, status, category)
+- Value pickers
+- Filters
+
+Untuk form inputs, buat komponen **Select** terpisah di masa depan.
 
 ---
 
 ## 🎉 Kesimpulan
 
-Komponen menu **SIAP DIGUNAKAN** di proyek ini tanpa perlu modifikasi tambahan. Semua aspek telah disesuaikan:
+Komponen dropdown menu **SIAP DIGUNAKAN** di proyek ini tanpa perlu modifikasi tambahan. Semua aspek telah disesuaikan:
 
+- ✅ Naming convention (DropdownMenu)
 - ✅ Theme variables
 - ✅ Dependencies (pure Vue)
 - ✅ Import paths

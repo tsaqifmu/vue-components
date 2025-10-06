@@ -7,14 +7,16 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, provide, ref, type InjectionKey, type Ref } from 'vue'
 
-// Generate unique context key for each MenuRoot instance
-// This prevents conflicts when multiple menus exist on the same page
-let menuInstanceCounter = 0
-const menuId = `menu-${++menuInstanceCounter}`
-const contextKey: InjectionKey<MenuContext> = Symbol(`menu-context-${menuId}`)
+// Generate unique context key for each DropdownMenuRoot instance
+// This prevents conflicts when multiple dropdown menus exist on the same page
+let dropdownMenuInstanceCounter = 0
+const dropdownMenuId = `dropdown-menu-${++dropdownMenuInstanceCounter}`
+const contextKey: InjectionKey<DropdownMenuContext> = Symbol(
+  `dropdown-menu-context-${dropdownMenuId}`,
+)
 
 // TypeScript interface for type safety
-interface MenuContext {
+interface DropdownMenuContext {
   id: string
   isOpen: Ref<boolean>
   open: () => void
@@ -67,7 +69,7 @@ onUnmounted(() => {
 
 // Provide context with unique key to prevent conflicts
 provide(contextKey, {
-  id: menuId,
+  id: dropdownMenuId,
   isOpen,
   open,
   close,
@@ -75,5 +77,5 @@ provide(contextKey, {
 })
 
 // Also provide the context key for child components to use
-provide('menu-context-key', contextKey)
+provide('dropdown-menu-context-key', contextKey)
 </script>

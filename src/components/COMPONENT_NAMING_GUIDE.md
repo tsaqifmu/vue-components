@@ -18,20 +18,25 @@ import FormInput from '@/components/form-input'
 </script>
 ```
 
-### 2. **Compound Names** - `MenuPanel`
+### 2. **Compound Names** - `DropdownMenuPanel`
 
 ```vue
 <template>
-  <MenuRoot>
-    <MenuButton label="Actions" />
-    <MenuPanel>
-      <MenuOption>Edit</MenuOption>
-    </MenuPanel>
-  </MenuRoot>
+  <DropdownMenuRoot>
+    <DropdownMenuButton label="Actions" />
+    <DropdownMenuPanel>
+      <DropdownMenuOption>Edit</DropdownMenuOption>
+    </DropdownMenuPanel>
+  </DropdownMenuRoot>
 </template>
 
 <script setup>
-import { MenuRoot, MenuButton, MenuPanel, MenuOption } from '@/components/menu'
+import {
+  DropdownMenuRoot,
+  DropdownMenuButton,
+  DropdownMenuPanel,
+  DropdownMenuOption,
+} from '@/components/dropdown-menu'
 </script>
 ```
 
@@ -124,7 +129,7 @@ mount(FormInput.Label) // ❌
 - ✅ **Compound component pattern** yang loosely coupled
 - ✅ **Sub-components yang BISA berdiri sendiri**
 - ✅ **Equal-level components** (tidak ada parent-child strict)
-- ✅ **Menu/Dropdown systems**
+- ✅ **DropdownMenu systems**
 - ✅ **Dialog/Modal systems**
 - ✅ **Tab/Accordion systems**
 - ✅ **Composition pattern** (flexible arrangement)
@@ -134,7 +139,7 @@ mount(FormInput.Label) // ❌
 ✅ **Tree-shaking Optimal**
 
 ```ts
-import { MenuButton, MenuPanel } from '@/components/menu'
+import { DropdownMenuButton, DropdownMenuPanel } from '@/components/dropdown-menu'
 // Hanya import yang dipakai
 ```
 
@@ -156,27 +161,27 @@ const props = defineProps<MenuButtonProps>()
 ✅ **Testing Mudah**
 
 ```ts
-import { MenuButton } from '@/components/menu'
-mount(MenuButton, { props: { label: 'Test' } }) // ✅
+import { DropdownMenuButton } from '@/components/dropdown-menu'
+mount(DropdownMenuButton, { props: { label: 'Test' } }) // ✅
 ```
 
 ✅ **Flexible Composition**
 
 ```vue
 <!-- Bisa diatur sesuka hati -->
-<MenuRoot>
+<DropdownMenuRoot>
   <div class="custom-wrapper">
-    <MenuButton />
+    <DropdownMenuButton />
   </div>
-  <MenuPanel />
-</MenuRoot>
+  <DropdownMenuPanel />
+</DropdownMenuRoot>
 ```
 
 ✅ **Independent Usage**
 
 ```vue
-<!-- MenuButton bisa dipakai sendiri jika perlu -->
-<MenuButton label="Standalone" @click="handler" />
+<!-- DropdownMenuButton bisa dipakai sendiri jika perlu -->
+<DropdownMenuButton label="Standalone" @click="handler" />
 ```
 
 ### **Cons:**
@@ -192,27 +197,27 @@ import { Label } from '@/components/card' // ❌ Conflict!
 
 ```ts
 import {
-  MenuRoot,
-  MenuButton,
-  MenuPanel,
-  MenuOption,
-  MenuDivider,
-  MenuHeader,
-} from '@/components/menu'
+  DropdownMenuRoot,
+  DropdownMenuButton,
+  DropdownMenuPanel,
+  DropdownMenuOption,
+  DropdownMenuDivider,
+  DropdownMenuHeader,
+} from '@/components/dropdown-menu'
 ```
 
 ❌ **Relationship kurang explicit**
 
 ```ts
-// Tidak terlihat jelas bahwa MenuPanel adalah bagian dari Menu system
-import { Panel } from '@/components/menu' // Kurang jelas
+// Tidak terlihat jelas bahwa DropdownMenuPanel adalah bagian dari DropdownMenu system
+import { Panel } from '@/components/dropdown-menu' // Kurang jelas
 ```
 
 ❌ **IDE Autocomplete terbatas**
 
 ```ts
-Menu // Tidak muncul apa-apa
-// Harus tahu nama exact: MenuButton, MenuPanel, dll
+DropdownMenu // Tidak muncul apa-apa
+// Harus tahu nama exact: DropdownMenuButton, DropdownMenuPanel, dll
 ```
 
 ---
@@ -258,14 +263,14 @@ Menu // Tidak muncul apa-apa
 
 ```vue
 <!-- ✅ GOOD: Compound components yang loosely coupled -->
-<MenuRoot>
-  <MenuButton label="Actions" />
-  <MenuPanel>
-    <MenuHeader>Title</MenuHeader>
-    <MenuOption>Edit</MenuOption>
-    <MenuDivider />
-  </MenuPanel>
-</MenuRoot>
+<DropdownMenuRoot>
+  <DropdownMenuButton label="Actions" />
+  <DropdownMenuPanel>
+    <DropdownMenuHeader>Title</DropdownMenuHeader>
+    <DropdownMenuOption>Edit</DropdownMenuOption>
+    <DropdownMenuDivider />
+  </DropdownMenuPanel>
+</DropdownMenuRoot>
 ```
 
 **Kriteria:**
@@ -278,10 +283,9 @@ Menu // Tidak muncul apa-apa
 
 **Contoh yang cocok:**
 
-- `MenuRoot`, `MenuButton`, `MenuPanel`, `MenuOption`
+- `DropdownMenuRoot`, `DropdownMenuButton`, `DropdownMenuPanel`, `DropdownMenuOption`
 - `DialogTrigger`, `DialogContent`, `DialogTitle`
 - `TabsRoot`, `TabsList`, `TabsTrigger`, `TabsContent`
-- `DropdownTrigger`, `DropdownContent`, `DropdownItem`
 - `TooltipTrigger`, `TooltipContent`
 
 ---
@@ -325,22 +329,22 @@ const FormInput = FormInputField as typeof FormInputField & {
 - User expect **single import** untuk form field
 - Mirip native HTML (`<input>` + `<label>`)
 
-### ✅ **Menu** = Compound Names
+### ✅ **DropdownMenu** = Compound Names
 
 ```ts
-// src/components/menu/index.ts
-export { default as MenuRoot } from './MenuRoot.vue'
-export { default as MenuButton } from './MenuButton.vue'
+// src/components/dropdown-menu/index.ts
+export { default as DropdownMenuRoot } from './DropdownMenuRoot.vue'
+export { default as DropdownMenuButton } from './DropdownMenuButton.vue'
 // ...
 ```
 
 **Why?**
 
-- Menu components **loosely coupled**
-- MenuButton bisa standalone (contoh: toggle tanpa panel)
+- DropdownMenu components **loosely coupled**
+- DropdownMenuButton bisa standalone (contoh: toggle tanpa panel)
 - Composition **flexibility** tinggi
-- Tree-shaking **important** (tidak semua page butuh full menu)
-- Inspired by Radix UI / Headless UI
+- Tree-shaking **important** (tidak semua page butuh full dropdown menu)
+- Inspired by shadcn/ui, Radix UI, and Headless UI
 
 ---
 
@@ -354,7 +358,7 @@ export { default as MenuButton } from './MenuButton.vue'
    - ✅ Future: `Table.Head`, `Table.Body`, `Table.Cell`
 
 2. **Keep using COMPOUND NAMES untuk:**
-   - ✅ `MenuRoot`, `MenuButton`, `MenuPanel`
+   - ✅ `DropdownMenuRoot`, `DropdownMenuButton`, `DropdownMenuPanel`
    - ✅ Future: `DialogTrigger`, `DialogContent`
    - ✅ Future: `TabsRoot`, `TabsList`, `TabsContent`
 
@@ -365,7 +369,7 @@ export { default as MenuButton } from './MenuButton.vue'
    Example: FormInput.Label
 
 🧩 Loosely Coupled + Composition-Focused = COMPOUND NAMES
-   Example: MenuButton
+   Example: DropdownMenuButton
 ```
 
 ---
@@ -445,5 +449,5 @@ export { default as MenuButton } from './MenuButton.vue'
 **TL;DR:**
 
 - `FormInput.Label` ✅ → Parent-child yang kuat, jarang standalone
-- `MenuButton` ✅ → Loosely coupled, bisa standalone, flexible composition
+- `DropdownMenuButton` ✅ → Loosely coupled, bisa standalone, flexible composition
 - **Both are valid!** Pilih berdasarkan use case, bukan "best practice universal"
