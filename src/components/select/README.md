@@ -23,7 +23,6 @@ The trigger button that opens/closes the select dropdown and displays the select
 
 **Props:**
 
-- `size?: 'sm' | 'default' | 'lg'` - Button size (default: 'default')
 - `disabled?: boolean` - Disable the select
 - `class?: string` - Custom CSS classes
 
@@ -32,14 +31,9 @@ The trigger button that opens/closes the select dropdown and displays the select
 - `value` - The current selected value
 - `isPlaceholder` - Whether showing placeholder
 
-### SelectValue
+**Default Slot:**
 
-A utility component to display the selected value. Usually used inside SelectTrigger or SelectItem.
-
-**Slot Props:**
-
-- `value` - The current selected value
-- `isPlaceholder` - Whether showing placeholder
+By default, SelectTrigger displays the selected item's label or the placeholder text. You can customize the display using the default slot with the provided slot props.
 
 ### SelectContent
 
@@ -92,28 +86,20 @@ A visual separator between select sections.
 
 ```vue
 <template>
-  <SelectRoot v-model="selectedCountry">
-    <SelectTrigger class="w-[280px]">
-      <SelectValue />
-    </SelectTrigger>
+  <SelectRoot v-model="selectedCountry" placeholder="Select a country">
+    <SelectTrigger class="w-[280px]" />
     <SelectContent>
-      <SelectItem value="id">🇮🇩 Indonesia</SelectItem>
-      <SelectItem value="us">🇺🇸 United States</SelectItem>
-      <SelectItem value="sg">🇸🇬 Singapore</SelectItem>
-      <SelectItem value="jp">🇯🇵 Japan</SelectItem>
+      <SelectItem value="id" label="🇮🇩 Indonesia">🇮🇩 Indonesia</SelectItem>
+      <SelectItem value="us" label="🇺🇸 United States">🇺🇸 United States</SelectItem>
+      <SelectItem value="sg" label="🇸🇬 Singapore">🇸🇬 Singapore</SelectItem>
+      <SelectItem value="jp" label="🇯🇵 Japan">🇯🇵 Japan</SelectItem>
     </SelectContent>
   </SelectRoot>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import {
-  SelectRoot,
-  SelectTrigger,
-  SelectValue,
-  SelectContent,
-  SelectItem,
-} from '@/components/select'
+import { SelectRoot, SelectTrigger, SelectContent, SelectItem } from '@/components/select'
 
 const selectedCountry = ref<string>()
 </script>
@@ -123,22 +109,22 @@ const selectedCountry = ref<string>()
 
 ```vue
 <template>
-  <SelectRoot v-model="selectedTimezone">
-    <SelectTrigger class="w-[280px]">
-      <SelectValue placeholder="Select timezone" />
-    </SelectTrigger>
+  <SelectRoot v-model="selectedTimezone" placeholder="Select timezone">
+    <SelectTrigger class="w-[280px]" />
     <SelectContent>
       <SelectGroup>
         <SelectLabel>Asia</SelectLabel>
-        <SelectItem value="asia/jakarta">Jakarta (GMT+7)</SelectItem>
-        <SelectItem value="asia/singapore">Singapore (GMT+8)</SelectItem>
-        <SelectItem value="asia/tokyo">Tokyo (GMT+9)</SelectItem>
+        <SelectItem value="asia/jakarta" label="Jakarta (GMT+7)">Jakarta (GMT+7)</SelectItem>
+        <SelectItem value="asia/singapore" label="Singapore (GMT+8)">Singapore (GMT+8)</SelectItem>
+        <SelectItem value="asia/tokyo" label="Tokyo (GMT+9)">Tokyo (GMT+9)</SelectItem>
       </SelectGroup>
       <SelectSeparator />
       <SelectGroup>
         <SelectLabel>America</SelectLabel>
-        <SelectItem value="america/new_york">New York (GMT-5)</SelectItem>
-        <SelectItem value="america/los_angeles">Los Angeles (GMT-8)</SelectItem>
+        <SelectItem value="america/new_york" label="New York (GMT-5)">New York (GMT-5)</SelectItem>
+        <SelectItem value="america/los_angeles" label="Los Angeles (GMT-8)"
+          >Los Angeles (GMT-8)</SelectItem
+        >
       </SelectGroup>
     </SelectContent>
   </SelectRoot>
@@ -149,7 +135,6 @@ import { ref } from 'vue'
 import {
   SelectRoot,
   SelectTrigger,
-  SelectValue,
   SelectContent,
   SelectItem,
   SelectGroup,
@@ -165,30 +150,28 @@ const selectedTimezone = ref<string>('asia/jakarta')
 
 ```vue
 <template>
-  <SelectRoot v-model="selectedUser">
+  <SelectRoot v-model="selectedUser" placeholder="Select user...">
     <SelectTrigger class="w-[280px]">
-      <SelectValue>
-        <template #default="{ value, isPlaceholder }">
-          <div v-if="!isPlaceholder" class="flex items-center gap-2">
-            <img :src="getUserAvatar(value)" class="h-5 w-5 rounded-full" />
-            <span>{{ getUserName(value) }}</span>
-          </div>
-          <span v-else class="text-gray-400">Select user...</span>
-        </template>
-      </SelectValue>
+      <template #default="{ value, isPlaceholder }">
+        <div v-if="!isPlaceholder" class="flex items-center gap-2">
+          <img :src="getUserAvatar(value)" class="h-5 w-5 rounded-full" />
+          <span>{{ getUserName(value) }}</span>
+        </div>
+        <span v-else class="text-gray-400">Select user...</span>
+      </template>
     </SelectTrigger>
     <SelectContent>
-      <SelectItem value="1">
-        <template #default="{ selected }">
+      <SelectItem value="1" label="John Doe">
+        <div class="flex items-center gap-2">
           <img src="/avatar1.jpg" class="h-5 w-5 rounded-full" />
           <span>John Doe</span>
-        </template>
+        </div>
       </SelectItem>
-      <SelectItem value="2">
-        <template #default="{ selected }">
+      <SelectItem value="2" label="Jane Smith">
+        <div class="flex items-center gap-2">
           <img src="/avatar2.jpg" class="h-5 w-5 rounded-full" />
           <span>Jane Smith</span>
-        </template>
+        </div>
       </SelectItem>
     </SelectContent>
   </SelectRoot>
@@ -206,14 +189,12 @@ Teleport is enabled by default, so the select works seamlessly inside modals or 
     <ModalContent>
       <ModalBody>
         <!-- Select inside modal - teleport is enabled by default -->
-        <SelectRoot v-model="selectedCountry">
-          <SelectTrigger class="w-full">
-            <SelectValue placeholder="Select country" />
-          </SelectTrigger>
+        <SelectRoot v-model="selectedCountry" placeholder="Select country">
+          <SelectTrigger class="w-full" />
           <SelectContent class="max-h-60">
-            <SelectItem value="id">🇮🇩 Indonesia</SelectItem>
-            <SelectItem value="us">🇺🇸 United States</SelectItem>
-            <SelectItem value="sg">🇸🇬 Singapore</SelectItem>
+            <SelectItem value="id" label="🇮🇩 Indonesia">🇮🇩 Indonesia</SelectItem>
+            <SelectItem value="us" label="🇺🇸 United States">🇺🇸 United States</SelectItem>
+            <SelectItem value="sg" label="🇸🇬 Singapore">🇸🇬 Singapore</SelectItem>
           </SelectContent>
         </SelectRoot>
       </ModalBody>
@@ -222,41 +203,37 @@ Teleport is enabled by default, so the select works seamlessly inside modals or 
 </template>
 ```
 
-### Different Sizes
+### Different Trigger Sizes
+
+You can customize the trigger button size using Tailwind CSS classes:
 
 ```vue
 <template>
   <div class="space-y-4">
     <!-- Small -->
-    <SelectRoot v-model="value1">
-      <SelectTrigger size="sm" class="w-[200px]">
-        <SelectValue />
-      </SelectTrigger>
+    <SelectRoot v-model="value1" placeholder="Small select">
+      <SelectTrigger class="w-[180px]" />
       <SelectContent>
-        <SelectItem value="1">Option 1</SelectItem>
-        <SelectItem value="2">Option 2</SelectItem>
+        <SelectItem value="1" label="Option 1">Option 1</SelectItem>
+        <SelectItem value="2" label="Option 2">Option 2</SelectItem>
       </SelectContent>
     </SelectRoot>
 
     <!-- Default -->
-    <SelectRoot v-model="value2">
-      <SelectTrigger size="default" class="w-[200px]">
-        <SelectValue />
-      </SelectTrigger>
+    <SelectRoot v-model="value2" placeholder="Default select">
+      <SelectTrigger class="w-[200px]" />
       <SelectContent>
-        <SelectItem value="1">Option 1</SelectItem>
-        <SelectItem value="2">Option 2</SelectItem>
+        <SelectItem value="1" label="Option 1">Option 1</SelectItem>
+        <SelectItem value="2" label="Option 2">Option 2</SelectItem>
       </SelectContent>
     </SelectRoot>
 
     <!-- Large -->
-    <SelectRoot v-model="value3">
-      <SelectTrigger size="lg" class="w-[200px]">
-        <SelectValue />
-      </SelectTrigger>
+    <SelectRoot v-model="value3" placeholder="Large select">
+      <SelectTrigger class="w-[280px]" />
       <SelectContent>
-        <SelectItem value="1">Option 1</SelectItem>
-        <SelectItem value="2">Option 2</SelectItem>
+        <SelectItem value="1" label="Option 1">Option 1</SelectItem>
+        <SelectItem value="2" label="Option 2">Option 2</SelectItem>
       </SelectContent>
     </SelectRoot>
   </div>

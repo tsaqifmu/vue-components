@@ -23,7 +23,6 @@ import {
   SelectRoot,
   SelectSeparator,
   SelectTrigger,
-  SelectValue,
 } from '@/components/select'
 import { computed, ref } from 'vue'
 
@@ -541,9 +540,7 @@ const handleFormSubmit = () => {
                 <div>
                   <label class="mb-1.5 block text-sm font-medium text-gray-700"> Department </label>
                   <SelectRoot v-model="formData.department" placeholder="Select department">
-                    <SelectTrigger class="w-full">
-                      <SelectValue />
-                    </SelectTrigger>
+                    <SelectTrigger class="w-full" />
                     <SelectContent>
                       <SelectItem
                         v-for="option in departmentOptions"
@@ -560,9 +557,7 @@ const handleFormSubmit = () => {
                 <div>
                   <label class="mb-1.5 block text-sm font-medium text-gray-700"> Timezone </label>
                   <SelectRoot v-model="formData.timezone" placeholder="Select timezone">
-                    <SelectTrigger class="w-full">
-                      <SelectValue />
-                    </SelectTrigger>
+                    <SelectTrigger class="w-full" />
                     <SelectContent class="max-h-60">
                       <SelectGroup>
                         <SelectLabel>Asia</SelectLabel>

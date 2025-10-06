@@ -82,7 +82,7 @@ const combinedStyle = computed(() => {
 
 // --- Constants ----
 const DROPDOWN_GAP_BOTTOM = 4 // Gap when dropdown opens below the trigger
-const DROPDOWN_GAP_TOP = 10 // Gap when dropdown opens above the trigger
+const DROPDOWN_GAP_TOP = 17 // Gap when dropdown opens above the trigger
 const VIEWPORT_PADDING = 8 // Minimum padding from viewport edges
 
 // --- Methods ----

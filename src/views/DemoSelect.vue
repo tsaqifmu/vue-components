@@ -7,7 +7,6 @@ import {
   SelectRoot,
   SelectSeparator,
   SelectTrigger,
-  SelectValue,
 } from '@/components/select'
 import { ref } from 'vue'
 
@@ -35,10 +34,8 @@ const multi3 = ref<string>()
       <!-- Basic Select -->
       <div class="space-y-4">
         <h2 class="text-text-title text-xl font-semibold">Basic Select</h2>
-        <SelectRoot v-model="selectedCountry">
-          <SelectTrigger class="w-[280px]">
-            <SelectValue placeholder="Select a country" />
-          </SelectTrigger>
+        <SelectRoot v-model="selectedCountry" placeholder="Select a country">
+          <SelectTrigger class="w-[280px]" />
           <SelectContent>
             <SelectItem value="id" label="🇮🇩 Indonesia">🇮🇩 Indonesia</SelectItem>
             <SelectItem value="us" label="🇺🇸 United States">🇺🇸 United States</SelectItem>
@@ -53,10 +50,8 @@ const multi3 = ref<string>()
       <!-- With Groups and Labels -->
       <div class="space-y-4">
         <h2 class="text-text-title text-xl font-semibold">With Groups and Labels</h2>
-        <SelectRoot v-model="selectedTimezone">
-          <SelectTrigger class="w-[300px]">
-            <SelectValue placeholder="Select timezone" />
-          </SelectTrigger>
+        <SelectRoot v-model="selectedTimezone" placeholder="Select timezone">
+          <SelectTrigger class="w-[300px]" />
           <SelectContent>
             <SelectGroup>
               <SelectLabel>Asia Pacific</SelectLabel>
@@ -98,10 +93,8 @@ const multi3 = ref<string>()
         <div class="flex items-start gap-4">
           <div>
             <p class="mb-2 text-sm text-gray-600">Small</p>
-            <SelectRoot v-model="size1">
-              <SelectTrigger class="w-[180px]">
-                <SelectValue placeholder="Small" />
-              </SelectTrigger>
+            <SelectRoot v-model="size1" placeholder="Small">
+              <SelectTrigger class="w-[180px]" />
               <SelectContent>
                 <SelectItem value="1" label="Option 1">Option 1</SelectItem>
                 <SelectItem value="2" label="Option 2">Option 2</SelectItem>
@@ -111,10 +104,8 @@ const multi3 = ref<string>()
           </div>
           <div>
             <p class="mb-2 text-sm text-gray-600">Default</p>
-            <SelectRoot v-model="size2">
-              <SelectTrigger class="w-[180px]">
-                <SelectValue placeholder="Default" />
-              </SelectTrigger>
+            <SelectRoot v-model="size2" placeholder="Default">
+              <SelectTrigger class="w-[180px]" />
               <SelectContent>
                 <SelectItem value="1" label="Option 1">Option 1</SelectItem>
                 <SelectItem value="2" label="Option 2">Option 2</SelectItem>
@@ -124,10 +115,8 @@ const multi3 = ref<string>()
           </div>
           <div>
             <p class="mb-2 text-sm text-gray-600">Large</p>
-            <SelectRoot v-model="size3">
-              <SelectTrigger class="w-[180px]">
-                <SelectValue placeholder="Large" />
-              </SelectTrigger>
+            <SelectRoot v-model="size3" placeholder="Large">
+              <SelectTrigger class="w-[180px]" />
               <SelectContent>
                 <SelectItem value="1" label="Option 1">Option 1</SelectItem>
                 <SelectItem value="2" label="Option 2">Option 2</SelectItem>
@@ -141,10 +130,8 @@ const multi3 = ref<string>()
       <!-- With Disabled Options -->
       <div class="space-y-4">
         <h2 class="text-text-title text-xl font-semibold">With Disabled Options</h2>
-        <SelectRoot v-model="selectedPriority">
-          <SelectTrigger class="w-[200px]">
-            <SelectValue placeholder="Select priority" />
-          </SelectTrigger>
+        <SelectRoot v-model="selectedPriority" placeholder="Select priority">
+          <SelectTrigger class="w-[200px]" />
           <SelectContent>
             <SelectItem value="low" label="Low Priority">Low Priority</SelectItem>
             <SelectItem value="medium" label="Medium Priority">Medium Priority</SelectItem>
@@ -160,10 +147,8 @@ const multi3 = ref<string>()
       <!-- Disabled Select -->
       <div class="space-y-4">
         <h2 class="text-text-title text-xl font-semibold">Disabled Select</h2>
-        <SelectRoot v-model="disabledValue">
-          <SelectTrigger class="w-[200px]" disabled>
-            <SelectValue placeholder="Disabled" />
-          </SelectTrigger>
+        <SelectRoot v-model="disabledValue" placeholder="Disabled">
+          <SelectTrigger class="w-[200px]" disabled />
           <SelectContent>
             <SelectItem value="1" label="Option 1">Option 1</SelectItem>
             <SelectItem value="2" label="Option 2">Option 2</SelectItem>
@@ -177,10 +162,8 @@ const multi3 = ref<string>()
           Multiple Selects (Context Isolation Test)
         </h2>
         <div class="flex gap-4">
-          <SelectRoot v-model="multi1">
-            <SelectTrigger class="w-[180px]">
-              <SelectValue placeholder="Select 1" />
-            </SelectTrigger>
+          <SelectRoot v-model="multi1" placeholder="Select 1">
+            <SelectTrigger class="w-[180px]" />
             <SelectContent>
               <SelectItem value="a" label="Option A">Option A</SelectItem>
               <SelectItem value="b" label="Option B">Option B</SelectItem>
@@ -188,10 +171,8 @@ const multi3 = ref<string>()
             </SelectContent>
           </SelectRoot>
 
-          <SelectRoot v-model="multi2">
-            <SelectTrigger class="w-[180px]">
-              <SelectValue placeholder="Select 2" />
-            </SelectTrigger>
+          <SelectRoot v-model="multi2" placeholder="Select 2">
+            <SelectTrigger class="w-[180px]" />
             <SelectContent>
               <SelectItem value="x" label="Option X">Option X</SelectItem>
               <SelectItem value="y" label="Option Y">Option Y</SelectItem>
@@ -199,10 +180,8 @@ const multi3 = ref<string>()
             </SelectContent>
           </SelectRoot>
 
-          <SelectRoot v-model="multi3">
-            <SelectTrigger class="w-[180px]">
-              <SelectValue placeholder="Select 3" />
-            </SelectTrigger>
+          <SelectRoot v-model="multi3" placeholder="Select 3">
+            <SelectTrigger class="w-[180px]" />
             <SelectContent>
               <SelectItem value="1" label="Option 1">Option 1</SelectItem>
               <SelectItem value="2" label="Option 2">Option 2</SelectItem>
@@ -218,10 +197,8 @@ const multi3 = ref<string>()
       <!-- Status Select Example -->
       <div class="space-y-4">
         <h2 class="text-text-title text-xl font-semibold">Status Select Example</h2>
-        <SelectRoot v-model="selectedStatus">
-          <SelectTrigger class="w-[200px]">
-            <SelectValue placeholder="Select status" />
-          </SelectTrigger>
+        <SelectRoot v-model="selectedStatus" placeholder="Select status">
+          <SelectTrigger class="w-[200px]" />
           <SelectContent>
             <SelectItem value="todo" label="To Do">
               <div class="flex items-center gap-2">
@@ -255,10 +232,8 @@ const multi3 = ref<string>()
       <!-- Long List with Scroll -->
       <div class="space-y-4">
         <h2 class="text-text-title text-xl font-semibold">Long List with Scroll</h2>
-        <SelectRoot v-model="selectedNumber">
-          <SelectTrigger class="w-[200px]">
-            <SelectValue placeholder="Select a number" />
-          </SelectTrigger>
+        <SelectRoot v-model="selectedNumber" placeholder="Select a number">
+          <SelectTrigger class="w-[200px]" />
           <SelectContent class="max-h-60">
             <SelectItem v-for="i in 50" :key="i" :value="String(i)" :label="`Number ${i}`">
               Number {{ i }}
