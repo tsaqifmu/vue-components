@@ -6,7 +6,7 @@ import { cn } from '../../lib/utils'
 const selectTriggerVariants = cva(
   // Base styles
   [
-    'inline-flex w-full items-center justify-between rounded-md border px-3 py-2 whitespace-nowrap shadow-sm',
+    'inline-flex w-full items-center bg-surface-primary-white justify-between rounded-lg px-4 py-3 whitespace-nowrap shadow-small',
     // Text styles
     'text-sm',
 
@@ -19,26 +19,16 @@ const selectTriggerVariants = cva(
 
   {
     variants: {
-      size: {
-        sm: 'h-8 text-xs',
-        default: 'h-9',
-        lg: 'h-10',
-      },
       disabled: {
         true: 'opacity-50 cursor-not-allowed bg-surface-secondary/50 border-gray-300/50',
         false:
           'bg-transparent border-gray-300 hover:bg-surface-secondary focus:ring-primary/50 focus:border-primary',
       },
     },
-    defaultVariants: {
-      size: 'default',
-      disabled: false,
-    },
   },
 )
 
 interface Props {
-  size?: 'sm' | 'default' | 'lg'
   disabled?: boolean
   class?: string
 }
@@ -57,7 +47,6 @@ interface SelectContext {
 
 // --- Props & Emits ---
 const props = withDefaults(defineProps<Props>(), {
-  size: 'default',
   disabled: false,
 })
 
@@ -71,7 +60,6 @@ const isPlaceholder = computed(() => !select?.modelValue.value)
 const triggerClasses = computed(() =>
   cn(
     selectTriggerVariants({
-      size: props.size,
       disabled: props.disabled,
     }),
     props.class,

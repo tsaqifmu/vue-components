@@ -99,7 +99,7 @@ const multi3 = ref<string>()
           <div>
             <p class="mb-2 text-sm text-gray-600">Small</p>
             <SelectRoot v-model="size1">
-              <SelectTrigger size="sm" class="w-[180px]">
+              <SelectTrigger class="w-[180px]">
                 <SelectValue placeholder="Small" />
               </SelectTrigger>
               <SelectContent>
