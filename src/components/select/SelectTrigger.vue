@@ -8,7 +8,7 @@ const selectTriggerVariants = cva(
   [
     'inline-flex w-full px-4 py-3 items-center justify-between bg-surface-primary-white rounded-lg whitespace-nowrap shadow-small',
     // Text styles
-    'text-sm',
+    'text-sm text-text-title font-medium',
 
     // Transition styles
     'transition-all duration-200 ease-in-out',
@@ -77,26 +77,26 @@ const triggerClasses = computed(() =>
     @click="select?.toggle"
   >
     <span
-      :class="[
-        'flex-1 truncate text-left text-sm font-normal',
-        isPlaceholder && 'text-text-placeholder',
-      ]"
+      :class="cn('flex-1 truncate text-left', isPlaceholder && 'text-text-placeholder font-normal')"
     >
       <slot :value="select?.modelValue.value" :is-placeholder="isPlaceholder">
         {{ displayText }}
       </slot>
     </span>
     <svg
-      :class="[
-        'ml-2 h-4 w-4 shrink-0 opacity-50 transition-transform duration-200',
-        select?.isOpen.value ? 'rotate-180' : 'rotate-0',
-      ]"
+      :class="cn('transition-transform duration-200', select?.isOpen.value && 'rotate-180')"
+      xmlns="http://www.w3.org/2000/svg"
+      width="14"
+      height="8"
+      viewBox="0 0 14 8"
       fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-      aria-hidden="true"
     >
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M13.7071 0.292893C14.0976 0.683417 14.0976 1.31658 13.7071 1.70711L7.70711 7.70711C7.31658 8.09763 6.68342 8.09763 6.29289 7.70711L0.292893 1.70711C-0.0976314 1.31658 -0.0976314 0.683418 0.292893 0.292893C0.683417 -0.0976309 1.31658 -0.0976309 1.70711 0.292893L7 5.58579L12.2929 0.292893C12.6834 -0.0976311 13.3166 -0.0976311 13.7071 0.292893Z"
+        fill="currentColor"
+      />
     </svg>
   </button>
 </template>

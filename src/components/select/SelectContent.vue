@@ -14,7 +14,7 @@ import {
 import { cn } from '../../lib/utils'
 
 const selectContentVariants = cva(
-  'min-w-[8rem] rounded-md bg-surface-primary-white shadow-card-float border border-gray-300 py-1 max-h-[var(--radix-select-content-available-height)] overflow-y-auto',
+  'min-w-[8rem] rounded-lg bg-surface-primary-white shadow-card-float border border-gray-300 py-1 max-h-[var(--radix-select-content-available-height)] overflow-y-auto',
   {
     variants: {
       position: {
@@ -80,6 +80,11 @@ const combinedStyle = computed(() => {
   return teleportStyle.value
 })
 
+// --- Constants ----
+const DROPDOWN_GAP_BOTTOM = 4 // Gap when dropdown opens below the trigger
+const DROPDOWN_GAP_TOP = 10 // Gap when dropdown opens above the trigger
+const VIEWPORT_PADDING = 8 // Minimum padding from viewport edges
+
 // --- Methods ----
 // Calculate position when teleported
 const updatePosition = () => {
@@ -102,7 +107,7 @@ const updatePosition = () => {
   const viewportHeight = window.innerHeight
 
   // Calculate position
-  let top = buttonRect.bottom + 4
+  let top = buttonRect.bottom + DROPDOWN_GAP_BOTTOM
   let left = buttonRect.left
 
   // Alignment
@@ -114,18 +119,18 @@ const updatePosition = () => {
 
   // Check if would go off bottom
   if (top + panelRect.height > viewportHeight && buttonRect.top > panelRect.height) {
-    top = buttonRect.top - panelRect.height - 4
+    top = buttonRect.top - panelRect.height - DROPDOWN_GAP_TOP
   }
 
   // Check if would go off right edge
   const right = left + panelRect.width
   if (right > window.innerWidth) {
-    left = window.innerWidth - panelRect.width - 8
+    left = window.innerWidth - panelRect.width - VIEWPORT_PADDING
   }
 
   // Check if would go off left edge
-  if (left < 8) {
-    left = 8
+  if (left < VIEWPORT_PADDING) {
+    left = VIEWPORT_PADDING
   }
 
   teleportStyle.value = {
