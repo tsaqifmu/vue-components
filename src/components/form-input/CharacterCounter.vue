@@ -10,8 +10,10 @@ export interface CharacterCounterProps {
   class?: string
 }
 
+// --- Props & Emits ---
 const props = defineProps<CharacterCounterProps>()
 
+// --- Computed ---
 const isOverLimit = computed(() => props.current > props.max)
 
 const counterClasses = computed(() =>

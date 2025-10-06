@@ -108,11 +108,11 @@ const currentType = computed(() => {
 })
 
 const hasCounter = computed(() => !!attrs.maxlength)
-const currentLength = computed(() => String(model.value || '').length)
-
 const hasIcons = computed(() => {
   return props.clearable || props.type === 'password'
 })
+
+const currentLength = computed(() => String(model.value || '').length)
 
 // handle spacing for input
 const inputSpacing = computed(() => {
@@ -211,7 +211,7 @@ const handleBlur = () => {
           @blur="handleBlur"
         />
 
-        <!-- Action Icons Container -->
+        <!-- Action Clear Button Container -->
         <div
           v-if="hasIcons"
           class="absolute top-[11px] right-1 z-20 flex items-center bg-white px-3"
