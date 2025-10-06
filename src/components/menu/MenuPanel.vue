@@ -1,4 +1,18 @@
 <template>
+  <!-- Overlay -->
+  <Teleport to="body" :disabled="!teleport">
+    <Transition
+      name="menu-overlay"
+      enter-active-class="menu-overlay-enter-active"
+      enter-from-class="menu-overlay-enter-from"
+      leave-active-class="menu-overlay-leave-active"
+      leave-to-class="menu-overlay-leave-to"
+    >
+      <div v-if="isMenuOpen" :class="overlayClasses" @click="menu?.close()"></div>
+    </Transition>
+  </Teleport>
+
+  <!-- Menu Panel -->
   <Teleport to="body" :disabled="!teleport">
     <div
       v-if="isMenuOpen"
@@ -72,6 +86,10 @@ const isMenuOpen = computed(() => menu?.isOpen.value ?? false)
 const panelRef = ref<HTMLElement>()
 const teleportStyle = ref<Record<string, string>>({})
 const isPositioned = ref(false)
+
+const overlayClasses = computed(() => {
+  return cn('fixed inset-0 z-[9998] w-screen bg-transparent')
+})
 
 const panelClasses = computed(() => {
   const baseClasses = menuPanelVariants({
@@ -202,6 +220,17 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
+/* Overlay transitions */
+.menu-overlay-enter-active,
+.menu-overlay-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.menu-overlay-enter-from,
+.menu-overlay-leave-to {
+  opacity: 0;
+}
+
 /* Initial state - hidden while calculating position */
 [data-state='calculating'] {
   opacity: 0;
