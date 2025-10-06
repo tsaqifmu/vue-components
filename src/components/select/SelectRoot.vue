@@ -25,21 +25,23 @@ interface Props {
   placeholder?: string
 }
 
+// --- Props & Emits ---
 const props = withDefaults(defineProps<Props>(), {
   placeholder: 'Select an option...',
 })
 
-// Emits
 const emit = defineEmits<{
   'update:modelValue': [value: string | number | undefined]
 }>()
 
+// --- State & Computed ----
 // State management
 const isOpen = ref(false)
 const container = ref<HTMLElement>()
 const internalValue = ref<string | number | undefined>(props.modelValue)
 const itemLabels = ref<Map<string | number, string>>(new Map())
 
+// --- Watchers ---
 // Watch for external changes
 watch(
   () => props.modelValue,
@@ -48,7 +50,7 @@ watch(
   },
 )
 
-// Methods
+// --- Methods ---
 const open = () => {
   isOpen.value = true
 }
@@ -95,6 +97,7 @@ const handleEscapeKey = (event: KeyboardEvent) => {
   }
 }
 
+// --- Lifecycle Hooks ---
 // Setup event listeners
 onMounted(() => {
   document.addEventListener('click', handleClickOutside)
