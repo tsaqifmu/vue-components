@@ -6,7 +6,7 @@ import { cn } from '../../lib/utils'
 const selectTriggerVariants = cva(
   // Base styles
   [
-    'inline-flex w-full items-center bg-surface-primary-white justify-between rounded-lg px-4 py-3 whitespace-nowrap shadow-small',
+    'inline-flex w-full px-4 py-3 items-center justify-between bg-surface-primary-white rounded-lg whitespace-nowrap shadow-small',
     // Text styles
     'text-sm',
 
@@ -16,13 +16,12 @@ const selectTriggerVariants = cva(
     // Focus styles
     'focus:outline-none focus:ring-2 focus:ring-offset-1',
   ],
-
   {
     variants: {
       disabled: {
         true: 'opacity-50 cursor-not-allowed bg-surface-secondary/50 border-gray-300/50',
         false:
-          'bg-transparent border-gray-300 hover:bg-surface-secondary focus:ring-primary/50 focus:border-primary',
+          ' border-gray-300 hover:bg-surface-secondary focus:ring-primary/50 focus:border-primary',
       },
     },
   },
