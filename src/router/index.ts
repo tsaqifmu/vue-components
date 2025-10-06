@@ -8,6 +8,7 @@ const router = createRouter({
     { path: '/demo-input', component: () => import('@/views/DemoAdvancedInput.vue') },
     { path: '/demo-menu', component: () => import('@/views/DemoMenu.vue') },
     { path: '/demo-modal', component: () => import('@/views/DemoModal.vue') },
+    { path: '/demo-select', component: () => import('@/views/DemoSelect.vue') },
   ],
 })
 
