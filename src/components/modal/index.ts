@@ -1,0 +1,9 @@
+// Modal component exports - Compound Component Pattern
+export { default as ModalBody } from './ModalBody.vue'
+export { default as ModalClose } from './ModalClose.vue'
+export { default as ModalContent } from './ModalContent.vue'
+export { default as ModalFooter } from './ModalFooter.vue'
+export { default as ModalHeader } from './ModalHeader.vue'
+export { default as ModalOverlay } from './ModalOverlay.vue'
+export { default as ModalRoot } from './ModalRoot.vue'
+export { default as ModalTitle } from './ModalTitle.vue'

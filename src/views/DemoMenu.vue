@@ -70,6 +70,9 @@
             <MenuOption>Option 1</MenuOption>
             <MenuOption>Option 2</MenuOption>
             <MenuOption>Option 3</MenuOption>
+            <MenuOption>Option 3</MenuOption>
+            <MenuOption>Option 3</MenuOption>
+            <MenuOption>Option 3</MenuOption>
           </MenuPanel>
         </MenuRoot>
       </div>

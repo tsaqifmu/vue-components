@@ -16,6 +16,9 @@ import { RouterLink } from 'vue-router'
           <RouterLink to="/demo-menu" class="transition-colors hover:text-blue-200"
             >Demo Menu</RouterLink
           >
+          <RouterLink to="/demo-modal" class="transition-colors hover:text-blue-200"
+            >Demo Modal</RouterLink
+          >
         </div>
       </div>
     </nav>

@@ -87,6 +87,7 @@ const isDisabled = ref(false)
             :disabled="isDisabled"
             :error="showError"
           />
+
           <FormInput.ErrorMessage
             v-if="showError"
             id="password-error"

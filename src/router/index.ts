@@ -7,6 +7,7 @@ const router = createRouter({
     { path: '/about', component: () => import('@/views/About.vue') },
     { path: '/demo-input', component: () => import('@/views/DemoAdvancedInput.vue') },
     { path: '/demo-menu', component: () => import('@/views/DemoMenu.vue') },
+    { path: '/demo-modal', component: () => import('@/views/DemoModal.vue') },
   ],
 })
 
