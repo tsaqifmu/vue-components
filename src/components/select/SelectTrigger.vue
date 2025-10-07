@@ -86,6 +86,7 @@ const triggerClasses = computed(() =>
         {{ displayText }}
       </slot>
     </span>
+
     <svg
       :class="cn('transition-transform duration-200', select?.isOpen.value && 'rotate-180')"
       xmlns="http://www.w3.org/2000/svg"

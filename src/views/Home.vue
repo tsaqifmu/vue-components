@@ -159,6 +159,93 @@ const handleFormSubmit = (data: ContactFormData) => {
       </div>
     </section>
 
+    <!-- Compound Components Section -->
+    <section class="mb-12">
+      <h2 class="mb-6 border-b pb-2 text-2xl font-semibold text-gray-800">
+        🎯 Compound Components
+      </h2>
+      <p class="mb-6 text-gray-600">
+        Advanced components with compound component pattern for maximum flexibility
+      </p>
+
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <RouterLink
+          to="/demo-tabs"
+          class="group rounded-lg border-2 border-gray-200 bg-white p-6 transition-all hover:border-blue-500 hover:shadow-lg"
+        >
+          <div
+            class="mb-3 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-100 text-2xl group-hover:bg-blue-500 group-hover:text-white"
+          >
+            📑
+          </div>
+          <h3 class="mb-2 text-lg font-semibold text-gray-900">Tabs</h3>
+          <p class="text-sm text-gray-600">
+            Flexible tabs component with compound pattern, controlled/uncontrolled modes
+          </p>
+        </RouterLink>
+
+        <RouterLink
+          to="/demo-modal"
+          class="group rounded-lg border-2 border-gray-200 bg-white p-6 transition-all hover:border-blue-500 hover:shadow-lg"
+        >
+          <div
+            class="mb-3 flex h-12 w-12 items-center justify-center rounded-lg bg-purple-100 text-2xl group-hover:bg-purple-500 group-hover:text-white"
+          >
+            🪟
+          </div>
+          <h3 class="mb-2 text-lg font-semibold text-gray-900">Modal</h3>
+          <p class="text-sm text-gray-600">
+            Accessible modal dialogs with overlay, focus trap, and scroll lock
+          </p>
+        </RouterLink>
+
+        <RouterLink
+          to="/demo-menu"
+          class="group rounded-lg border-2 border-gray-200 bg-white p-6 transition-all hover:border-blue-500 hover:shadow-lg"
+        >
+          <div
+            class="mb-3 flex h-12 w-12 items-center justify-center rounded-lg bg-green-100 text-2xl group-hover:bg-green-500 group-hover:text-white"
+          >
+            📋
+          </div>
+          <h3 class="mb-2 text-lg font-semibold text-gray-900">Dropdown Menu</h3>
+          <p class="text-sm text-gray-600">
+            Context menus with keyboard navigation and multiple variant options
+          </p>
+        </RouterLink>
+
+        <RouterLink
+          to="/demo-select"
+          class="group rounded-lg border-2 border-gray-200 bg-white p-6 transition-all hover:border-blue-500 hover:shadow-lg"
+        >
+          <div
+            class="mb-3 flex h-12 w-12 items-center justify-center rounded-lg bg-orange-100 text-2xl group-hover:bg-orange-500 group-hover:text-white"
+          >
+            🎯
+          </div>
+          <h3 class="mb-2 text-lg font-semibold text-gray-900">Select</h3>
+          <p class="text-sm text-gray-600">
+            Custom select dropdown with search, grouping, and keyboard support
+          </p>
+        </RouterLink>
+
+        <RouterLink
+          to="/demo-input"
+          class="group rounded-lg border-2 border-gray-200 bg-white p-6 transition-all hover:border-blue-500 hover:shadow-lg"
+        >
+          <div
+            class="mb-3 flex h-12 w-12 items-center justify-center rounded-lg bg-pink-100 text-2xl group-hover:bg-pink-500 group-hover:text-white"
+          >
+            ✏️
+          </div>
+          <h3 class="mb-2 text-lg font-semibold text-gray-900">Advanced Input</h3>
+          <p class="text-sm text-gray-600">
+            Enhanced form inputs with validation, character count, and error states
+          </p>
+        </RouterLink>
+      </div>
+    </section>
+
     <!-- Architecture Benefits -->
     <section class="mt-12 rounded-lg bg-blue-50 p-6">
       <h3 class="mb-4 text-lg font-semibold text-blue-900">🏗️ Atomic Design Benefits</h3>

@@ -22,6 +22,9 @@ import { RouterLink } from 'vue-router'
           <RouterLink to="/demo-select" class="transition-colors hover:text-blue-200"
             >Demo Select</RouterLink
           >
+          <RouterLink to="/demo-tabs" class="transition-colors hover:text-blue-200"
+            >Demo Tabs</RouterLink
+          >
         </div>
       </div>
     </nav>

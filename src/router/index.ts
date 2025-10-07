@@ -9,6 +9,7 @@ const router = createRouter({
     { path: '/demo-menu', component: () => import('@/views/DemoMenu.vue') },
     { path: '/demo-modal', component: () => import('@/views/DemoModal.vue') },
     { path: '/demo-select', component: () => import('@/views/DemoSelect.vue') },
+    { path: '/demo-tabs', component: () => import('@/views/DemoTabs.vue') },
   ],
 })
 
