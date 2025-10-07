@@ -12,7 +12,7 @@ const props = withDefaults(defineProps<Props>(), {})
 // --- State & Computed ----
 const footerClasses = computed(() =>
   cn(
-    'flex items-center justify-center gap-3.5 border-t border-gray-200 p-4 shadow-[0px_-4px_8px_0px_#00000014]',
+    'flex items-center justify-center gap-3.5 px-6 py-4 shadow-[0px_-4px_8px_0px_#00000014]',
     props.class,
   ),
 )

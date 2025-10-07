@@ -10,7 +10,7 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {})
 
 // --- State & Computed ----
-const bodyClasses = computed(() => cn('flex-grow overflow-y-auto px-6 py-4', props.class))
+const bodyClasses = computed(() => cn('flex-grow overflow-y-auto p-6 ', props.class))
 </script>
 
 <template>
