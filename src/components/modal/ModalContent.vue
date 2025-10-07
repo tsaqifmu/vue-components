@@ -4,7 +4,7 @@ import { computed, inject, onMounted, onUnmounted, type InjectionKey, type Ref }
 import { cn } from '../../lib/utils'
 
 const modalContentVariants = cva(
-  'fixed top-1/2 left-1/2 z-[999] flex h-auto max-h-[90vh] flex-col rounded-2xl bg-white shadow-xl',
+  'fixed top-1/2 left-1/2 z-[999] flex h-auto max-h-[90vh] flex-col rounded-2xl bg-white shadow-xl overflow-hidden',
   {
     variants: {
       size: {

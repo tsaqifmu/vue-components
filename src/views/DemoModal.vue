@@ -24,6 +24,7 @@ import {
   SelectSeparator,
   SelectTrigger,
 } from '@/components/select'
+import Button from '@/components/ui/Button.vue'
 import { computed, ref } from 'vue'
 
 const isBasicOpen = ref(false)
@@ -202,18 +203,8 @@ const handleFormSubmit = () => {
             </ModalBody>
 
             <ModalFooter>
-              <button
-                @click="isBasicOpen = false"
-                class="rounded-md bg-gray-200 px-4 py-2 text-gray-800 hover:bg-gray-300"
-              >
-                Cancel
-              </button>
-              <button
-                @click="handleConfirm"
-                class="rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
-              >
-                Confirm
-              </button>
+              <Button @click="isBasicOpen = false" variant="outline"> Cancel </Button>
+              <Button @click="handleConfirm" variant="default"> Confirm </Button>
             </ModalFooter>
           </ModalContent>
         </ModalRoot>
@@ -243,12 +234,7 @@ const handleFormSubmit = () => {
             </ModalBody>
 
             <ModalFooter>
-              <button
-                @click="isSmallOpen = false"
-                class="rounded-md bg-gray-200 px-4 py-2 text-gray-800 hover:bg-gray-300"
-              >
-                Close
-              </button>
+              <Button @click="isSmallOpen = false" variant="outline"> Close </Button>
             </ModalFooter>
           </ModalContent>
         </ModalRoot>
@@ -300,18 +286,8 @@ const handleFormSubmit = () => {
             </ModalBody>
 
             <ModalFooter>
-              <button
-                @click="isLargeOpen = false"
-                class="rounded-md bg-gray-200 px-4 py-2 text-gray-800 hover:bg-gray-300"
-              >
-                Cancel
-              </button>
-              <button
-                @click="isLargeOpen = false"
-                class="rounded-md bg-purple-500 px-4 py-2 text-white hover:bg-purple-600"
-              >
-                Save Changes
-              </button>
+              <Button @click="isLargeOpen = false" variant="outline"> Cancel </Button>
+              <Button @click="isLargeOpen = false" variant="default"> Save Changes </Button>
             </ModalFooter>
           </ModalContent>
         </ModalRoot>
@@ -349,18 +325,8 @@ const handleFormSubmit = () => {
             </ModalBody>
 
             <ModalFooter class="justify-end bg-red-50">
-              <button
-                @click="isCustomOpen = false"
-                class="rounded-md bg-gray-200 px-4 py-2 text-gray-800 hover:bg-gray-300"
-              >
-                Cancel
-              </button>
-              <button
-                @click="handleDelete"
-                class="rounded-md bg-red-500 px-4 py-2 text-white hover:bg-red-600"
-              >
-                Delete Permanently
-              </button>
+              <Button @click="isCustomOpen = false" variant="outline"> Cancel </Button>
+              <Button @click="handleDelete" variant="destructive"> Delete Permanently </Button>
             </ModalFooter>
           </ModalContent>
         </ModalRoot>
@@ -609,20 +575,8 @@ const handleFormSubmit = () => {
             </ModalBody>
 
             <ModalFooter>
-              <button
-                type="button"
-                @click="isFormOpen = false"
-                class="rounded-md bg-gray-200 px-4 py-2 text-gray-800 hover:bg-gray-300"
-              >
-                Cancel
-              </button>
-              <button
-                type="submit"
-                form="ticketForm"
-                class="rounded-md bg-indigo-500 px-4 py-2 text-white hover:bg-indigo-600"
-              >
-                Submit Ticket
-              </button>
+              <Button variant="outline" @click="isFormOpen = false"> Cancel </Button>
+              <Button form="ticketForm" variant="default"> Submit Ticket </Button>
             </ModalFooter>
           </ModalContent>
         </ModalRoot>
