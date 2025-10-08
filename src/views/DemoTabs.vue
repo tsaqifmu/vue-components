@@ -295,6 +295,83 @@ const compactTab = ref('all')
         </div>
       </section>
 
+      <!-- Submenu Variant -->
+      <section class="space-y-4">
+        <div>
+          <h2 class="mb-2 text-xl font-semibold text-gray-900">Submenu Variant</h2>
+          <p class="text-sm text-gray-600">Underline style tabs, perfect for navigation menus</p>
+        </div>
+        <div class="rounded-lg bg-white p-6 shadow-sm">
+          <TabsRoot default-value="marketing">
+            <TabsList variant="submenu">
+              <TabsTrigger value="marketing">Marketing</TabsTrigger>
+              <TabsTrigger value="utility">Utility</TabsTrigger>
+              <TabsTrigger value="authentication">Authentication</TabsTrigger>
+            </TabsList>
+
+            <TabsContent value="marketing">
+              <div class="space-y-2 py-4">
+                <h3 class="text-lg font-semibold text-gray-900">Marketing</h3>
+                <p class="text-gray-600">
+                  Marketing tools and analytics to help grow your business. Track campaigns, measure
+                  ROI, and optimize your marketing strategies.
+                </p>
+                <div class="mt-4 grid grid-cols-2 gap-4">
+                  <div class="rounded-lg border border-gray-200 p-4">
+                    <h4 class="font-semibold text-gray-900">Campaign Manager</h4>
+                    <p class="mt-1 text-sm text-gray-600">Create and manage marketing campaigns</p>
+                  </div>
+                  <div class="rounded-lg border border-gray-200 p-4">
+                    <h4 class="font-semibold text-gray-900">Email Marketing</h4>
+                    <p class="mt-1 text-sm text-gray-600">Send targeted email campaigns</p>
+                  </div>
+                </div>
+              </div>
+            </TabsContent>
+
+            <TabsContent value="utility">
+              <div class="space-y-2 py-4">
+                <h3 class="text-lg font-semibold text-gray-900">Utility</h3>
+                <p class="text-gray-600">
+                  Essential utility tools for your daily operations. File management, data
+                  processing, and automation tools.
+                </p>
+                <ul class="mt-4 space-y-2">
+                  <li class="flex items-center gap-2 text-gray-700">
+                    <span class="text-blue-500">•</span>
+                    File converter
+                  </li>
+                  <li class="flex items-center gap-2 text-gray-700">
+                    <span class="text-blue-500">•</span>
+                    Data export/import
+                  </li>
+                  <li class="flex items-center gap-2 text-gray-700">
+                    <span class="text-blue-500">•</span>
+                    Backup management
+                  </li>
+                </ul>
+              </div>
+            </TabsContent>
+
+            <TabsContent value="authentication">
+              <div class="space-y-2 py-4">
+                <h3 class="text-lg font-semibold text-gray-900">Authentication</h3>
+                <p class="text-gray-600">
+                  Secure authentication and authorization settings. Manage user access, roles, and
+                  security policies.
+                </p>
+                <div class="mt-4 rounded-lg bg-blue-50 p-4">
+                  <h4 class="font-semibold text-blue-900">Security Status: Active</h4>
+                  <p class="mt-1 text-sm text-blue-700">
+                    Two-factor authentication is enabled for all users
+                  </p>
+                </div>
+              </div>
+            </TabsContent>
+          </TabsRoot>
+        </div>
+      </section>
+
       <!-- Compact Style -->
       <section class="space-y-4">
         <div>

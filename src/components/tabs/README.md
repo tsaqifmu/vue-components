@@ -6,6 +6,7 @@ Komponen tabs yang dibangun dengan compound component pattern, terinspirasi dari
 
 - ✅ Compound component pattern untuk fleksibilitas maksimal
 - ✅ Controlled dan uncontrolled mode
+- ✅ **2 Variant styling dengan CVA (default & submenu)**
 - ✅ Keyboard navigation (Arrow keys, Enter, Space)
 - ✅ Accessibility compliant (ARIA attributes)
 - ✅ Orientasi horizontal dan vertical
@@ -150,6 +151,79 @@ const activeTab = ref('account')
 </template>
 ```
 
+## Variants
+
+Component ini mendukung 2 variant styling menggunakan CVA (Class Variance Authority):
+
+### Default Variant
+
+Gaya default dengan background dan shadow (pill-style tabs).
+
+```vue
+<template>
+  <TabsRoot default-value="tab1">
+    <TabsList variant="default">
+      <!-- atau cukup <TabsList> saja, karena default -->
+      <TabsTrigger value="tab1">Tab 1</TabsTrigger>
+      <TabsTrigger value="tab2">Tab 2</TabsTrigger>
+    </TabsList>
+
+    <TabsContent value="tab1">
+      <p>Content 1</p>
+    </TabsContent>
+
+    <TabsContent value="tab2">
+      <p>Content 2</p>
+    </TabsContent>
+  </TabsRoot>
+</template>
+```
+
+### Submenu Variant
+
+Gaya underline yang cocok untuk navigation menu (Material Design style).
+
+**Fitur:**
+
+- Border-radius di bagian atas (10px 10px 0 0)
+- Animasi underline yang muncul dari bawah ke atas
+- Smooth transition saat berpindah tab
+
+```vue
+<template>
+  <TabsRoot default-value="marketing">
+    <TabsList variant="submenu">
+      <TabsTrigger value="marketing">Marketing</TabsTrigger>
+      <TabsTrigger value="utility">Utility</TabsTrigger>
+      <TabsTrigger value="authentication">Authentication</TabsTrigger>
+    </TabsList>
+
+    <TabsContent value="marketing">
+      <p>Marketing content</p>
+    </TabsContent>
+
+    <TabsContent value="utility">
+      <p>Utility content</p>
+    </TabsContent>
+
+    <TabsContent value="authentication">
+      <p>Authentication content</p>
+    </TabsContent>
+  </TabsRoot>
+</template>
+```
+
+**Perbedaan antara kedua variant:**
+
+| Feature              | Default                           | Submenu                                              |
+| -------------------- | --------------------------------- | ---------------------------------------------------- |
+| Container background | Background abu-abu dengan rounded | Border bawah dengan rounded top (10px 10px 0 0)      |
+| Active state         | Background putih dengan shadow    | Text primary dengan underline hijau                  |
+| Inactive state       | Text biasa                        | Text abu-abu dengan hover effect                     |
+| Padding              | Padding internal di container     | Tanpa padding container                              |
+| Animation            | Tidak ada                         | Underline muncul dari bawah ke atas (300ms ease-out) |
+| Style                | Pill-style (seperti shadcn/ui)    | Underline style (seperti Material Design)            |
+
 ## API Reference
 
 ### TabsRoot
@@ -180,7 +254,11 @@ Root component yang mengelola state dan provide context.
 
 Container untuk tab triggers.
 
-**Props:** Tidak ada props khusus
+**Props:**
+
+- `variant?: 'default' | 'submenu'` - Variant styling (default: 'default')
+  - `default` - Pill-style dengan background dan shadow
+  - `submenu` - Underline style untuk navigation menu
 
 ### TabsTrigger
 

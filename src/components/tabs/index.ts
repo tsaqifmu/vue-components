@@ -4,5 +4,6 @@ export { default as TabsRoot } from './TabsRoot.vue'
 export { default as TabsTrigger } from './TabsTrigger.vue'
 
 export type { TabsContentProps } from './TabsContent.vue'
+export type { TabsListProps } from './TabsList.vue'
 export type { TabsRootProps } from './TabsRoot.vue'
 export type { TabsTriggerProps } from './TabsTrigger.vue'
