@@ -170,6 +170,21 @@ const handleFormSubmit = (data: ContactFormData) => {
 
       <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
         <RouterLink
+          to="/demo-button"
+          class="group rounded-lg border-2 border-gray-200 bg-white p-6 transition-all hover:border-blue-500 hover:shadow-lg"
+        >
+          <div
+            class="mb-3 flex h-12 w-12 items-center justify-center rounded-lg bg-indigo-100 text-2xl group-hover:bg-indigo-500 group-hover:text-white"
+          >
+            🔘
+          </div>
+          <h3 class="mb-2 text-lg font-semibold text-gray-900">Button</h3>
+          <p class="text-sm text-gray-600">
+            Versatile button component with multiple variants, sizes, and interactive states
+          </p>
+        </RouterLink>
+
+        <RouterLink
           to="/demo-tabs"
           class="group rounded-lg border-2 border-gray-200 bg-white p-6 transition-all hover:border-blue-500 hover:shadow-lg"
         >

@@ -25,6 +25,9 @@ import { RouterLink } from 'vue-router'
           <RouterLink to="/demo-tabs" class="transition-colors hover:text-blue-200"
             >Demo Tabs</RouterLink
           >
+          <RouterLink to="/demo-button" class="transition-colors hover:text-blue-200"
+            >Demo Button</RouterLink
+          >
         </div>
       </div>
     </nav>
