@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Button from '@/components/ui/Button.vue'
+import DevelopmentStatus from '@/components/ui/DevelopmentStatus.vue'
 import { ref } from 'vue'
 
 const clickCount = ref(0)
@@ -36,13 +37,27 @@ const handleAsyncAction = async () => {
           <p class="text-sm text-gray-600">Different visual styles for various use cases</p>
         </div>
         <div class="rounded-lg bg-white p-6 shadow-sm">
-          <div class="flex flex-wrap gap-4">
-            <Button variant="default">Default</Button>
-            <Button variant="outline">Outline</Button>
-            <Button variant="destructive">Destructive</Button>
-            <Button variant="ghost">Ghost</Button>
-            <Button variant="secondary">Secondary</Button>
-            <Button variant="link">Link</Button>
+          <div class="flex flex-col gap-4">
+            <!-- Stable Variants -->
+            <DevelopmentStatus status="stable">
+              <div class="flex gap-4">
+                <Button variant="default">Default</Button>
+                <Button variant="outline">Outline</Button>
+                <Button variant="destructive">Destructive</Button>
+              </div>
+            </DevelopmentStatus>
+
+            <!-- Under Development -->
+            <DevelopmentStatus
+              status="development"
+              description="These variants are still in development and may change or be removed before final release."
+            >
+              <div class="flex gap-4">
+                <Button variant="ghost">Ghost</Button>
+                <Button variant="secondary">Secondary</Button>
+                <Button variant="link">Link</Button>
+              </div>
+            </DevelopmentStatus>
           </div>
         </div>
       </section>
@@ -54,25 +69,39 @@ const handleAsyncAction = async () => {
           <p class="text-sm text-gray-600">Various sizes for different contexts</p>
         </div>
         <div class="rounded-lg bg-white p-6 shadow-sm">
-          <div class="flex flex-wrap items-center gap-4">
-            <Button size="sm">Small</Button>
-            <Button size="default">Default</Button>
-            <Button size="icon">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="M5 12h14" />
-                <path d="m12 5 7 7-7 7" />
-              </svg>
-            </Button>
+          <div class="flex flex-col gap-4">
+            <!-- Stable Sizes -->
+            <DevelopmentStatus status="stable">
+              <div class="flex flex-wrap items-center gap-4">
+                <Button size="sm">Small</Button>
+                <Button size="default">Default</Button>
+              </div>
+            </DevelopmentStatus>
+
+            <!-- Under Development -->
+            <DevelopmentStatus
+              status="development"
+              description="This size is still in development and may change or be removed before final release."
+            >
+              <div class="flex flex-wrap items-center gap-4">
+                <Button size="icon">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M5 12h14" />
+                    <path d="m12 5 7 7-7 7" />
+                  </svg>
+                </Button>
+              </div>
+            </DevelopmentStatus>
           </div>
         </div>
       </section>
@@ -84,77 +113,90 @@ const handleAsyncAction = async () => {
           <p class="text-sm text-gray-600">Combining text and icons for better UX</p>
         </div>
         <div class="rounded-lg bg-white p-6 shadow-sm">
-          <div class="flex flex-wrap gap-4">
-            <Button variant="default">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="M5 12h14" />
-                <path d="m12 5 7 7-7 7" />
-              </svg>
-              Next
-            </Button>
+          <div class="flex flex-col gap-4">
+            <!-- Stable Variants with Icons -->
+            <DevelopmentStatus status="stable">
+              <div class="flex flex-wrap gap-4">
+                <Button variant="default">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M5 12h14" />
+                    <path d="m12 5 7 7-7 7" />
+                  </svg>
+                  Next
+                </Button>
 
-            <Button variant="outline">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="M5 12h14" />
-              </svg>
-              Download
-            </Button>
+                <Button variant="outline">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M5 12h14" />
+                  </svg>
+                  Download
+                </Button>
 
-            <Button variant="destructive">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="M3 6h18" />
-                <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
-                <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
-              </svg>
-              Delete
-            </Button>
+                <Button variant="destructive">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M3 6h18" />
+                    <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
+                    <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
+                  </svg>
+                  Delete
+                </Button>
+              </div>
+            </DevelopmentStatus>
 
-            <Button variant="ghost">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-              </svg>
-              Comment
-            </Button>
+            <!-- Under Development -->
+            <DevelopmentStatus
+              status="development"
+              description="This variant with icon is still in development and may change or be removed before final release."
+            >
+              <div class="flex flex-wrap gap-4">
+                <Button variant="ghost">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                  </svg>
+                  Comment
+                </Button>
+              </div>
+            </DevelopmentStatus>
           </div>
         </div>
       </section>
@@ -166,77 +208,82 @@ const handleAsyncAction = async () => {
           <p class="text-sm text-gray-600">Compact buttons with icons only</p>
         </div>
         <div class="rounded-lg bg-white p-6 shadow-sm">
-          <div class="flex flex-wrap gap-4">
-            <Button variant="default" size="icon">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
-                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
-              </svg>
-            </Button>
+          <DevelopmentStatus
+            status="development"
+            description="All icon-only button variants are still in development and may change or be removed before final release."
+          >
+            <div class="flex flex-wrap gap-4">
+              <Button variant="default" size="icon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+                  <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+                </svg>
+              </Button>
 
-            <Button variant="outline" size="icon">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="M3 6h18" />
-                <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
-                <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
-              </svg>
-            </Button>
+              <Button variant="outline" size="icon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M3 6h18" />
+                  <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
+                  <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
+                </svg>
+              </Button>
 
-            <Button variant="ghost" size="icon">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <circle cx="12" cy="12" r="1" />
-                <circle cx="12" cy="5" r="1" />
-                <circle cx="12" cy="19" r="1" />
-              </svg>
-            </Button>
+              <Button variant="ghost" size="icon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="12" cy="12" r="1" />
+                  <circle cx="12" cy="5" r="1" />
+                  <circle cx="12" cy="19" r="1" />
+                </svg>
+              </Button>
 
-            <Button variant="destructive" size="icon">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="M18 6 6 18" />
-                <path d="m6 6 12 12" />
-              </svg>
-            </Button>
-          </div>
+              <Button variant="destructive" size="icon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M18 6 6 18" />
+                  <path d="m6 6 12 12" />
+                </svg>
+              </Button>
+            </div>
+          </DevelopmentStatus>
         </div>
       </section>
 
@@ -247,12 +294,20 @@ const handleAsyncAction = async () => {
           <p class="text-sm text-gray-600">Buttons in disabled state with reduced opacity</p>
         </div>
         <div class="rounded-lg bg-white p-6 shadow-sm">
-          <div class="flex flex-wrap gap-4">
-            <Button variant="default" disabled>Default Disabled</Button>
-            <Button variant="outline" disabled>Outline Disabled</Button>
-            <Button variant="destructive" disabled>Destructive Disabled</Button>
-            <Button variant="ghost" disabled>Ghost Disabled</Button>
-            <Button variant="secondary" disabled>Secondary Disabled</Button>
+          <div class="flex flex-col gap-4">
+            <DevelopmentStatus status="stable">
+              <div class="flex flex-wrap gap-4">
+                <Button variant="default" disabled>Default Disabled</Button>
+                <Button variant="outline" disabled>Outline Disabled</Button>
+                <Button variant="destructive" disabled>Destructive Disabled</Button>
+              </div>
+            </DevelopmentStatus>
+            <DevelopmentStatus status="development">
+              <div class="flex flex-wrap gap-4">
+                <Button variant="secondary" disabled>Secondary Disabled</Button>
+                <Button variant="link" disabled>Link Disabled</Button>
+              </div>
+            </DevelopmentStatus>
           </div>
         </div>
       </section>
@@ -376,18 +431,6 @@ const handleAsyncAction = async () => {
                     <line x1="12" x2="12" y1="2" y2="15" />
                   </svg>
                 </Button>
-              </div>
-            </div>
-
-            <!-- Pagination -->
-            <div class="space-y-3">
-              <h3 class="text-sm font-semibold text-gray-900">Pagination</h3>
-              <div class="flex gap-2">
-                <Button variant="outline" size="sm" disabled>Previous</Button>
-                <Button variant="default" size="sm">1</Button>
-                <Button variant="outline" size="sm">2</Button>
-                <Button variant="outline" size="sm">3</Button>
-                <Button variant="outline" size="sm">Next</Button>
               </div>
             </div>
           </div>
