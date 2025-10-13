@@ -9,7 +9,7 @@ const compactTab = ref('all')
 
 <template>
   <div class="min-h-screen bg-gray-50 p-8">
-    <div class="mx-auto max-w-4xl space-y-12">
+    <div class="mx-auto max-w-6xl space-y-12">
       <!-- Header -->
       <div>
         <h1 class="mb-2 text-3xl font-bold text-gray-900">Tabs Component Demo</h1>
