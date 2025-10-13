@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { TabsContent, TabsList, TabsRoot, TabsTrigger } from '@/components/tabs'
+import DevelopmentStatus from '@/components/ui/DevelopmentStatus.vue'
 import { ref } from 'vue'
 
 // For controlled example
@@ -23,92 +24,175 @@ const compactTab = ref('all')
           <p class="text-sm text-gray-600">Simple tabs with uncontrolled mode</p>
         </div>
         <div class="rounded-lg bg-white p-6 shadow-sm">
-          <TabsRoot default-value="overview">
-            <TabsList>
-              <TabsTrigger value="overview">Overview</TabsTrigger>
-              <TabsTrigger value="analytics">Analytics</TabsTrigger>
-              <TabsTrigger value="reports">Reports</TabsTrigger>
-              <TabsTrigger value="notifications">Notifications</TabsTrigger>
-            </TabsList>
+          <DevelopmentStatus status="stable">
+            <TabsRoot default-value="overview">
+              <TabsList>
+                <TabsTrigger value="overview">Overview</TabsTrigger>
+                <TabsTrigger value="analytics">Analytics</TabsTrigger>
+                <TabsTrigger value="reports">Reports</TabsTrigger>
+                <TabsTrigger value="notifications">Notifications</TabsTrigger>
+              </TabsList>
 
-            <TabsContent value="overview">
-              <div class="space-y-2 py-4">
-                <h3 class="text-lg font-semibold text-gray-900">Overview</h3>
-                <p class="text-gray-600">
-                  This is the overview tab content. You can put any content here including forms,
-                  charts, or other components.
-                </p>
-              </div>
-            </TabsContent>
+              <TabsContent value="overview">
+                <div class="space-y-2 py-4">
+                  <h3 class="text-lg font-semibold text-gray-900">Overview</h3>
+                  <p class="text-gray-600">
+                    This is the overview tab content. You can put any content here including forms,
+                    charts, or other components.
+                  </p>
+                </div>
+              </TabsContent>
 
-            <TabsContent value="analytics">
-              <div class="space-y-2 py-4">
-                <h3 class="text-lg font-semibold text-gray-900">Analytics</h3>
-                <p class="text-gray-600">
-                  Analytics data and insights would be displayed here. This could include charts,
-                  graphs, and key metrics.
-                </p>
-                <div class="mt-4 grid grid-cols-3 gap-4">
-                  <div class="rounded-lg bg-blue-50 p-4">
-                    <p class="text-sm text-gray-600">Total Views</p>
-                    <p class="text-2xl font-bold text-gray-900">12,543</p>
-                  </div>
-                  <div class="rounded-lg bg-green-50 p-4">
-                    <p class="text-sm text-gray-600">Active Users</p>
-                    <p class="text-2xl font-bold text-gray-900">1,234</p>
-                  </div>
-                  <div class="rounded-lg bg-purple-50 p-4">
-                    <p class="text-sm text-gray-600">Conversion</p>
-                    <p class="text-2xl font-bold text-gray-900">23%</p>
+              <TabsContent value="analytics">
+                <div class="space-y-2 py-4">
+                  <h3 class="text-lg font-semibold text-gray-900">Analytics</h3>
+                  <p class="text-gray-600">
+                    Analytics data and insights would be displayed here. This could include charts,
+                    graphs, and key metrics.
+                  </p>
+                  <div class="mt-4 grid grid-cols-3 gap-4">
+                    <div class="rounded-lg bg-blue-50 p-4">
+                      <p class="text-sm text-gray-600">Total Views</p>
+                      <p class="text-2xl font-bold text-gray-900">12,543</p>
+                    </div>
+                    <div class="rounded-lg bg-green-50 p-4">
+                      <p class="text-sm text-gray-600">Active Users</p>
+                      <p class="text-2xl font-bold text-gray-900">1,234</p>
+                    </div>
+                    <div class="rounded-lg bg-purple-50 p-4">
+                      <p class="text-sm text-gray-600">Conversion</p>
+                      <p class="text-2xl font-bold text-gray-900">23%</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </TabsContent>
+              </TabsContent>
 
-            <TabsContent value="reports">
-              <div class="space-y-2 py-4">
-                <h3 class="text-lg font-semibold text-gray-900">Reports</h3>
-                <p class="text-gray-600">Generate and view reports from your data.</p>
-                <ul class="mt-4 space-y-2">
-                  <li class="flex items-center justify-between rounded bg-gray-50 p-3">
-                    <span class="text-gray-900">Monthly Report - October</span>
-                    <button class="text-sm text-blue-600 hover:underline">Download</button>
-                  </li>
-                  <li class="flex items-center justify-between rounded bg-gray-50 p-3">
-                    <span class="text-gray-900">Quarterly Report - Q3</span>
-                    <button class="text-sm text-blue-600 hover:underline">Download</button>
-                  </li>
-                </ul>
-              </div>
-            </TabsContent>
-
-            <TabsContent value="notifications">
-              <div class="space-y-2 py-4">
-                <h3 class="text-lg font-semibold text-gray-900">Notifications</h3>
-                <p class="text-gray-600">Manage your notification preferences.</p>
-                <div class="mt-4 space-y-3">
-                  <label
-                    class="flex cursor-pointer items-center justify-between rounded bg-gray-50 p-3"
-                  >
-                    <span class="text-gray-900">Email notifications</span>
-                    <input type="checkbox" checked class="h-4 w-4" />
-                  </label>
-                  <label
-                    class="flex cursor-pointer items-center justify-between rounded bg-gray-50 p-3"
-                  >
-                    <span class="text-gray-900">Push notifications</span>
-                    <input type="checkbox" class="h-4 w-4" />
-                  </label>
-                  <label
-                    class="flex cursor-pointer items-center justify-between rounded bg-gray-50 p-3"
-                  >
-                    <span class="text-gray-900">SMS notifications</span>
-                    <input type="checkbox" class="h-4 w-4" />
-                  </label>
+              <TabsContent value="reports">
+                <div class="space-y-2 py-4">
+                  <h3 class="text-lg font-semibold text-gray-900">Reports</h3>
+                  <p class="text-gray-600">Generate and view reports from your data.</p>
+                  <ul class="mt-4 space-y-2">
+                    <li class="flex items-center justify-between rounded bg-gray-50 p-3">
+                      <span class="text-gray-900">Monthly Report - October</span>
+                      <button class="text-sm text-blue-600 hover:underline">Download</button>
+                    </li>
+                    <li class="flex items-center justify-between rounded bg-gray-50 p-3">
+                      <span class="text-gray-900">Quarterly Report - Q3</span>
+                      <button class="text-sm text-blue-600 hover:underline">Download</button>
+                    </li>
+                  </ul>
                 </div>
-              </div>
-            </TabsContent>
-          </TabsRoot>
+              </TabsContent>
+
+              <TabsContent value="notifications">
+                <div class="space-y-2 py-4">
+                  <h3 class="text-lg font-semibold text-gray-900">Notifications</h3>
+                  <p class="text-gray-600">Manage your notification preferences.</p>
+                  <div class="mt-4 space-y-3">
+                    <label
+                      class="flex cursor-pointer items-center justify-between rounded bg-gray-50 p-3"
+                    >
+                      <span class="text-gray-900">Email notifications</span>
+                      <input type="checkbox" checked class="h-4 w-4" />
+                    </label>
+                    <label
+                      class="flex cursor-pointer items-center justify-between rounded bg-gray-50 p-3"
+                    >
+                      <span class="text-gray-900">Push notifications</span>
+                      <input type="checkbox" class="h-4 w-4" />
+                    </label>
+                    <label
+                      class="flex cursor-pointer items-center justify-between rounded bg-gray-50 p-3"
+                    >
+                      <span class="text-gray-900">SMS notifications</span>
+                      <input type="checkbox" class="h-4 w-4" />
+                    </label>
+                  </div>
+                </div>
+              </TabsContent>
+            </TabsRoot>
+          </DevelopmentStatus>
+        </div>
+      </section>
+
+      <!-- Submenu Variant -->
+      <section class="space-y-4">
+        <div>
+          <h2 class="mb-2 text-xl font-semibold text-gray-900">Submenu Variant</h2>
+          <p class="text-sm text-gray-600">Underline style tabs, perfect for navigation menus</p>
+        </div>
+        <div class="rounded-lg bg-white p-6 shadow-sm">
+          <DevelopmentStatus status="development">
+            <TabsRoot default-value="marketing">
+              <TabsList variant="submenu">
+                <TabsTrigger value="marketing">Marketing</TabsTrigger>
+                <TabsTrigger value="utility">Utility</TabsTrigger>
+                <TabsTrigger value="authentication">Authentication</TabsTrigger>
+              </TabsList>
+
+              <TabsContent value="marketing">
+                <div class="space-y-2 py-4">
+                  <h3 class="text-lg font-semibold text-gray-900">Marketing</h3>
+                  <p class="text-gray-600">
+                    Marketing tools and analytics to help grow your business. Track campaigns,
+                    measure ROI, and optimize your marketing strategies.
+                  </p>
+                  <div class="mt-4 grid grid-cols-2 gap-4">
+                    <div class="rounded-lg border border-gray-200 p-4">
+                      <h4 class="font-semibold text-gray-900">Campaign Manager</h4>
+                      <p class="mt-1 text-sm text-gray-600">
+                        Create and manage marketing campaigns
+                      </p>
+                    </div>
+                    <div class="rounded-lg border border-gray-200 p-4">
+                      <h4 class="font-semibold text-gray-900">Email Marketing</h4>
+                      <p class="mt-1 text-sm text-gray-600">Send targeted email campaigns</p>
+                    </div>
+                  </div>
+                </div>
+              </TabsContent>
+
+              <TabsContent value="utility">
+                <div class="space-y-2 py-4">
+                  <h3 class="text-lg font-semibold text-gray-900">Utility</h3>
+                  <p class="text-gray-600">
+                    Essential utility tools for your daily operations. File management, data
+                    processing, and automation tools.
+                  </p>
+                  <ul class="mt-4 space-y-2">
+                    <li class="flex items-center gap-2 text-gray-700">
+                      <span class="text-blue-500">•</span>
+                      File converter
+                    </li>
+                    <li class="flex items-center gap-2 text-gray-700">
+                      <span class="text-blue-500">•</span>
+                      Data export/import
+                    </li>
+                    <li class="flex items-center gap-2 text-gray-700">
+                      <span class="text-blue-500">•</span>
+                      Backup management
+                    </li>
+                  </ul>
+                </div>
+              </TabsContent>
+
+              <TabsContent value="authentication">
+                <div class="space-y-2 py-4">
+                  <h3 class="text-lg font-semibold text-gray-900">Authentication</h3>
+                  <p class="text-gray-600">
+                    Secure authentication and authorization settings. Manage user access, roles, and
+                    security policies.
+                  </p>
+                  <div class="mt-4 rounded-lg bg-blue-50 p-4">
+                    <h4 class="font-semibold text-blue-900">Security Status: Active</h4>
+                    <p class="mt-1 text-sm text-blue-700">
+                      Two-factor authentication is enabled for all users
+                    </p>
+                  </div>
+                </div>
+              </TabsContent>
+            </TabsRoot>
+          </DevelopmentStatus>
         </div>
       </section>
 
@@ -289,83 +373,6 @@ const compactTab = ref('all')
             <TabsContent value="enterprise">
               <div class="py-4">
                 <p class="text-gray-600">Enterprise features require custom plan.</p>
-              </div>
-            </TabsContent>
-          </TabsRoot>
-        </div>
-      </section>
-
-      <!-- Submenu Variant -->
-      <section class="space-y-4">
-        <div>
-          <h2 class="mb-2 text-xl font-semibold text-gray-900">Submenu Variant</h2>
-          <p class="text-sm text-gray-600">Underline style tabs, perfect for navigation menus</p>
-        </div>
-        <div class="rounded-lg bg-white p-6 shadow-sm">
-          <TabsRoot default-value="marketing">
-            <TabsList variant="submenu">
-              <TabsTrigger value="marketing">Marketing</TabsTrigger>
-              <TabsTrigger value="utility">Utility</TabsTrigger>
-              <TabsTrigger value="authentication">Authentication</TabsTrigger>
-            </TabsList>
-
-            <TabsContent value="marketing">
-              <div class="space-y-2 py-4">
-                <h3 class="text-lg font-semibold text-gray-900">Marketing</h3>
-                <p class="text-gray-600">
-                  Marketing tools and analytics to help grow your business. Track campaigns, measure
-                  ROI, and optimize your marketing strategies.
-                </p>
-                <div class="mt-4 grid grid-cols-2 gap-4">
-                  <div class="rounded-lg border border-gray-200 p-4">
-                    <h4 class="font-semibold text-gray-900">Campaign Manager</h4>
-                    <p class="mt-1 text-sm text-gray-600">Create and manage marketing campaigns</p>
-                  </div>
-                  <div class="rounded-lg border border-gray-200 p-4">
-                    <h4 class="font-semibold text-gray-900">Email Marketing</h4>
-                    <p class="mt-1 text-sm text-gray-600">Send targeted email campaigns</p>
-                  </div>
-                </div>
-              </div>
-            </TabsContent>
-
-            <TabsContent value="utility">
-              <div class="space-y-2 py-4">
-                <h3 class="text-lg font-semibold text-gray-900">Utility</h3>
-                <p class="text-gray-600">
-                  Essential utility tools for your daily operations. File management, data
-                  processing, and automation tools.
-                </p>
-                <ul class="mt-4 space-y-2">
-                  <li class="flex items-center gap-2 text-gray-700">
-                    <span class="text-blue-500">•</span>
-                    File converter
-                  </li>
-                  <li class="flex items-center gap-2 text-gray-700">
-                    <span class="text-blue-500">•</span>
-                    Data export/import
-                  </li>
-                  <li class="flex items-center gap-2 text-gray-700">
-                    <span class="text-blue-500">•</span>
-                    Backup management
-                  </li>
-                </ul>
-              </div>
-            </TabsContent>
-
-            <TabsContent value="authentication">
-              <div class="space-y-2 py-4">
-                <h3 class="text-lg font-semibold text-gray-900">Authentication</h3>
-                <p class="text-gray-600">
-                  Secure authentication and authorization settings. Manage user access, roles, and
-                  security policies.
-                </p>
-                <div class="mt-4 rounded-lg bg-blue-50 p-4">
-                  <h4 class="font-semibold text-blue-900">Security Status: Active</h4>
-                  <p class="mt-1 text-sm text-blue-700">
-                    Two-factor authentication is enabled for all users
-                  </p>
-                </div>
               </div>
             </TabsContent>
           </TabsRoot>
