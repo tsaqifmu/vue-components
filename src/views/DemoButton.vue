@@ -321,43 +321,47 @@ const handleAsyncAction = async () => {
         <div class="rounded-lg bg-white p-6 shadow-sm">
           <div class="space-y-6">
             <!-- Click Counter -->
-            <div class="space-y-3">
-              <h3 class="text-sm font-semibold text-gray-900">Click Counter</h3>
-              <div class="flex items-center gap-4">
-                <Button @click="handleClick" variant="default">Click Me</Button>
-                <span class="text-gray-700">
-                  Clicked <span class="text-primary font-semibold">{{ clickCount }}</span> times
-                </span>
+            <DevelopmentStatus status="stable">
+              <div class="space-y-3">
+                <h3 class="text-sm font-semibold text-gray-900">Click Counter</h3>
+                <div class="flex items-center gap-4">
+                  <Button @click="handleClick" variant="default">Click Me</Button>
+                  <span class="text-gray-700">
+                    Clicked <span class="text-primary font-semibold">{{ clickCount }}</span> times
+                  </span>
+                </div>
               </div>
-            </div>
+            </DevelopmentStatus>
 
             <!-- Loading State -->
-            <div class="space-y-3">
-              <h3 class="text-sm font-semibold text-gray-900">Loading State</h3>
-              <div class="flex items-center gap-4">
-                <Button @click="handleAsyncAction" variant="default" :disabled="isLoading">
-                  <svg
-                    v-if="isLoading"
-                    class="animate-spin"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path d="M21 12a9 9 0 1 1-6.219-8.56" />
-                  </svg>
-                  {{ isLoading ? 'Processing...' : 'Start Process' }}
-                </Button>
-                <span v-if="isLoading" class="text-sm text-gray-600">
-                  Please wait 2 seconds...
-                </span>
+            <DevelopmentStatus status="development">
+              <div class="space-y-3">
+                <h3 class="text-sm font-semibold text-gray-900">Loading State</h3>
+                <div class="flex items-center gap-4">
+                  <Button @click="handleAsyncAction" variant="default" :disabled="isLoading">
+                    <svg
+                      v-if="isLoading"
+                      class="animate-spin"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M21 12a9 9 0 1 1-6.219-8.56" />
+                    </svg>
+                    {{ isLoading ? 'Processing...' : 'Start Process' }}
+                  </Button>
+                  <span v-if="isLoading" class="text-sm text-gray-600">
+                    Please wait 2 seconds...
+                  </span>
+                </div>
               </div>
-            </div>
+            </DevelopmentStatus>
           </div>
         </div>
       </section>
@@ -371,68 +375,72 @@ const handleAsyncAction = async () => {
         <div class="rounded-lg bg-white p-6 shadow-sm">
           <div class="space-y-6">
             <!-- Action Group -->
-            <div class="space-y-3">
-              <h3 class="text-sm font-semibold text-gray-900">Primary Actions</h3>
-              <div class="flex gap-2">
-                <Button variant="default">Save</Button>
-                <Button variant="outline">Cancel</Button>
-                <Button variant="destructive">Delete</Button>
+            <DevelopmentStatus status="stable">
+              <div class="space-y-3">
+                <h3 class="text-sm font-semibold text-gray-900">Primary Actions</h3>
+                <div class="flex gap-2">
+                  <Button variant="default">Save</Button>
+                  <Button variant="outline">Cancel</Button>
+                  <Button variant="destructive">Delete</Button>
+                </div>
               </div>
-            </div>
+            </DevelopmentStatus>
 
-            <!-- Toolbar -->
-            <div class="space-y-3">
-              <h3 class="text-sm font-semibold text-gray-900">Toolbar</h3>
-              <div class="flex gap-1">
-                <Button variant="ghost" size="icon">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="18"
-                    height="18"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-                  </svg>
-                </Button>
-                <Button variant="ghost" size="icon">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="18"
-                    height="18"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
-                  </svg>
-                </Button>
-                <Button variant="ghost" size="icon">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="18"
-                    height="18"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" />
-                    <polyline points="16 6 12 2 8 6" />
-                    <line x1="12" x2="12" y1="2" y2="15" />
-                  </svg>
-                </Button>
+            <DevelopmentStatus status="development">
+              <!-- Toolbar -->
+              <div class="space-y-3">
+                <h3 class="text-sm font-semibold text-gray-900">Toolbar</h3>
+                <div class="flex gap-1">
+                  <Button variant="ghost" size="icon">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                    </svg>
+                  </Button>
+                  <Button variant="ghost" size="icon">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
+                    </svg>
+                  </Button>
+                  <Button variant="ghost" size="icon">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" />
+                      <polyline points="16 6 12 2 8 6" />
+                      <line x1="12" x2="12" y1="2" y2="15" />
+                    </svg>
+                  </Button>
+                </div>
               </div>
-            </div>
+            </DevelopmentStatus>
           </div>
         </div>
       </section>
@@ -444,11 +452,13 @@ const handleAsyncAction = async () => {
           <p class="text-sm text-gray-600">Buttons that span the full width of their container</p>
         </div>
         <div class="rounded-lg bg-white p-6 shadow-sm">
-          <div class="space-y-3">
-            <Button variant="default" class="w-full">Full Width Default</Button>
-            <Button variant="outline" class="w-full">Full Width Outline</Button>
-            <Button variant="destructive" class="w-full">Full Width Destructive</Button>
-          </div>
+          <DevelopmentStatus status="stable">
+            <div class="space-y-3">
+              <Button variant="default" class="w-full">Full Width Default</Button>
+              <Button variant="outline" class="w-full">Full Width Outline</Button>
+              <Button variant="destructive" class="w-full">Full Width Destructive</Button>
+            </div>
+          </DevelopmentStatus>
         </div>
       </section>
 
@@ -461,10 +471,19 @@ const handleAsyncAction = async () => {
           </p>
         </div>
         <div class="rounded-lg bg-white p-6 shadow-sm">
-          <div class="flex flex-col gap-3 sm:flex-row">
-            <Button variant="default" class="w-full sm:w-auto">Responsive Button 1</Button>
-            <Button variant="outline" class="w-full sm:w-auto">Responsive Button 2</Button>
-            <Button variant="secondary" class="w-full sm:w-auto">Responsive Button 3</Button>
+          <DevelopmentStatus status="stable">
+            <div class="flex flex-col gap-3 sm:flex-row">
+              <Button variant="default" class="w-full sm:w-auto">Responsive Button 1</Button>
+              <Button variant="outline" class="w-full sm:w-auto">Responsive Button 2</Button>
+            </div>
+          </DevelopmentStatus>
+
+          <div class="mt-6">
+            <DevelopmentStatus status="development">
+              <div class="flex flex-col gap-3 sm:flex-row">
+                <Button variant="secondary" class="w-full sm:w-auto">Responsive Button 3</Button>
+              </div>
+            </DevelopmentStatus>
           </div>
         </div>
       </section>
