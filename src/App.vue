@@ -24,6 +24,9 @@ import { RouterLink } from 'vue-router'
           <RouterLink to="/demo-select" class="transition-colors hover:text-blue-200"
             >Demo Select</RouterLink
           >
+          <RouterLink to="/demo-multi-select" class="transition-colors hover:text-blue-200"
+            >Demo Multi Select</RouterLink
+          >
           <RouterLink to="/demo-menu" class="transition-colors hover:text-blue-200"
             >Demo Menu</RouterLink
           >

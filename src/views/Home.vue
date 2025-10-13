@@ -245,6 +245,21 @@ const handleFormSubmit = (data: ContactFormData) => {
         </RouterLink>
 
         <RouterLink
+          to="/demo-multi-select"
+          class="group rounded-lg border-2 border-gray-200 bg-white p-6 transition-all hover:border-blue-500 hover:shadow-lg"
+        >
+          <div
+            class="mb-3 flex h-12 w-12 items-center justify-center rounded-lg bg-yellow-100 text-2xl group-hover:bg-yellow-500 group-hover:text-white"
+          >
+            🏷️
+          </div>
+          <h3 class="mb-2 text-lg font-semibold text-gray-900">Multi Select</h3>
+          <p class="text-sm text-gray-600">
+            Multiple selection with badges that can be removed with X button
+          </p>
+        </RouterLink>
+
+        <RouterLink
           to="/demo-input"
           class="group rounded-lg border-2 border-gray-200 bg-white p-6 transition-all hover:border-blue-500 hover:shadow-lg"
         >
