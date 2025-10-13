@@ -19,7 +19,7 @@ const isDisabled = ref(false)
 
 <template>
   <div class="min-h-screen bg-gray-50 p-8">
-    <div class="mx-auto max-w-4xl space-y-8">
+    <div class="mx-auto max-w-6xl space-y-8">
       <h1 class="mb-8 text-3xl font-bold text-gray-900">Advanced Input Components Demo</h1>
 
       <!-- Current Values Display -->
