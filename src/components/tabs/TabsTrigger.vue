@@ -41,12 +41,25 @@ const handleKeydown = (event: KeyboardEvent) => {
 
 const tabsTriggerVariants = cva(
   [
-    'inline-flex items-center justify-center gap-1.5',
-    'text-sm font-medium whitespace-nowrap',
+    'inline-flex items-center justify-center gap-2',
+
+    // text styles
+    'text-sm font-normal whitespace-nowrap',
+
+    // transition styles
     'transition-all duration-200',
+
+    // focus styles
     'focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:outline-none',
+
+    // disabled styles
     'disabled:pointer-events-none disabled:opacity-50',
-    "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+
+    // svg styles
+    "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-5",
+
+    // ADD THIS LINE - icon inherits text color by default
+    // '[&_svg]:text-inherit',
   ],
   {
     variants: {
@@ -74,32 +87,33 @@ const tabsTriggerVariants = cva(
       // Default variant styles
       {
         variant: 'default',
-        class: 'h-[calc(100%-1px)] flex-1 rounded-lg px-3 py-2',
+        class: 'h-[calc(100%-1px)] flex-1 rounded-lg px-6 py-2',
       },
       {
         variant: 'default',
         isActive: true,
-        class: 'bg-surface-primary-white text-text-title shadow-large font-semibold',
+        class: 'bg-surface-primary-white text-text-title shadow-large font-semibold ', // ADD [&_svg]:text-blue-600
       },
       {
         variant: 'default',
         isActive: false,
         class: 'text-text-title hover:text-text-title font-normal',
       },
+
       // Submenu variant styles
       {
         variant: 'submenu',
-        class: 'px-1 py-2.5 rounded-t-lg',
+        class: 'px-5 py-2 rounded-t-lg',
       },
       {
         variant: 'submenu',
         isActive: true,
-        class: 'text-primary after:bg-primary after:h-1',
+        class: 'text-text-title font-semibold after:bg-primary after:h-1 [&_svg]:text-primary',
       },
       {
         variant: 'submenu',
         isActive: false,
-        class: 'text-gray-600 hover:text-gray-900 hover:after:bg-gray-300 hover:after:h-1',
+        class: 'text-text-title  hover:text-gray-900 hover:after:bg-gray-300 hover:after:h-1',
       },
     ],
     defaultVariants: {

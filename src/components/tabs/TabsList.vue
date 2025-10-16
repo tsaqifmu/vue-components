@@ -31,6 +31,7 @@ const tabsListVariants = cva('inline-flex w-fit items-center justify-center', {
     },
   },
   compoundVariants: [
+    /// Default variant styles
     {
       variant: 'default',
       orientation: 'horizontal',
@@ -41,10 +42,12 @@ const tabsListVariants = cva('inline-flex w-fit items-center justify-center', {
       orientation: 'vertical',
       class: 'h-auto',
     },
+
+    // Submenu variant styles
     {
       variant: 'submenu',
       orientation: 'horizontal',
-      class: 'h-10 gap-6',
+      class: 'h-10 ',
     },
   ],
   defaultVariants: {

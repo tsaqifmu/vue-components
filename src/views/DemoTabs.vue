@@ -1,6 +1,10 @@
 <script setup lang="ts">
+import KeyIcon from '@/components/atoms/Icon/KeyIcon.vue'
+import MegaphoneIcon from '@/components/atoms/Icon/MegaphoneIcon.vue'
+import NotificationIcon from '@/components/atoms/Icon/NotificationIcon.vue'
 import { TabsContent, TabsList, TabsRoot, TabsTrigger } from '@/components/tabs'
 import DevelopmentStatus from '@/components/ui/DevelopmentStatus.vue'
+import { cn } from '@/lib/utils'
 import { ref } from 'vue'
 
 // For controlled example
@@ -125,9 +129,9 @@ const compactTab = ref('all')
           <DevelopmentStatus status="development">
             <TabsRoot default-value="marketing">
               <TabsList variant="submenu">
-                <TabsTrigger value="marketing">Marketing</TabsTrigger>
-                <TabsTrigger value="utility">Utility</TabsTrigger>
-                <TabsTrigger value="authentication">Authentication</TabsTrigger>
+                <TabsTrigger value="marketing"> <MegaphoneIcon /> Marketing</TabsTrigger>
+                <TabsTrigger value="utility"> <NotificationIcon /> Utility</TabsTrigger>
+                <TabsTrigger value="authentication"> <KeyIcon /> Authentication</TabsTrigger>
               </TabsList>
 
               <TabsContent value="marketing">
@@ -388,9 +392,14 @@ const compactTab = ref('all')
         <div class="rounded-lg bg-white p-6 shadow-sm">
           <TabsRoot default-value="all" v-model="compactTab">
             <TabsList>
-              <TabsTrigger value="all">All</TabsTrigger>
-              <TabsTrigger value="active">Active</TabsTrigger>
-              <TabsTrigger value="completed">Completed</TabsTrigger>
+              <TabsTrigger value="all">
+                <MegaphoneIcon
+                  :class="cn(compactTab === 'all' ? 'text-primary' : 'text-gray-500')"
+                />
+                All</TabsTrigger
+              >
+              <TabsTrigger value="active"><NotificationIcon /> Active</TabsTrigger>
+              <TabsTrigger value="completed"><KeyIcon /> Completed</TabsTrigger>
               <TabsTrigger value="archived">Archived</TabsTrigger>
             </TabsList>
           </TabsRoot>

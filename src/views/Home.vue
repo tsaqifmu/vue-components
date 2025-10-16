@@ -215,6 +215,26 @@ const handleFormSubmit = (data: ContactFormData) => {
         </RouterLink>
 
         <RouterLink
+          to="/demo-modal-comparison"
+          class="group rounded-lg border-2 border-amber-200 bg-gradient-to-br from-amber-50 to-orange-50 p-6 transition-all hover:border-amber-500 hover:shadow-lg"
+        >
+          <div
+            class="mb-3 flex h-12 w-12 items-center justify-center rounded-lg bg-amber-100 text-2xl group-hover:bg-amber-500 group-hover:text-white"
+          >
+            ⚖️
+          </div>
+          <h3 class="mb-2 text-lg font-semibold text-gray-900">Modal Comparison</h3>
+          <p class="text-sm text-gray-600">
+            Compare Compound Pattern vs Props-based Pattern - see the differences!
+          </p>
+          <div
+            class="mt-2 inline-block rounded bg-amber-200 px-2 py-1 text-xs font-semibold text-amber-800"
+          >
+            Educational Demo
+          </div>
+        </RouterLink>
+
+        <RouterLink
           to="/demo-menu"
           class="group rounded-lg border-2 border-gray-200 bg-white p-6 transition-all hover:border-blue-500 hover:shadow-lg"
         >
