@@ -200,6 +200,60 @@ const compactTab = ref('all')
         </div>
       </section>
 
+      <!-- With Disabled Tab -->
+      <section class="space-y-4">
+        <div>
+          <h2 class="mb-2 text-xl font-semibold text-gray-900">Disabled Tab</h2>
+          <p class="text-sm text-gray-600">
+            Some tabs can be disabled based on permissions or conditions
+          </p>
+        </div>
+        <div class="rounded-lg bg-white p-6 shadow-sm">
+          <DevelopmentStatus status="development">
+            <TabsRoot default-value="free">
+              <TabsList>
+                <TabsTrigger value="free">Free Features</TabsTrigger>
+                <TabsTrigger value="pro" disabled>Pro Features (Upgrade)</TabsTrigger>
+                <TabsTrigger value="enterprise" disabled>Enterprise (Contact Us)</TabsTrigger>
+              </TabsList>
+
+              <TabsContent value="free">
+                <div class="space-y-2 py-4">
+                  <h3 class="text-lg font-semibold text-gray-900">Free Features</h3>
+                  <p class="text-gray-600">These features are available on the free plan:</p>
+                  <ul class="mt-3 space-y-2 text-gray-600">
+                    <li class="flex items-center gap-2">
+                      <span class="text-green-500">✓</span>
+                      Basic dashboard
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <span class="text-green-500">✓</span>
+                      Up to 100 items
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <span class="text-green-500">✓</span>
+                      Community support
+                    </li>
+                  </ul>
+                </div>
+              </TabsContent>
+
+              <TabsContent value="pro">
+                <div class="py-4">
+                  <p class="text-gray-600">Pro features are locked. Upgrade to access!</p>
+                </div>
+              </TabsContent>
+
+              <TabsContent value="enterprise">
+                <div class="py-4">
+                  <p class="text-gray-600">Enterprise features require custom plan.</p>
+                </div>
+              </TabsContent>
+            </TabsRoot>
+          </DevelopmentStatus>
+        </div>
+      </section>
+
       <!-- Controlled Mode Example -->
       <section class="space-y-4">
         <div>
@@ -331,63 +385,11 @@ const compactTab = ref('all')
         </div>
       </section>
 
-      <!-- With Disabled Tab -->
-      <section class="space-y-4">
-        <div>
-          <h2 class="mb-2 text-xl font-semibold text-gray-900">Disabled Tab</h2>
-          <p class="text-sm text-gray-600">
-            Some tabs can be disabled based on permissions or conditions
-          </p>
-        </div>
-        <div class="rounded-lg bg-white p-6 shadow-sm">
-          <TabsRoot default-value="free">
-            <TabsList>
-              <TabsTrigger value="free">Free Features</TabsTrigger>
-              <TabsTrigger value="pro" disabled>Pro Features (Upgrade)</TabsTrigger>
-              <TabsTrigger value="enterprise" disabled>Enterprise (Contact Us)</TabsTrigger>
-            </TabsList>
-
-            <TabsContent value="free">
-              <div class="space-y-2 py-4">
-                <h3 class="text-lg font-semibold text-gray-900">Free Features</h3>
-                <p class="text-gray-600">These features are available on the free plan:</p>
-                <ul class="mt-3 space-y-2 text-gray-600">
-                  <li class="flex items-center gap-2">
-                    <span class="text-green-500">✓</span>
-                    Basic dashboard
-                  </li>
-                  <li class="flex items-center gap-2">
-                    <span class="text-green-500">✓</span>
-                    Up to 100 items
-                  </li>
-                  <li class="flex items-center gap-2">
-                    <span class="text-green-500">✓</span>
-                    Community support
-                  </li>
-                </ul>
-              </div>
-            </TabsContent>
-
-            <TabsContent value="pro">
-              <div class="py-4">
-                <p class="text-gray-600">Pro features are locked. Upgrade to access!</p>
-              </div>
-            </TabsContent>
-
-            <TabsContent value="enterprise">
-              <div class="py-4">
-                <p class="text-gray-600">Enterprise features require custom plan.</p>
-              </div>
-            </TabsContent>
-          </TabsRoot>
-        </div>
-      </section>
-
       <!-- Compact Style -->
       <section class="space-y-4">
         <div>
-          <h2 class="mb-2 text-xl font-semibold text-gray-900">Compact Style</h2>
-          <p class="text-sm text-gray-600">Tabs with minimal content for quick switching</p>
+          <h2 class="mb-2 text-xl font-semibold text-gray-900">Playground</h2>
+          <p class="text-sm text-gray-600">Playground for testing</p>
         </div>
         <div class="rounded-lg bg-white p-6 shadow-sm">
           <TabsRoot default-value="all" v-model="compactTab">
