@@ -7,12 +7,12 @@ Quick reference untuk z-index values dalam project. Untuk detail lengkap, lihat 
 ## 📊 Z-Index Values (Highest → Lowest)
 
 ```
-z-[9999] → MenuPanel (teleported)
-z-[9998] → MenuOverlay (teleported)
+z-[9999] → DropdownMenuPanel, SelectContent, MultiSelectContent (teleported)
+z-[9998] → DropdownMenuOverlay, SelectOverlay, MultiSelectOverlay (teleported)
 z-[999]  → ModalContent
 z-[998]  → ModalOverlay
-z-50     → MenuPanel (non-teleported)
-z-20     → Input Action Icons
+z-50     → DropdownMenuPanel, SelectContent, MultiSelectContent (non-teleported)
+z-20     → FormInputField, AdvancedInputField (action icons)
 z-auto   → Base Components
 ```
 
@@ -23,13 +23,17 @@ z-auto   → Base Components
 ### **Need dropdown inside Modal?**
 
 ```vue
-<MenuPanel></MenuPanel>
+<DropdownMenuPanel></DropdownMenuPanel>
+<SelectContent></SelectContent>
+<MultiSelectContent></MultiSelectContent>
 ```
 
 ### **Need simple dropdown?**
 
 ```vue
-<MenuPanel :teleport="false"></MenuPanel>
+<DropdownMenuPanel :teleport="false"></DropdownMenuPanel>
+<SelectContent :teleport="false"></SelectContent>
+<MultiSelectContent :teleport="false"></MultiSelectContent>
 ```
 
 ### **Need icons in input field?**
@@ -42,7 +46,7 @@ z-auto   → Base Components
 
 ## ⚠️ Rules
 
-1. **NEVER use z-index > 9999** (reserved for Menu)
+1. **NEVER use z-index > 9999** (reserved for Dropdown/Select components)
 2. **NEVER use z-index 900-1000** (reserved for Modal)
 3. **ALWAYS use Tailwind classes** (`z-[xxx]` notation)
 4. **ALWAYS test with Modal** for new overlay components
@@ -52,5 +56,6 @@ z-auto   → Base Components
 ## 🔗 See Also
 
 - **Full Documentation**: `Z_INDEX_HIERARCHY.md`
-- **Menu Components**: `menu/README.md`
+- **Dropdown Components**: `dropdown-menu/README.md`
+- **Select Components**: `select/README.md`
 - **Modal Components**: `modal/README.md`

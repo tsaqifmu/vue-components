@@ -44,6 +44,7 @@ import {
 } from 'vue'
 import { lockBodyScroll, unlockBodyScroll } from '../../lib/scrollLock'
 import { cn } from '../../lib/utils'
+import { Z_INDEX } from '../z-index'
 
 const dropdownMenuPanelVariants = cva(
   'w-48 rounded-md bg-surface-primary-white shadow-card-float border border-gray-300 py-1',
@@ -89,7 +90,7 @@ const teleportStyle = ref<Record<string, string>>({})
 const isPositioned = ref(false)
 
 const overlayClasses = computed(() => {
-  return cn('fixed inset-0 z-[9998] w-screen bg-transparent')
+  return cn(`fixed inset-0 z-[${Z_INDEX.DROPDOWN_MENU_OVERLAY}] w-screen bg-transparent`)
 })
 
 const panelClasses = computed(() => {
@@ -98,7 +99,9 @@ const panelClasses = computed(() => {
   })
 
   // Add position class based on teleport mode
-  const positionClass = props.teleport ? 'fixed z-[9999]' : 'absolute z-50 top-full mt-1'
+  const positionClass = props.teleport
+    ? `fixed z-[${Z_INDEX.DROPDOWN_MENU_PANEL}]`
+    : `absolute z-[${Z_INDEX.NON_TELEPORT.DROPDOWN_MENU_PANEL}] top-full mt-1`
 
   return cn(baseClasses, positionClass, props.class)
 })

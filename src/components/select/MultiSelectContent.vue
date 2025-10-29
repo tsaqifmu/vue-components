@@ -13,6 +13,7 @@ import {
 } from 'vue'
 import { lockBodyScroll, unlockBodyScroll } from '../../lib/scrollLock'
 import { cn } from '../../lib/utils'
+import { Z_INDEX } from '../z-index'
 
 const multiSelectContentVariants = cva(
   'min-w-[8rem] rounded-lg bg-surface-primary-white shadow-card-float border border-gray-300 py-1 max-h-[var(--radix-select-content-available-height)] overflow-y-auto',
@@ -68,7 +69,7 @@ const teleportStyle = ref<Record<string, string>>({})
 const isMultiSelectOpen = computed(() => multiSelect?.isOpen.value ?? false)
 
 const overlayClasses = computed(() => {
-  return cn('fixed inset-0 z-[9998] w-screen bg-transparent')
+  return cn(`fixed inset-0 z-[${Z_INDEX.MULTI_SELECT_OVERLAY}] w-screen bg-transparent`)
 })
 
 const panelClasses = computed(() => {
@@ -76,7 +77,9 @@ const panelClasses = computed(() => {
     position: props.position as 'bottom' | 'top',
   })
 
-  const positionClass = props.teleport ? 'fixed z-[9999]' : 'absolute z-50 top-full mt-1'
+  const positionClass = props.teleport
+    ? `fixed z-[${Z_INDEX.MULTI_SELECT_CONTENT}]`
+    : `absolute z-[${Z_INDEX.NON_TELEPORT.MULTI_SELECT_CONTENT}] top-full mt-1`
 
   return cn(baseClasses, positionClass, props.class)
 })

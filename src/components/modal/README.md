@@ -168,10 +168,10 @@ When using Menu dropdown components inside modal, use `teleport` prop to prevent
       <ModalBody>
         <MenuRoot>
           <MenuButton label="Select Option" class="w-full" />
-          <MenuPanel teleport>
-            <MenuOption>Option 1</MenuOption>
-            <MenuOption>Option 2</MenuOption>
-          </MenuPanel>
+          <DropdownMenuPanel>
+            <DropdownMenuOption>Option 1</DropdownMenuOption>
+            <DropdownMenuOption>Option 2</DropdownMenuOption>
+          </DropdownMenuPanel>
         </MenuRoot>
       </ModalBody>
     </ModalContent>
@@ -179,7 +179,7 @@ When using Menu dropdown components inside modal, use `teleport` prop to prevent
 </template>
 ```
 
-**Note:** When using `teleport`, the dropdown width automatically matches the button width. Set `w-full` on the button itself, not on MenuPanel.
+**Note:** When using `teleport`, the dropdown width automatically matches the button width. Set `w-full` on the button itself, not on DropdownMenuPanel.
 
 ### Prevent Overlay Click Close
 

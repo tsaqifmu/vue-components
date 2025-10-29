@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, inject, type InjectionKey, type Ref } from 'vue'
 import { cn } from '../../lib/utils'
+import { Z_INDEX } from '../z-index'
 
 interface Props {
   class?: string
@@ -27,7 +28,10 @@ const modal = contextKey ? inject(contextKey) : null
 const isModalOpen = computed(() => modal?.isOpen.value ?? false)
 
 const overlayClasses = computed(() =>
-  cn('fixed inset-0 right-0 z-[998] w-screen bg-black/50 backdrop-blur-sm', props.class),
+  cn(
+    `fixed inset-0 right-0 z-[${Z_INDEX.MODAL_OVERLAY}] w-screen bg-black/50 backdrop-blur-sm`,
+    props.class,
+  ),
 )
 
 // --- Methods ---

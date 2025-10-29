@@ -11,10 +11,12 @@ Dokumentasi ini menjelaskan hierarki z-index untuk semua komponen dalam project 
 │                        Z-INDEX STACK ORDER                          │
 └─────────────────────────────────────────────────────────────────────┘
 
-┌────────── Level 5: Menu Layer (9998-9999) ──────────┐
+┌────────── Level 5: Dropdown/Select Layer (9998-9999) ──────────┐
 │                                                      │
-│  z-[9999]  MenuPanel (teleported)                   │ ← HIGHEST
-│  z-[9998]  MenuOverlay (teleported)                 │
+│  z-[9999]  DropdownMenuPanel, SelectContent,        │ ← HIGHEST
+│            MultiSelectContent (teleported)          │
+│  z-[9998]  DropdownMenuOverlay, SelectOverlay,      │
+│            MultiSelectOverlay (teleported)          │
 │                                                      │
 └──────────────────────────────────────────────────────┘
                           ↓
@@ -25,9 +27,10 @@ Dokumentasi ini menjelaskan hierarki z-index untuk semua komponen dalam project 
 │                                                      │
 └──────────────────────────────────────────────────────┘
                           ↓
-┌────────── Level 3: Dropdown (50) ───────────────────┐
+┌────────── Level 3: Dropdown/Select (50) ────────────┐
 │                                                      │
-│  z-50      MenuPanel (non-teleported)               │
+│  z-50      DropdownMenuPanel, SelectContent,        │
+│            MultiSelectContent (non-teleported)      │
 │                                                      │
 └──────────────────────────────────────────────────────┘
                           ↓
@@ -49,41 +52,47 @@ Dokumentasi ini menjelaskan hierarki z-index untuk semua komponen dalam project 
 
 ## 🎯 Detailed Breakdown
 
-### **Level 5: Menu Layer (9998-9999)** - HIGHEST
+### **Level 5: Dropdown/Select Layer (9998-9999)** - HIGHEST
 
-#### **MenuPanel (Teleported)** - `z-[9999]`
+#### **DropdownMenuPanel, SelectContent, MultiSelectContent (Teleported)** - `z-[9999]`
 
-- **Location**: `src/components/menu/MenuPanel.vue:100`
+- **Locations**:
+  - `src/components/dropdown-menu/DropdownMenuPanel.vue:101`
+  - `src/components/select/SelectContent.vue:75`
+  - `src/components/select/MultiSelectContent.vue:79`
 - **CSS Class**: `fixed z-[9999]`
 - **Context**: Ketika `teleport: true` (default)
 - **Reasoning**:
   - Harus berada di atas semua komponen termasuk Modal
-  - Memungkinkan menu dropdown bekerja di dalam Modal
+  - Memungkinkan dropdown/select bekerja di dalam Modal
   - Z-index tertinggi untuk memastikan tidak tertutup apapun
 
 **Use Case:**
 
 ```vue
-<!-- Menu inside Modal - needs highest z-index -->
+<!-- Dropdown inside Modal - needs highest z-index -->
 <ModalContent>
-  <MenuRoot>
-    <MenuButton label="Select" />
-    <MenuPanel> <!-- z-[9999] -->
-      <MenuOption>Option 1</MenuOption>
-    </MenuPanel>
-  </MenuRoot>
+  <DropdownMenuRoot>
+    <DropdownMenuButton label="Select" />
+    <DropdownMenuPanel> <!-- z-[9999] -->
+      <DropdownMenuOption>Option 1</DropdownMenuOption>
+    </DropdownMenuPanel>
+  </DropdownMenuRoot>
 </ModalContent>
 ```
 
-#### **MenuOverlay (Teleported)** - `z-[9998]`
+#### **DropdownMenuOverlay, SelectOverlay, MultiSelectOverlay (Teleported)** - `z-[9998]`
 
-- **Location**: `src/components/menu/MenuPanel.vue:91`
+- **Locations**:
+  - `src/components/dropdown-menu/DropdownMenuPanel.vue:92`
+  - `src/components/select/SelectContent.vue:67`
+  - `src/components/select/MultiSelectContent.vue:71`
 - **CSS Class**: `fixed inset-0 z-[9998]`
 - **Context**: Transparent overlay untuk click-outside detection
 - **Reasoning**:
-  - Satu tingkat di bawah MenuPanel
+  - Satu tingkat di bawah panel content
   - Menutupi seluruh viewport termasuk Modal overlay
-  - Memungkinkan detection click outside menu
+  - Memungkinkan detection click outside dropdown/select
 
 ---
 
@@ -125,11 +134,14 @@ Dokumentasi ini menjelaskan hierarki z-index untuk semua komponen dalam project 
 
 ---
 
-### **Level 3: Dropdown Layer (50)**
+### **Level 3: Dropdown/Select Layer (50)**
 
-#### **MenuPanel (Non-Teleported)** - `z-50`
+#### **DropdownMenuPanel, SelectContent, MultiSelectContent (Non-Teleported)** - `z-50`
 
-- **Location**: `src/components/menu/MenuPanel.vue:100`
+- **Locations**:
+  - `src/components/dropdown-menu/DropdownMenuPanel.vue:101`
+  - `src/components/select/SelectContent.vue:75`
+  - `src/components/select/MultiSelectContent.vue:79`
 - **CSS Class**: `absolute z-50 top-full mt-1`
 - **Context**: Ketika `teleport: false`
 - **Reasoning**:
@@ -142,13 +154,13 @@ Dokumentasi ini menjelaskan hierarki z-index untuk semua komponen dalam project 
 
 ```vue
 <!-- Simple dropdown without teleport -->
-<MenuRoot>
-  <MenuButton label="Actions" />
-  <MenuPanel :teleport="false"> <!-- z-50 -->
-    <MenuOption>Edit</MenuOption>
-    <MenuOption>Delete</MenuOption>
-  </MenuPanel>
-</MenuRoot>
+<DropdownMenuRoot>
+  <DropdownMenuButton label="Actions" />
+  <DropdownMenuPanel :teleport="false"> <!-- z-50 -->
+    <DropdownMenuOption>Edit</DropdownMenuOption>
+    <DropdownMenuOption>Delete</DropdownMenuOption>
+  </DropdownMenuPanel>
+</DropdownMenuRoot>
 ```
 
 **Comparison:**
@@ -198,13 +210,13 @@ Ketika semua komponen ditampilkan bersamaan:
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│                    MenuPanel                        │ z-[9999]
+│                    DropdownMenuPanel                │ z-[9999]
 │  ┌────────────────────────────┐                     │
 │  │ Option 1                   │                     │
 │  │ Option 2                   │                     │
 │  └────────────────────────────┘                     │
 └─────────────────────────────────────────────────────┘
-└─────────────────────────────────────────────────────┘ z-[9998] (MenuOverlay - transparent)
+└─────────────────────────────────────────────────────┘ z-[9998] (DropdownMenuOverlay - transparent)
 ┌─────────────────────────────────────────────────────┐
 │           ┌─────────────────────────┐               │
 │           │   ModalContent          │               │ z-[999]
@@ -223,16 +235,22 @@ Ketika semua komponen ditampilkan bersamaan:
 
 ## 📋 Complete Z-Index Table
 
-| Z-Index Value | Component                  | Position   | Teleport | File                           | Use Case                           |
-| ------------- | -------------------------- | ---------- | -------- | ------------------------------ | ---------------------------------- |
-| `z-[9999]`    | MenuPanel                  | `fixed`    | ✅ Yes   | `menu/MenuPanel.vue`           | Dropdown inside Modal              |
-| `z-[9998]`    | MenuOverlay                | `fixed`    | ✅ Yes   | `menu/MenuPanel.vue`           | Click-outside detection for Menu   |
-| `z-[999]`     | ModalContent               | `fixed`    | ✅ Yes   | `modal/ModalContent.vue`       | Dialog/Modal content box           |
-| `z-[998]`     | ModalOverlay               | `fixed`    | ✅ Yes   | `modal/ModalOverlay.vue`       | Modal backdrop with blur           |
-| `z-50`        | MenuPanel                  | `absolute` | ❌ No    | `menu/MenuPanel.vue`           | Normal dropdown (not in Modal)     |
-| `z-20`        | FormInputField (icons)     | `absolute` | ❌ No    | `form-input/FormInputField`    | Password eye, clear, counter icons |
-| `z-20`        | AdvancedInputField (icons) | `absolute` | ❌ No    | `molecules/AdvancedInputField` | Password eye, clear, counter icons |
-| `z-auto/0`    | All other components       | various    | ❌ No    | -                              | Normal page content                |
+| Z-Index Value | Component                  | Position   | Teleport | File                                                  | Use Case                                |
+| ------------- | -------------------------- | ---------- | -------- | ----------------------------------------------------- | --------------------------------------- |
+| `z-[9999]`    | DropdownMenuPanel          | `fixed`    | ✅ Yes   | `dropdown-menu/DropdownMenuPanel.vue`                 | Dropdown inside Modal                   |
+| `z-[9999]`    | SelectContent              | `fixed`    | ✅ Yes   | `select/SelectContent.vue`                            | Select inside Modal                     |
+| `z-[9999]`    | MultiSelectContent         | `fixed`    | ✅ Yes   | `select/MultiSelectContent.vue`                       | MultiSelect inside Modal                |
+| `z-[9998]`    | DropdownMenuOverlay        | `fixed`    | ✅ Yes   | `dropdown-menu/DropdownMenuPanel.vue`                 | Click-outside detection for Dropdown    |
+| `z-[9998]`    | SelectOverlay              | `fixed`    | ✅ Yes   | `select/SelectContent.vue`                            | Click-outside detection for Select      |
+| `z-[9998]`    | MultiSelectOverlay         | `fixed`    | ✅ Yes   | `select/MultiSelectContent.vue`                       | Click-outside detection for MultiSelect |
+| `z-[999]`     | ModalContent               | `fixed`    | ✅ Yes   | `modal/ModalContent.vue`                              | Dialog/Modal content box                |
+| `z-[998]`     | ModalOverlay               | `fixed`    | ✅ Yes   | `modal/ModalOverlay.vue`                              | Modal backdrop with blur                |
+| `z-50`        | DropdownMenuPanel          | `absolute` | ❌ No    | `dropdown-menu/DropdownMenuPanel.vue`                 | Normal dropdown (not in Modal)          |
+| `z-50`        | SelectContent              | `absolute` | ❌ No    | `select/SelectContent.vue`                            | Normal select (not in Modal)            |
+| `z-50`        | MultiSelectContent         | `absolute` | ❌ No    | `select/MultiSelectContent.vue`                       | Normal multiselect (not in Modal)       |
+| `z-20`        | FormInputField (icons)     | `absolute` | ❌ No    | `form-input/FormInputField.vue`                       | Password eye, clear, counter icons      |
+| `z-20`        | AdvancedInputField (icons) | `absolute` | ❌ No    | `molecules/AdvancedInputField/AdvancedInputField.vue` | Password eye, clear, counter icons      |
+| `z-auto/0`    | All other components       | various    | ❌ No    | -                                                     | Normal page content                     |
 
 ---
 
@@ -322,20 +340,24 @@ getComputedStyle($0).zIndex // Computed value
 3. Check hierarchy table di atas untuk nilai yang sesuai
 4. Use `!important` hanya sebagai last resort
 
-### **Issue: Menu tertutup oleh Modal**
+### **Issue: Dropdown/Select tertutup oleh Modal**
 
 **Solution:**
 
 ```vue
 <!-- ✅ CORRECT: Use teleport (default) -->
-<MenuPanel> <!-- z-[9999] > Modal's z-[999] -->
-  <MenuOption>Item</MenuOption>
-</MenuPanel>
+<DropdownMenuPanel> <!-- z-[9999] > Modal's z-[999] -->
+  <DropdownMenuOption>Item</DropdownMenuOption>
+</DropdownMenuPanel>
+
+<SelectContent> <!-- z-[9999] > Modal's z-[999] -->
+  <SelectItem>Option</SelectItem>
+</SelectContent>
 
 <!-- ❌ WRONG: Disable teleport inside Modal -->
-<MenuPanel :teleport="false"> <!-- z-50 < Modal's z-[999] -->
-  <MenuOption>Item</MenuOption>
-</MenuPanel>
+<DropdownMenuPanel :teleport="false"> <!-- z-50 < Modal's z-[999] -->
+  <DropdownMenuOption>Item</DropdownMenuOption>
+</DropdownMenuPanel>
 ```
 
 ---

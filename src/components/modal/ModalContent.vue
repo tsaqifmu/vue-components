@@ -2,9 +2,10 @@
 import { cva } from 'class-variance-authority'
 import { computed, inject, onMounted, onUnmounted, type InjectionKey, type Ref } from 'vue'
 import { cn } from '../../lib/utils'
+import { Z_INDEX } from '../z-index'
 
 const modalContentVariants = cva(
-  'fixed top-1/2 left-1/2 z-[999] flex h-auto max-h-[90vh] flex-col rounded-2xl bg-white shadow-xl overflow-hidden',
+  `fixed top-1/2 left-1/2 z-[${Z_INDEX.MODAL_CONTENT}] flex h-auto max-h-[90vh] flex-col rounded-2xl bg-white shadow-xl overflow-hidden`,
   {
     variants: {
       size: {
