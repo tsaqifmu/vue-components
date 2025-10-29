@@ -4,10 +4,12 @@ import { computed } from 'vue'
 interface Props {
   status: 'stable' | 'development'
   description?: string
+  changeNotes?: string[]
 }
 
 const props = withDefaults(defineProps<Props>(), {
   description: '',
+  changeNotes: () => [],
 })
 
 const statusConfig = computed(() => {
@@ -48,6 +50,18 @@ const displayDescription = computed(() => {
     <p v-if="statusConfig.showDescription && displayDescription" class="text-xs text-amber-700">
       {{ displayDescription }}
     </p>
+
+    <!-- Change Notes Section -->
+    <div v-if="changeNotes && changeNotes.length > 0" class="mt-2">
+      <h4 class="mb-1 text-xs font-medium text-yellow-700">Recent Changes:</h4>
+      <ul class="space-y-1 text-xs text-yellow-700">
+        <li v-for="(note, index) in changeNotes" :key="index" class="flex items-start gap-1">
+          <span class="text-yellow-700">•</span>
+          <span>{{ note }}</span>
+        </li>
+      </ul>
+    </div>
+
     <slot />
   </div>
 </template>

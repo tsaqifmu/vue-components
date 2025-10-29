@@ -39,11 +39,19 @@ const handleAsyncAction = async () => {
         <div class="rounded-lg bg-white p-6 shadow-sm">
           <div class="flex flex-col gap-4">
             <!-- Stable Variants -->
-            <DevelopmentStatus status="stable">
+            <DevelopmentStatus
+              status="stable"
+              :change-notes="[
+                'Add Link button variant',
+                'btw agak rancu, karna untuk link secara best practice seharusnya tetap menggunakan <a> tag, karna semantik html dan aksesibilitas nya lebih baik',
+                'ngga tau button variant link tetap mau dipakai atau tidak',
+              ]"
+            >
               <div class="flex gap-4">
                 <Button variant="default">Default</Button>
                 <Button variant="outline">Outline</Button>
                 <Button variant="destructive">Destructive</Button>
+                <Button variant="link">Link</Button>
               </div>
             </DevelopmentStatus>
 
@@ -55,7 +63,6 @@ const handleAsyncAction = async () => {
               <div class="flex gap-4">
                 <Button variant="ghost">Ghost</Button>
                 <Button variant="secondary">Secondary</Button>
-                <Button variant="link">Link</Button>
               </div>
             </DevelopmentStatus>
           </div>
@@ -291,11 +298,14 @@ const handleAsyncAction = async () => {
       <section class="space-y-4">
         <div>
           <h2 class="mb-2 text-xl font-semibold text-gray-900">Disabled State</h2>
-          <p class="text-sm text-gray-600">Buttons in disabled state with reduced opacity</p>
+          <p class="text-sm text-gray-600">Buttons in disabled state</p>
         </div>
         <div class="rounded-lg bg-white p-6 shadow-sm">
           <div class="flex flex-col gap-4">
-            <DevelopmentStatus status="stable">
+            <DevelopmentStatus
+              status="stable"
+              :change-notes="['Membedakan disabled state dengan inactive state']"
+            >
               <div class="flex flex-wrap gap-4">
                 <Button variant="default" disabled>Default Disabled</Button>
                 <Button variant="outline" disabled>Outline Disabled</Button>
@@ -312,6 +322,31 @@ const handleAsyncAction = async () => {
         </div>
       </section>
 
+      <!-- Inactive State -->
+      <section class="space-y-4">
+        <div>
+          <h2 class="mb-2 text-xl font-semibold text-gray-900">Inactive State</h2>
+          <p class="text-sm text-gray-600">Buttons in inactive state with reduced opacity</p>
+        </div>
+        <div class="rounded-lg bg-white p-6 shadow-sm">
+          <div class="flex flex-col gap-4">
+            <DevelopmentStatus status="stable">
+              <div class="flex flex-wrap gap-4">
+                <Button variant="default" inactive>Default inactive</Button>
+                <Button variant="outline" inactive>Outline </Button>
+                <Button variant="destructive" inactive>Destructive</Button>
+              </div>
+            </DevelopmentStatus>
+            <DevelopmentStatus status="development">
+              <div class="flex flex-wrap gap-4">
+                <Button variant="secondary">Secondary Disabled</Button>
+                <Button variant="link">Link Disabled</Button>
+              </div>
+            </DevelopmentStatus>
+          </div>
+        </div>
+      </section>
+
       <!-- Interactive Examples -->
       <section class="space-y-4">
         <div>
@@ -321,7 +356,10 @@ const handleAsyncAction = async () => {
         <div class="rounded-lg bg-white p-6 shadow-sm">
           <div class="space-y-6">
             <!-- Click Counter -->
-            <DevelopmentStatus status="stable">
+            <DevelopmentStatus
+              status="stable"
+              :change-notes="['loading state masuk ke production ready']"
+            >
               <div class="space-y-3">
                 <h3 class="text-sm font-semibold text-gray-900">Click Counter</h3>
                 <div class="flex items-center gap-4">
@@ -331,10 +369,6 @@ const handleAsyncAction = async () => {
                   </span>
                 </div>
               </div>
-            </DevelopmentStatus>
-
-            <!-- Loading State -->
-            <DevelopmentStatus status="development">
               <div class="space-y-3">
                 <h3 class="text-sm font-semibold text-gray-900">Loading State</h3>
                 <div class="flex items-center gap-4">
