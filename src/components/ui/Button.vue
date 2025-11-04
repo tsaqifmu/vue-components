@@ -27,9 +27,9 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          'bg-surface-primary-white text-text-subtitle border border-[#D5D5D5] shadow-[0_1px_2px_0_rgba(86,86,86,0.06)] hover:shadow-[0_1px_4px_0_rgba(86,86,86,0.50)] active:bg-[#F6F6F6] active:shadow-[0_1px_4px_0_rgba(86,86,86,0.50)] active:duration-100',
+          'bg-surface-primary-white text-text-subtitle border border-[#D5D5D5] shadow-[0_1px_2px_0_rgba(86,86,86,0.06)]  hover:shadow-[0_1px_4px_0_rgba(86,86,86,0.50)] active:bg-[#F6F6F6] active:shadow-[0_1px_4px_0_rgba(86,86,86,0.50)] active:duration-100',
         solid:
-          'bg-primary text-surface-primary-white hover:bg-button-hover-primary hover:shadow-button disabled:bg-surface-disable disabled:text-text-disable',
+          'bg-primary shadow-[inset_0_0_0_1000px_rgba(0,0,0,0),0_1px_4px_0_rgba(39,177,153,0.50)] text-surface-primary-white hover:shadow-[inset_0_0_0_1000px_rgba(0,0,0,0.2),0_1px_4px_0_rgba(39,177,153,0.50)]  active:shadow-[inset_0_0_0_1000px_rgba(0,0,0,0.4),0_1px_4px_0_rgba(39,177,153,0.50)] disabled:bg-surface-disable disabled:text-text-disable',
         outline:
           'border border-primary text-primary hover:bg-surface-primary-white hover:shadow-button disabled:border-surface-disable disabled:text-text-disable',
         destructive:
@@ -40,7 +40,6 @@ const buttonVariants = cva(
         link: 'text-notification-link underline-offset-4 underline',
       },
       size: {
-        default: 'text-sm',
         sm: 'px-3 py-1 text-xs',
         icon: 'p-2',
         // custom: 'p-0',
@@ -62,7 +61,7 @@ const buttonVariants = cva(
     ],
     defaultVariants: {
       variant: 'solid',
-      size: 'default',
+      size: 'sm',
       rounded: false,
     },
   },
