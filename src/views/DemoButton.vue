@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import Button from '@/components/ui/Button.vue'
 import DevelopmentStatus from '@/components/ui/DevelopmentStatus.vue'
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 
 const clickCount = ref(0)
 const isLoading = ref(false)
+const primaryColor = ref('#27B199')
 
 const handleClick = () => {
   clickCount.value++
@@ -15,6 +16,27 @@ const handleAsyncAction = async () => {
   // Simulate async operation
   await new Promise((resolve) => setTimeout(resolve, 2000))
   isLoading.value = false
+}
+
+// Update CSS variable when color changes
+watch(primaryColor, (newColor) => {
+  document.documentElement.style.setProperty('--color-primary', newColor)
+})
+
+// Predefined color presets
+const colorPresets = [
+  { name: 'Default', value: '#27B199' },
+  { name: 'Blue', value: '#3B82F6' },
+  { name: 'Purple', value: '#8B5CF6' },
+  { name: 'Pink', value: '#EC4899' },
+  { name: 'Orange', value: '#F97316' },
+  { name: 'Green', value: '#10B981' },
+  { name: 'Red', value: '#EF4444' },
+  { name: 'Indigo', value: '#6366F1' },
+]
+
+const resetColor = () => {
+  primaryColor.value = '#27B199'
 }
 </script>
 
@@ -30,6 +52,89 @@ const handleAsyncAction = async () => {
         </p>
       </div>
 
+      <!-- Color Picker -->
+      <section class="space-y-4">
+        <div>
+          <h2 class="mb-2 text-xl font-semibold text-gray-900">Primary Color Customization</h2>
+          <p class="text-sm text-gray-600">
+            Change the primary color to see how it affects all button variants
+          </p>
+        </div>
+        <div class="rounded-lg bg-white p-6 shadow-sm">
+          <div class="space-y-6">
+            <!-- Custom Color Picker -->
+            <div class="space-y-3">
+              <h3 class="text-sm font-semibold text-gray-900">Custom Color</h3>
+              <div class="flex items-center gap-4">
+                <div class="flex items-center gap-3">
+                  <input
+                    v-model="primaryColor"
+                    type="color"
+                    class="h-12 w-24 cursor-pointer rounded-lg border-2 border-gray-300 transition-all hover:border-gray-400"
+                  />
+                  <div class="flex flex-col">
+                    <span class="text-sm font-medium text-gray-700">{{ primaryColor }}</span>
+                    <Button
+                      @click="resetColor"
+                      class="text-xs text-gray-500 underline hover:text-gray-700"
+                    >
+                      Reset to default
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Color Presets -->
+            <div class="space-y-3">
+              <h3 class="text-sm font-semibold text-gray-900">Quick Presets</h3>
+              <div class="flex flex-wrap gap-2">
+                <Button
+                  v-for="preset in colorPresets"
+                  :key="preset.value"
+                  @click="primaryColor = preset.value"
+                  :style="{ backgroundColor: preset.value }"
+                  :class="[
+                    'rounded-lg px-4 py-2 text-sm font-medium text-white transition-all hover:scale-105 active:scale-95',
+                    primaryColor === preset.value
+                      ? 'ring-2 ring-blue-500 ring-offset-2'
+                      : 'hover:ring-2 hover:ring-gray-400 hover:ring-offset-2',
+                  ]"
+                >
+                  {{ preset.name }}
+                </Button>
+              </div>
+            </div>
+
+            <!-- Live Preview -->
+            <div class="space-y-3">
+              <h3 class="text-sm font-semibold text-gray-900">Live Preview</h3>
+              <div class="flex flex-wrap gap-3 rounded-lg bg-gray-50 p-4">
+                <Button variant="solid">Solid</Button>
+                <Button variant="outline">Outline</Button>
+                <Button variant="ghost">Ghost</Button>
+                <Button variant="solid" rounded>Rounded</Button>
+                <Button variant="outline" size="icon">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M5 12h14" />
+                  </svg>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- Button Variants -->
       <section class="space-y-4">
         <div>
@@ -39,42 +144,26 @@ const handleAsyncAction = async () => {
         <div class="rounded-lg bg-white p-6 shadow-sm">
           <div class="flex flex-col gap-4">
             <!-- Stable Variants -->
-            <DevelopmentStatus
-              status="stable"
-              :change-notes="[
-                'Add Link button variant',
-                'btw agak rancu, karna untuk link secara best practice seharusnya tetap menggunakan <a> tag, karna semantik html dan aksesibilitas nya lebih baik',
-                'ngga tau button variant link tetap mau dipakai atau tidak',
-              ]"
-            >
+            <DevelopmentStatus status="stable">
               <div class="flex items-center justify-between gap-4">
                 <div class="flex gap-2">
                   <Button variant="default">Default</Button>
                   <Button variant="solid">Solid</Button>
                   <Button variant="outline">Outline</Button>
-                  <Button variant="destructive">Destructive</Button>
+                  <Button variant="ghost">Ghost</Button>
                   <Button variant="link">Link</Button>
                 </div>
                 <div class="flex gap-2">
                   <Button variant="default" rounded>Default</Button>
                   <Button variant="solid" rounded>Solid</Button>
                   <Button variant="outline" rounded>Outline</Button>
-                  <Button variant="destructive" rounded>Destructive</Button>
+                  <Button variant="ghost" rounded>Ghost</Button>
                   <Button variant="link" rounded>Link</Button>
                 </div>
               </div>
             </DevelopmentStatus>
 
             <!-- Under Development -->
-            <DevelopmentStatus
-              status="development"
-              description="These variants are still in development and may change or be removed before final release."
-            >
-              <div class="flex gap-4">
-                <Button variant="ghost">Ghost</Button>
-                <Button variant="secondary">Secondary</Button>
-              </div>
-            </DevelopmentStatus>
           </div>
         </div>
       </section>
@@ -90,7 +179,7 @@ const handleAsyncAction = async () => {
             <!-- Stable Sizes -->
             <DevelopmentStatus status="stable">
               <div class="flex flex-wrap items-center gap-4">
-                <Button size="sm">Small</Button>
+                <Button size="default">Default</Button>
                 <Button size="default">Default</Button>
               </div>
             </DevelopmentStatus>
@@ -169,7 +258,7 @@ const handleAsyncAction = async () => {
                   Download
                 </Button>
 
-                <Button variant="destructive">
+                <Button variant="outline">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"
@@ -283,7 +372,7 @@ const handleAsyncAction = async () => {
                 </svg>
               </Button>
 
-              <Button variant="destructive" size="icon">
+              <Button variant="outline" size="icon">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="20"
@@ -319,12 +408,11 @@ const handleAsyncAction = async () => {
               <div class="flex flex-wrap gap-4">
                 <Button variant="solid" disabled>Solid Disabled</Button>
                 <Button variant="outline" disabled>Outline Disabled</Button>
-                <Button variant="destructive" disabled>Destructive Disabled</Button>
+                <Button variant="outline" disabled>Destructive Disabled</Button>
               </div>
             </DevelopmentStatus>
             <DevelopmentStatus status="development">
               <div class="flex flex-wrap gap-4">
-                <Button variant="secondary" disabled>Secondary Disabled</Button>
                 <Button variant="link" disabled>Link Disabled</Button>
               </div>
             </DevelopmentStatus>
@@ -344,12 +432,11 @@ const handleAsyncAction = async () => {
               <div class="flex flex-wrap gap-4">
                 <Button variant="solid" inactive>Solid inactive</Button>
                 <Button variant="outline" inactive>Outline </Button>
-                <Button variant="destructive" inactive>Destructive</Button>
+                <Button variant="outline" inactive>Destructive</Button>
               </div>
             </DevelopmentStatus>
             <DevelopmentStatus status="development">
               <div class="flex flex-wrap gap-4">
-                <Button variant="secondary">Secondary Disabled</Button>
                 <Button variant="link">Link Disabled</Button>
               </div>
             </DevelopmentStatus>
@@ -425,7 +512,7 @@ const handleAsyncAction = async () => {
                 <div class="flex gap-2">
                   <Button variant="solid">Save</Button>
                   <Button variant="outline">Cancel</Button>
-                  <Button variant="destructive">Delete</Button>
+                  <Button variant="outline">Delete</Button>
                 </div>
               </div>
             </DevelopmentStatus>
@@ -500,7 +587,7 @@ const handleAsyncAction = async () => {
             <div class="space-y-3">
               <Button variant="solid" class="w-full">Full Width Solid</Button>
               <Button variant="outline" class="w-full">Full Width Outline</Button>
-              <Button variant="destructive" class="w-full">Full Width Destructive</Button>
+              <Button variant="outline" class="w-full">Full Width Destructive</Button>
             </div>
           </DevelopmentStatus>
         </div>
@@ -524,9 +611,7 @@ const handleAsyncAction = async () => {
 
           <div class="mt-6">
             <DevelopmentStatus status="development">
-              <div class="flex flex-col gap-3 sm:flex-row">
-                <Button variant="secondary" class="w-full sm:w-auto">Responsive Button 3</Button>
-              </div>
+              <div class="flex flex-col gap-3 sm:flex-row"></div>
             </DevelopmentStatus>
           </div>
         </div>

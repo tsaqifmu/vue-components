@@ -23,6 +23,10 @@ const buttonVariants = cva(
     // SVG styles
     '[&_svg]:pointer-events-none',
   ],
+  /**
+   *  Untuk variant solid, warna background dioverlay menggunakan shadow inset dan color-mix untuk memberikan efek hover dan active.
+   *  Untuk variant ghost dan link, warna text dioverlay menggunakan color-mix untuk memberikan efek hover dan active.
+   */
   {
     variants: {
       variant: {
@@ -32,17 +36,13 @@ const buttonVariants = cva(
           'bg-primary shadow-[inset_0_0_0_1000px_rgba(0,0,0,0),0_1px_4px_0_rgba(39,177,153,0.50)] text-surface-primary-white hover:shadow-[inset_0_0_0_1000px_rgba(0,0,0,0.2),0_1px_4px_0_rgba(39,177,153,0.50)]  active:shadow-[inset_0_0_0_1000px_rgba(0,0,0,0.4),0_1px_4px_0_rgba(39,177,153,0.50)] disabled:bg-surface-disable disabled:text-text-disable',
         outline:
           'border border-primary text-primary hover:bg-surface-primary-white hover:shadow-[0_1px_4px_0_rgba(86,86,86,0.50)] active:bg-[#FFD7D2] disabled:border-surface-disable disabled:text-text-disable',
-        destructive:
-          'border border-notification-error text-notification-error  hover:bg-surface-primary-white hover:shadow-button disabled:border-surface-disable disabled:text-text-disable',
-        ghost: 'text-primary hover:text-button-hover-primary disabled:text-text-disable',
-        custom: 'text-primary hover:text-button-hover-primary',
-        secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
-        link: 'text-notification-link underline-offset-4 underline',
+        ghost:
+          'text-primary hover:[color:color-mix(in_srgb,var(--color-primary)_80%,black_20%)] active:[color:color-mix(in_srgb,var(--color-primary)_60%,black_40%)] disabled:text-text-disable',
+        link: 'text-notification-link underline-offset-auto underline hover:[color:color-mix(in_srgb,var(--color-notification-link)_80%,black_20%)] active:[color:color-mix(in_srgb,var(--color-notification-link)_60%,black_40%)]',
       },
       size: {
-        sm: 'px-3 py-1 text-xs',
+        default: 'px-4 py-2 ',
         icon: 'p-2',
-        // custom: 'p-0',
       },
       inactive: {
         true: 'opacity-50 pointer-events-none',
@@ -53,15 +53,9 @@ const buttonVariants = cva(
         false: 'rounded-lg px-4 py-2',
       },
     },
-    compoundVariants: [
-      {
-        variant: 'ghost',
-        class: 'px-0 py-2',
-      },
-    ],
     defaultVariants: {
       variant: 'solid',
-      size: 'sm',
+      size: 'default',
       rounded: false,
     },
   },
@@ -77,7 +71,7 @@ export interface ButtonProps extends /* @vue-ignore */ ButtonHTMLAttributes {
 
 withDefaults(defineProps<ButtonProps>(), {
   variant: 'solid',
-  size: 'sm',
+  size: 'default',
   asChild: false,
   inactive: false,
   rounded: false,
