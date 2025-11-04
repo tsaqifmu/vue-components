@@ -31,7 +31,7 @@ const buttonVariants = cva(
         solid:
           'bg-primary shadow-[inset_0_0_0_1000px_rgba(0,0,0,0),0_1px_4px_0_rgba(39,177,153,0.50)] text-surface-primary-white hover:shadow-[inset_0_0_0_1000px_rgba(0,0,0,0.2),0_1px_4px_0_rgba(39,177,153,0.50)]  active:shadow-[inset_0_0_0_1000px_rgba(0,0,0,0.4),0_1px_4px_0_rgba(39,177,153,0.50)] disabled:bg-surface-disable disabled:text-text-disable',
         outline:
-          'border border-primary text-primary hover:bg-surface-primary-white hover:shadow-button disabled:border-surface-disable disabled:text-text-disable',
+          'border border-primary text-primary hover:bg-surface-primary-white hover:shadow-[0_1px_4px_0_rgba(86,86,86,0.50)] active:bg-[#FFD7D2] disabled:border-surface-disable disabled:text-text-disable',
         destructive:
           'border border-notification-error text-notification-error  hover:bg-surface-primary-white hover:shadow-button disabled:border-surface-disable disabled:text-text-disable',
         ghost: 'text-primary hover:text-button-hover-primary disabled:text-text-disable',
@@ -77,7 +77,7 @@ export interface ButtonProps extends /* @vue-ignore */ ButtonHTMLAttributes {
 
 withDefaults(defineProps<ButtonProps>(), {
   variant: 'solid',
-  size: 'default',
+  size: 'sm',
   asChild: false,
   inactive: false,
   rounded: false,
