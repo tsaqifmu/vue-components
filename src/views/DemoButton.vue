@@ -47,11 +47,21 @@ const handleAsyncAction = async () => {
                 'ngga tau button variant link tetap mau dipakai atau tidak',
               ]"
             >
-              <div class="flex gap-4">
-                <Button variant="default">Default</Button>
-                <Button variant="outline">Outline</Button>
-                <Button variant="destructive">Destructive</Button>
-                <Button variant="link">Link</Button>
+              <div class="flex items-center justify-between gap-4">
+                <div class="flex gap-2">
+                  <Button variant="default">Default</Button>
+                  <Button variant="solid">Solid</Button>
+                  <Button variant="outline">Outline</Button>
+                  <Button variant="destructive">Destructive</Button>
+                  <Button variant="link">Link</Button>
+                </div>
+                <div class="flex gap-2">
+                  <Button variant="default" rounded>Default</Button>
+                  <Button variant="solid" rounded>Solid</Button>
+                  <Button variant="outline" rounded>Outline</Button>
+                  <Button variant="destructive" rounded>Destructive</Button>
+                  <Button variant="link" rounded>Link</Button>
+                </div>
               </div>
             </DevelopmentStatus>
 
@@ -124,7 +134,7 @@ const handleAsyncAction = async () => {
             <!-- Stable Variants with Icons -->
             <DevelopmentStatus status="stable">
               <div class="flex flex-wrap gap-4">
-                <Button variant="default">
+                <Button variant="solid">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"
@@ -220,7 +230,7 @@ const handleAsyncAction = async () => {
             description="All icon-only button variants are still in development and may change or be removed before final release."
           >
             <div class="flex flex-wrap gap-4">
-              <Button variant="default" size="icon">
+              <Button variant="solid" size="icon">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="20"
@@ -307,7 +317,7 @@ const handleAsyncAction = async () => {
               :change-notes="['Membedakan disabled state dengan inactive state']"
             >
               <div class="flex flex-wrap gap-4">
-                <Button variant="default" disabled>Default Disabled</Button>
+                <Button variant="solid" disabled>Solid Disabled</Button>
                 <Button variant="outline" disabled>Outline Disabled</Button>
                 <Button variant="destructive" disabled>Destructive Disabled</Button>
               </div>
@@ -332,7 +342,7 @@ const handleAsyncAction = async () => {
           <div class="flex flex-col gap-4">
             <DevelopmentStatus status="stable">
               <div class="flex flex-wrap gap-4">
-                <Button variant="default" inactive>Default inactive</Button>
+                <Button variant="solid" inactive>Solid inactive</Button>
                 <Button variant="outline" inactive>Outline </Button>
                 <Button variant="destructive" inactive>Destructive</Button>
               </div>
@@ -363,7 +373,7 @@ const handleAsyncAction = async () => {
               <div class="space-y-3">
                 <h3 class="text-sm font-semibold text-gray-900">Click Counter</h3>
                 <div class="flex items-center gap-4">
-                  <Button @click="handleClick" variant="default">Click Me</Button>
+                  <Button @click="handleClick" variant="solid">Click Me</Button>
                   <span class="text-gray-700">
                     Clicked <span class="text-primary font-semibold">{{ clickCount }}</span> times
                   </span>
@@ -372,7 +382,7 @@ const handleAsyncAction = async () => {
               <div class="space-y-3">
                 <h3 class="text-sm font-semibold text-gray-900">Loading State</h3>
                 <div class="flex items-center gap-4">
-                  <Button @click="handleAsyncAction" variant="default" :disabled="isLoading">
+                  <Button @click="handleAsyncAction" variant="solid" :disabled="isLoading">
                     <svg
                       v-if="isLoading"
                       class="animate-spin"
@@ -413,7 +423,7 @@ const handleAsyncAction = async () => {
               <div class="space-y-3">
                 <h3 class="text-sm font-semibold text-gray-900">Primary Actions</h3>
                 <div class="flex gap-2">
-                  <Button variant="default">Save</Button>
+                  <Button variant="solid">Save</Button>
                   <Button variant="outline">Cancel</Button>
                   <Button variant="destructive">Delete</Button>
                 </div>
@@ -488,7 +498,7 @@ const handleAsyncAction = async () => {
         <div class="rounded-lg bg-white p-6 shadow-sm">
           <DevelopmentStatus status="stable">
             <div class="space-y-3">
-              <Button variant="default" class="w-full">Full Width Default</Button>
+              <Button variant="solid" class="w-full">Full Width Solid</Button>
               <Button variant="outline" class="w-full">Full Width Outline</Button>
               <Button variant="destructive" class="w-full">Full Width Destructive</Button>
             </div>
@@ -507,7 +517,7 @@ const handleAsyncAction = async () => {
         <div class="rounded-lg bg-white p-6 shadow-sm">
           <DevelopmentStatus status="stable">
             <div class="flex flex-col gap-3 sm:flex-row">
-              <Button variant="default" class="w-full sm:w-auto">Responsive Button 1</Button>
+              <Button variant="solid" class="w-full sm:w-auto">Responsive Button 1</Button>
               <Button variant="outline" class="w-full sm:w-auto">Responsive Button 2</Button>
             </div>
           </DevelopmentStatus>
@@ -533,7 +543,7 @@ const handleAsyncAction = async () => {
             <div>
               <h3 class="font-semibold text-gray-900">Variants</h3>
               <ul class="mt-2 list-disc space-y-1 pl-5">
-                <li><strong>default:</strong> Primary actions, main CTAs</li>
+                <li><strong>solid:</strong> Primary actions, main CTAs</li>
                 <li><strong>outline:</strong> Secondary actions, less emphasis</li>
                 <li><strong>destructive:</strong> Destructive actions (delete, remove, etc.)</li>
                 <li><strong>ghost:</strong> Tertiary actions, minimal emphasis</li>
@@ -545,7 +555,7 @@ const handleAsyncAction = async () => {
               <h3 class="font-semibold text-gray-900">Sizes</h3>
               <ul class="mt-2 list-disc space-y-1 pl-5">
                 <li><strong>sm:</strong> Compact spaces, inline with text</li>
-                <li><strong>default:</strong> Standard size for most use cases</li>
+                <li><strong>solid:</strong> Standard size for most use cases</li>
                 <li><strong>icon:</strong> Icon-only buttons (40x40px)</li>
               </ul>
             </div>

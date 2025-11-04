@@ -6,13 +6,13 @@ import { type ButtonHTMLAttributes } from 'vue'
 const buttonVariants = cva(
   // Base styles
   [
-    'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[16rem] font-semibold',
+    'inline-flex items-center justify-center gap-2 whitespace-nowrap font-semibold text-sm',
 
     // Transition styles
     'transition-all duration-300',
 
     // Focus styles
-    'focus-visible:ring-primary',
+    'focus-visible:ring-notification-link',
     'focus-visible:ring-2',
     'focus-visible:outline-none',
     'focus-visible:ring-offset-2',
@@ -27,6 +27,8 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
+          'bg-surface-primary-white text-text-subtitle border border-[#D5D5D5] shadow-[0_1px_2px_0_rgba(86,86,86,0.06)] hover:shadow-[0_1px_4px_0_rgba(86,86,86,0.50)] active:bg-[#F6F6F6] active:shadow-[0_1px_4px_0_rgba(86,86,86,0.50)] active:duration-100',
+        solid:
           'bg-primary text-surface-primary-white hover:bg-button-hover-primary hover:shadow-button disabled:bg-surface-disable disabled:text-text-disable',
         outline:
           'border border-primary text-primary hover:bg-surface-primary-white hover:shadow-button disabled:border-surface-disable disabled:text-text-disable',
@@ -38,14 +40,18 @@ const buttonVariants = cva(
         link: 'text-notification-link underline-offset-4 underline',
       },
       size: {
-        default: 'px-6 py-2 text-sm',
+        default: 'text-sm',
         sm: 'px-3 py-1 text-xs',
-        icon: 'h-10 w-10',
-        custom: 'p-0',
+        icon: 'p-2',
+        // custom: 'p-0',
       },
       inactive: {
         true: 'opacity-50 pointer-events-none',
         false: '',
+      },
+      rounded: {
+        true: 'rounded-[16rem] px-6 py-2',
+        false: 'rounded-lg px-4 py-2',
       },
     },
     compoundVariants: [
@@ -55,8 +61,9 @@ const buttonVariants = cva(
       },
     ],
     defaultVariants: {
-      variant: 'default',
+      variant: 'solid',
       size: 'default',
+      rounded: false,
     },
   },
 )
@@ -66,20 +73,22 @@ export interface ButtonProps extends /* @vue-ignore */ ButtonHTMLAttributes {
   size?: VariantProps<typeof buttonVariants>['size']
   asChild?: boolean
   inactive?: boolean
+  rounded?: boolean
 }
 
 withDefaults(defineProps<ButtonProps>(), {
-  variant: 'default',
+  variant: 'solid',
   size: 'default',
   asChild: false,
   inactive: false,
+  rounded: false,
 })
 </script>
 
 <template>
   <component
     :is="asChild ? 'slot' : 'button'"
-    :class="cn(buttonVariants({ variant, size, inactive }), $attrs.class as string)"
+    :class="cn(buttonVariants({ variant, size, inactive, rounded }), $attrs.class as string)"
     v-bind="asChild ? {} : $attrs"
   >
     <slot />
