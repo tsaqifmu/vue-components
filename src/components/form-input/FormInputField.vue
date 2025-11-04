@@ -220,8 +220,8 @@ const handleBlur = () => {
           <Button
             v-if="clearable"
             type="button"
-            variant="custom"
-            size="custom"
+            variant="ghost"
+            size="icon"
             :disabled="disabled"
             :class="
               cn(

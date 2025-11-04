@@ -8,10 +8,6 @@ const router = createRouter({
     { path: '/demo-input', component: () => import('@/views/DemoAdvancedInput.vue') },
     { path: '/demo-menu', component: () => import('@/views/DemoMenu.vue') },
     { path: '/demo-modal', component: () => import('@/views/DemoModal.vue') },
-    {
-      path: '/demo-modal-comparison',
-      component: () => import('@/views/DemoModalComparison.vue'),
-    },
     { path: '/demo-select', component: () => import('@/views/DemoSelect.vue') },
     { path: '/demo-multi-select', component: () => import('@/views/DemoMultiSelect.vue') },
     { path: '/demo-tabs', component: () => import('@/views/DemoTabs.vue') },

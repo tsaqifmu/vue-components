@@ -45,7 +45,7 @@ const handleFormSubmit = (data: ContactFormData) => {
               <div class="flex flex-wrap gap-2">
                 <Button variant="default">Default</Button>
                 <Button variant="outline">Outline</Button>
-                <Button variant="destructive">Destructive</Button>
+                <Button variant="solid">Solid</Button>
                 <Button variant="ghost">Ghost</Button>
               </div>
             </div>
@@ -53,7 +53,7 @@ const handleFormSubmit = (data: ContactFormData) => {
             <div class="space-y-3">
               <h4 class="text-sm font-medium text-gray-600">Sizes</h4>
               <div class="flex flex-wrap items-center gap-2">
-                <Button size="sm">Small</Button>
+                <Button size="default">Small</Button>
                 <Button size="default">Default</Button>
                 <Button size="icon" aria-label="Check">✓</Button>
               </div>

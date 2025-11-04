@@ -284,7 +284,7 @@ const handleFormSubmit = () => {
         <div class="rounded-lg border border-gray-200 p-6">
           <h2 class="mb-2 text-xl font-semibold">Custom Styled Modal</h2>
           <p class="mb-4 text-gray-600">Completely customized appearance.</p>
-          <Button @click="isCustomOpen = true" variant="destructive"> Open Custom Modal </Button>
+          <Button @click="isCustomOpen = true" variant="solid"> Open Custom Modal </Button>
 
           <ModalRoot v-model:open="isCustomOpen">
             <ModalOverlay class="bg-blue-500/20" />
@@ -308,7 +308,7 @@ const handleFormSubmit = () => {
 
               <ModalFooter class="justify-end bg-red-50">
                 <Button @click="isCustomOpen = false" variant="outline"> Cancel </Button>
-                <Button @click="handleDelete" variant="destructive"> Delete Permanently </Button>
+                <Button @click="handleDelete" variant="solid"> Delete Permanently </Button>
               </ModalFooter>
             </ModalContent>
           </ModalRoot>

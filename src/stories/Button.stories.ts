@@ -262,7 +262,7 @@ export const Outline: Story = {
 
 export const Destructive: Story = {
   args: {
-    variant: 'destructive',
+    variant: 'solid',
     size: 'default',
   },
   render: (args) => ({
@@ -270,7 +270,7 @@ export const Destructive: Story = {
     setup() {
       return { args }
     },
-    template: '<Button v-bind="args">Destructive Button</Button>',
+    template: '<Button v-bind="args">Solid Button</Button>',
   }),
   parameters: {
     layout: 'centered',
