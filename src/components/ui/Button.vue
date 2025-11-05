@@ -31,11 +31,11 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          'bg-surface-primary-white text-text-subtitle border border-[#D5D5D5] shadow-[0_1px_2px_0_rgba(86,86,86,0.06)]  hover:shadow-[0_1px_4px_0_rgba(86,86,86,0.50)] active:bg-[#F6F6F6] active:shadow-[0_1px_4px_0_rgba(86,86,86,0.50)] active:duration-100',
+          'bg-surface-primary-white text-text-subtitle border border-[#D5D5D5] shadow-[0_1px_2px_0_rgba(86,86,86,0.06)] hover:shadow-[0_1px_4px_0_rgba(86,86,86,0.50)] active:bg-[#F6F6F6] active:shadow-[0_1px_4px_0_rgba(86,86,86,0.50)] active:duration-100',
         solid:
-          'bg-primary shadow-[inset_0_0_0_1000px_rgba(0,0,0,0),0_1px_4px_0_rgba(39,177,153,0.50)] text-surface-primary-white hover:shadow-[inset_0_0_0_1000px_rgba(0,0,0,0.2),0_1px_4px_0_rgba(39,177,153,0.50)]  active:shadow-[inset_0_0_0_1000px_rgba(0,0,0,0.4),0_1px_4px_0_rgba(39,177,153,0.50)] disabled:bg-surface-disable disabled:text-text-disable',
+          'bg-primary shadow-[inset_0_0_0_1000px_rgba(0,0,0,0),0_1px_4px_0_color-mix(in_srgb,var(--color-primary)_50%,transparent)] text-surface-primary-white hover:shadow-[inset_0_0_0_1000px_rgba(0,0,0,0.2),0_1px_4px_0_color-mix(in_srgb,var(--color-primary)_50%,transparent)] active:shadow-[inset_0_0_0_1000px_rgba(0,0,0,0.4),0_1px_4px_0_color-mix(in_srgb,var(--color-primary)_50%,transparent)] disabled:bg-surface-disable disabled:text-text-disable',
         outline:
-          'border border-primary text-primary hover:bg-surface-primary-white hover:shadow-[0_1px_4px_0_rgba(86,86,86,0.50)] active:bg-[#FFD7D2] disabled:border-surface-disable disabled:text-text-disable',
+          'border border-primary text-primary hover:bg-surface-primary-white hover:shadow-[0_1px_4px_0_rgba(86,86,86,0.50)] active:bg-[#F6F6F6] active:duration-100 disabled:border-surface-disable disabled:text-text-disable',
         ghost:
           'text-primary hover:[color:color-mix(in_srgb,var(--color-primary)_80%,black_20%)] active:[color:color-mix(in_srgb,var(--color-primary)_60%,black_40%)] disabled:text-text-disable',
         link: 'text-notification-link underline-offset-auto underline hover:[color:color-mix(in_srgb,var(--color-notification-link)_80%,black_20%)] active:[color:color-mix(in_srgb,var(--color-notification-link)_60%,black_40%)]',
