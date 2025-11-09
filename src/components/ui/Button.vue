@@ -59,6 +59,7 @@ const buttonVariants = cva(
 
           // Disabled styles
           'disabled:bg-surface-disable',
+          'disabled:shadow-none',
           'disabled:text-text-disable',
         ],
         outline: [
@@ -75,6 +76,7 @@ const buttonVariants = cva(
           'active:duration-100',
 
           // Disabled styles
+          'disabled:bg-surface-secondary',
           'disabled:border-surface-disable',
           'disabled:text-text-disable',
         ],
@@ -102,10 +104,13 @@ const buttonVariants = cva(
 
           // Active styles (60% link color + 40% black)
           'active:[color:color-mix(in_srgb,var(--color-notification-link)_60%,black_40%)]',
+
+          // Disabled styles
+          'disabled:text-text-disable',
         ],
       },
       size: {
-        default: 'px-4 py-2 ',
+        default: '',
         icon: 'p-2',
       },
       inactive: {
@@ -113,10 +118,26 @@ const buttonVariants = cva(
         false: '',
       },
       rounded: {
-        true: 'rounded-[16rem] px-6 py-2',
-        false: 'rounded-lg px-4 py-2',
+        true: 'rounded-[16rem]',
+        false: 'rounded-lg',
       },
     },
+    compoundVariants: [
+      // Default size with normal rounded corners
+      {
+        size: 'default',
+        rounded: false,
+        class: 'px-4 py-2',
+      },
+      // Default size with pill shape (wider padding for better pill button appearance)
+      {
+        size: 'default',
+        rounded: true,
+        class: 'px-6 py-2',
+      },
+      // Icon size always uses p-2 regardless of rounded value (already handled in size variant)
+      // No compound variant needed since p-2 covers all sides uniformly
+    ],
     defaultVariants: {
       variant: 'solid',
       size: 'default',
