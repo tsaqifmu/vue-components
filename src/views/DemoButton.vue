@@ -293,7 +293,7 @@ const resetColor = () => {
               <div class="space-y-3">
                 <h3 class="text-sm font-semibold text-gray-900">Loading State</h3>
                 <div class="flex items-center gap-4">
-                  <Button @click="handleAsyncAction" variant="solid" :disabled="isLoading">
+                  <Button @click="handleAsyncAction" variant="solid" :inactive="isLoading">
                     <svg
                       v-if="isLoading"
                       class="animate-spin"

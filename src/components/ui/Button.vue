@@ -73,6 +73,7 @@ const buttonVariants = cva(
 
           // Active styles
           'active:bg-[#F6F6F6]',
+          'active:shadow-[0_1px_4px_0_rgba(86,86,86,0.50)]',
           'active:duration-100',
 
           // Disabled styles
