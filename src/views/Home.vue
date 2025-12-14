@@ -293,6 +293,36 @@ const handleFormSubmit = (data: ContactFormData) => {
             Enhanced form inputs with validation, character count, and error states
           </p>
         </RouterLink>
+
+        <RouterLink
+          to="/demo-radio-group"
+          class="group rounded-lg border-2 border-gray-200 bg-white p-6 transition-all hover:border-blue-500 hover:shadow-lg"
+        >
+          <div
+            class="mb-3 flex h-12 w-12 items-center justify-center rounded-lg bg-violet-100 text-2xl group-hover:bg-violet-500 group-hover:text-white"
+          >
+            🔘
+          </div>
+          <h3 class="mb-2 text-lg font-semibold text-gray-900">Radio Group</h3>
+          <p class="text-sm text-gray-600">
+            Accessible radio group with compound pattern and keyboard navigation
+          </p>
+        </RouterLink>
+
+        <RouterLink
+          to="/demo-badge"
+          class="group rounded-lg border-2 border-gray-200 bg-white p-6 transition-all hover:border-blue-500 hover:shadow-lg"
+        >
+          <div
+            class="mb-3 flex h-12 w-12 items-center justify-center rounded-lg bg-teal-100 text-2xl group-hover:bg-teal-500 group-hover:text-white"
+          >
+            🏷️
+          </div>
+          <h3 class="mb-2 text-lg font-semibold text-gray-900">Badge</h3>
+          <p class="text-sm text-gray-600">
+            Badges, tags, and chips with variants, icons, and dismissible support
+          </p>
+        </RouterLink>
       </div>
     </section>
 

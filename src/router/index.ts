@@ -13,6 +13,7 @@ const router = createRouter({
     { path: '/demo-tabs', component: () => import('@/views/DemoTabs.vue') },
     { path: '/demo-button', component: () => import('@/views/DemoButton.vue') },
     { path: '/demo-radio-group', component: () => import('@/views/DemoRadioGroup.vue') },
+    { path: '/demo-badge', component: () => import('@/views/DemoBadge.vue') },
   ],
 })
 
