@@ -12,6 +12,7 @@ const router = createRouter({
     { path: '/demo-multi-select', component: () => import('@/views/DemoMultiSelect.vue') },
     { path: '/demo-tabs', component: () => import('@/views/DemoTabs.vue') },
     { path: '/demo-button', component: () => import('@/views/DemoButton.vue') },
+    { path: '/demo-radio-group', component: () => import('@/views/DemoRadioGroup.vue') },
   ],
 })
 
