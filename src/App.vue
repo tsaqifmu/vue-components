@@ -30,6 +30,9 @@ import { RouterLink } from 'vue-router'
           <RouterLink to="/demo-menu" class="transition-colors hover:text-blue-200"
             >Demo Menu</RouterLink
           >
+          <RouterLink to="/demo-radio-group" class="transition-colors hover:text-blue-200"
+            >Demo Radio Group</RouterLink
+          >
         </div>
       </div>
     </nav>
