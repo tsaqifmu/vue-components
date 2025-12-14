@@ -11,6 +11,11 @@ import {
   type InjectionKey,
   type Ref,
 } from 'vue'
+import {
+  calculateDropdownPosition,
+  getElementRect,
+  positionResultToStyle,
+} from '../../lib/positionUtils'
 import { lockBodyScroll, unlockBodyScroll } from '../../lib/scrollLock'
 import { cn } from '../../lib/utils'
 import { Z_INDEX } from '../z-index'
@@ -84,13 +89,8 @@ const combinedStyle = computed(() => {
   return teleportStyle.value
 })
 
-// --- Constants ----
-const DROPDOWN_GAP_BOTTOM = 4 // Gap when dropdown opens below the trigger
-const DROPDOWN_GAP_TOP = 17 // Gap when dropdown opens above the trigger
-const VIEWPORT_PADDING = 8 // Minimum padding from viewport edges
-
 // --- Methods ----
-// Calculate position when teleported
+// Calculate position when teleported using the shared utility
 const updatePosition = () => {
   if (!props.teleport || !isSelectOpen.value) return
 
@@ -102,46 +102,20 @@ const updatePosition = () => {
   const button = container.querySelector('button')
   if (!button) return
 
-  const buttonRect = button.getBoundingClientRect()
-  const panelElement = panelRef.value
+  const triggerRect = getElementRect(button as HTMLElement)
+  const panelRect = getElementRect(panelRef.value ?? null)
 
-  if (!panelElement) return
+  if (!triggerRect || !panelRect) return
 
-  const panelRect = panelElement.getBoundingClientRect()
-  const viewportHeight = window.innerHeight
+  // Use the shared position calculator utility
+  const position = calculateDropdownPosition({
+    triggerRect,
+    panelRect,
+    align: props.align,
+  })
 
-  // Calculate position
-  let top = buttonRect.bottom + DROPDOWN_GAP_BOTTOM
-  let left = buttonRect.left
-
-  // Alignment
-  if (props.align === 'center') {
-    left = buttonRect.left + buttonRect.width / 2 - panelRect.width / 2
-  } else if (props.align === 'end') {
-    left = buttonRect.right - panelRect.width
-  }
-
-  // Check if would go off bottom
-  if (top + panelRect.height > viewportHeight && buttonRect.top > panelRect.height) {
-    top = buttonRect.top - panelRect.height - DROPDOWN_GAP_TOP
-  }
-
-  // Check if would go off right edge
-  const right = left + panelRect.width
-  if (right > window.innerWidth) {
-    left = window.innerWidth - panelRect.width - VIEWPORT_PADDING
-  }
-
-  // Check if would go off left edge
-  if (left < VIEWPORT_PADDING) {
-    left = VIEWPORT_PADDING
-  }
-
-  teleportStyle.value = {
-    top: `${top}px`,
-    left: `${left}px`,
-    minWidth: `${buttonRect.width}px`,
-  }
+  // Convert to style object
+  teleportStyle.value = positionResultToStyle(position)
 }
 
 // --- Watchers ---
